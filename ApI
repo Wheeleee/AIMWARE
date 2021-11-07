@@ -1,4 +1,4 @@
-_G.a = {
+return {
     UNIVERSAL={
         BodyParts = {
             ["TORSO"] = "UpperTorso",
