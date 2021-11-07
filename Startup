@@ -336,9 +336,9 @@ end)
 
 aimware.RunService.RenderStepped:Connect(function(deltatime)
     aimware.RenderStepped.Steps1+=1
+    aimware.Visuals.MiddleScreen = lib.GUI.AbsoluteSize/2+Vector2.new(0,18)
     if aimware.RenderStepped.AddedSteps == aimware.RenderStepped.Steps1 then
         aimware.RenderStepped.Steps1 = 0
-        aimware.Visuals.MiddleScreen = lib.GUI.AbsoluteSize/2+Vector2.new(0,18)
         for _,enemy in next, aimware.ApI:GetEnemies() do
             aimware.Visuals:Add(enemy.Instance,enemy.Parent)
             if periodicheckingtoggle.Activated then
