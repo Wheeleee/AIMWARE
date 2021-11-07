@@ -1,0 +1,431 @@
+local lib = loadstring(game:HttpGet("https://pastebin.com/raw/ePPzNaQD"))()
+
+lib:Init()
+frame = lib:CreateFrame({Size="Medium",GUIName="AIMWARE"})
+aimbotbutton = frame:CreateButton({Name="aimbot"})
+silentbutton = frame:CreateButton({Name="silent"})
+visualsbutton = frame:CreateButton({Name="visuals"})
+weaponsbutton = frame:CreateButton({Name="weapons"})
+
+silentaimframe = frame:CreateViewFrame({Size="Whole"})
+visualsframe = frame:CreateViewFrame({Size="Whole"})
+aimbotframe = frame:CreateViewFrame({Size="Whole"})
+weaponsframe = frame:CreateViewFrame({Size="Whole"})
+
+hitchanceslider = silentaimframe:CreateSlider({Position=UDim2.new(0,0,0,0)})
+hitchanceslider.Name = "hitchance"
+hitchanceslider:Update()
+maskedpartdropdown = silentaimframe:CreateDropdown({Position=UDim2.new(0,0,0,45)})
+maskedpartdropdown.Name = "hitpart"
+maskedpartdropdown.Items = {[1]={Name="head"},[2]={Name="torso"},[3]={Name="random"}}
+maskedpartdropdown.Selected = "head"
+maskedpartdropdown:Update()
+maskedpartdropdown:UpdateList()
+
+smoothingslider = aimbotframe:CreateSlider({Position=UDim2.new(0,0,0,0)})
+smoothingslider.Name = "smoothing"
+smoothingslider.Procent = 2
+smoothingslider:Update()
+fovtoggle = aimbotframe:CreateToggleButton({Position=UDim2.new(0,0,45,0)})
+fovtoggle.Name = "fov"
+fovtoggle.Activated = false
+fovtoggle:Update()
+autoaimtoggle = aimbotframe:CreateToggleButton({Position=UDim2.new(0,316,0,0)})
+autoaimtoggle.Name = "autoaim"
+autoaimtoggle.Activated = false
+autoaimtoggle:Update()
+periodicheckingtoggle = aimbotframe:CreateToggleButton({Position=UDim2.new(0,474,0,0)})
+periodicheckingtoggle.Name = "periodichecking"
+periodicheckingtoggle.Activated = false
+periodicheckingtoggle:Update()
+autoshootoggle = aimbotframe:CreateToggleButton({Position=UDim2.new(0,158,0,0)})
+autoshootoggle.Name = "autoshoot"
+autoshootoggle.Activated = false
+autoshootoggle:Update()
+activateaimbot = aimbotframe:CreateKeyChoose({Position=UDim2.new(0,0,0,45)})
+activateaimbot.Name = "activate"
+activateaimbot.Key = "LeftMouse"
+activateaimbot:Update()
+aimbotypedropdown = aimbotframe:CreateDropdown({Position=UDim2.new(0,128,0,45)})
+aimbotypedropdown.Name = "aimbotype"
+aimbotypedropdown.Items = {[1]={Name="camera"},[2]={Name="mouse"}}
+aimbotypedropdown.Selected = "mouse"
+aimbotypedropdown:Update()
+aimbotypedropdown:UpdateList()
+aimtypedropdown = aimbotframe:CreateDropdown({Position=UDim2.new(0,236,0,45)})
+aimtypedropdown.Name = "aimtype"
+aimtypedropdown.Items = {[1]={Name="mousedist"},[2]={Name="characterdist"}}
+aimtypedropdown.Selected = "mousedist"
+aimtypedropdown:Update()
+aimtypedropdown:UpdateList()
+aimpartdropdown = aimbotframe:CreateDropdown({Position=UDim2.new(0,344,0,45)})
+aimpartdropdown.Name = "aimpart"
+aimpartdropdown.Items = {[1]={Name="head"},[2]={Name="torso"}}
+aimpartdropdown.Selected = "head"
+aimpartdropdown:Update()
+aimpartdropdown:UpdateList()
+
+removerecoiltoggle = weaponsframe:CreateToggleButton({Position=UDim2.new(0,0,0,0)})
+removerecoiltoggle.Name = "removerecoil"
+removerecoiltoggle.Activated = false
+removerecoiltoggle:Update()
+removespreadtoggle = weaponsframe:CreateToggleButton({Position=UDim2.new(0,158,0,0)})
+removespreadtoggle.Name = "removespread"
+removespreadtoggle.Activated = false
+removespreadtoggle:Update()
+
+chamstoggle = visualsframe:CreateToggleButton({Position=UDim2.new(0,316,0,0)})
+chamstoggle.Name = "chams"
+chamstoggle:Update()
+tracerstoggle = visualsframe:CreateToggleButton({Position=UDim2.new(0,158,0,0)})
+tracerstoggle.Name = "tracers"
+tracerstoggle:Update()
+drawfovtoggle = visualsframe:CreateToggleButton({Position=UDim2.new(0,0,0,0)})
+drawfovtoggle.Name = "drawfov"
+drawfovtoggle:Update()
+boxestoggle = visualsframe:CreateToggleButton({Position=UDim2.new(0,474,0,0)})
+boxestoggle.Name = "boxes"
+boxestoggle:Update()
+visualchecktoggle = visualsframe:CreateToggleButton({Position=UDim2.new(0,158,0,45)})
+visualchecktoggle.Name = "visualcheck"
+visualchecktoggle.Activated = false
+visualchecktoggle:Update()
+fovslider = visualsframe:CreateSlider({Position=UDim2.new(0,0,0,45)})
+fovslider.Name = "fov"
+fovslider.Procent = 75
+fovslider.MaxProcent = 1200
+fovslider:Update()
+camerafovtoggle = visualsframe:CreateToggleButton({Position=UDim2.new(0,474,0,45)})
+camerafovtoggle.Name = "camerafov"
+camerafovtoggle.OnUpdate = function()
+	if camerafovtoggle.Activated then
+		workspace.Camera.FieldOfView = camerafov.Procent
+	end
+end
+camerafovtoggle:Update()
+camerafov = visualsframe:CreateSlider({Position=UDim2.new(0,316,0,45)})
+camerafov.OnUpdate = function()
+	if camerafovtoggle.Activated then
+		workspace.Camera.FieldOfView = camerafov.Procent
+	end
+end
+camerafov.Name = "camerafov"
+camerafov.Procent = workspace.CurrentCamera.FieldOfView
+camerafov.MaxProcent = 120
+camerafov:Update()
+
+silentbutton:Link(silentaimframe)
+visualsbutton:Link(visualsframe)
+weaponsbutton:Link(weaponsframe)
+aimbotbutton:Link(aimbotframe)
+
+local aimware = {};setmetatable(aimware,{
+	__index = function(self,index)
+		local success,service = pcall(game.GetService,game,index)
+		return success and service or index == "DebugPrint" and function(self,text)
+			rconsoleprint("[AIMWARE] "..text.."\n")
+		end or index == "" and function()
+
+		end
+	end
+})
+
+_G.weaponsframe = weaponsframe
+_G.aimbotframe = aimbotframe
+
+aimware.RenderStepped = {
+    Steps1 = 0,
+    AddedSteps = 10,
+}
+aimware.Account = {
+	BaseAccount = {},
+}
+aimware.Visuals = {
+	Active = {},
+	FovCircle = Drawing.new("Circle"),
+	AimAtLine = Drawing.new("Line"),
+	MiddleScreen = lib.GUI.AbsoluteSize/2+Vector2.new(0,18),
+}
+aimware.ApITable = _G.a or loadstring(game:HttpGet("https://pastebin.com/raw/8SxpAELY"))()
+aimware.ApI = aimware.ApITable[game.GameId] or aimware.ApITable.UNIVERSAL
+aimware.ApITable = nil
+
+if not aimware.ApI.Info.AntiCheatHash == aimware.ApI.Info:GetAntiCheatHash() then
+	lib.GUI:Destroy()
+	return
+end
+aimware.ApI:Init()
+
+silentbutton:Lock(aimware.ApI.Tabs.Silent)
+weaponsbutton:Lock(aimware.ApI.Tabs.WeaponModding)
+visualsbutton:Lock(aimware.ApI.Tabs.Visuals)
+
+aimware.LocalPlayer = aimware.Players.LocalPlayer
+aimware.Mouse = aimware.LocalPlayer:GetMouse()
+aimware.Camera = workspace.CurrentCamera
+
+aimware.Data = {    
+	AimAt = false,
+	AimData = nil,
+}
+
+setmetatable(aimware.Account,{
+	__index = function(self,index)
+		return index == "Save" and function(self)
+		end or index == "Read" and function(self)
+		end or index == "Check" and function(self)
+		end
+	end,
+})
+setmetatable(aimware.Visuals,{
+	__index = function(self,index)
+		return index == "Add" and function(self,character,removeparent)
+            local debugid = character:GetDebugId()
+			if not self.Active[debugid] then
+				local esp = {}
+				setmetatable(esp,{
+					__index = function(self,index)
+						return index == "Invalidate" and function(self)
+							esp.RenderConnection:Disconnect()
+							esp.ParentRemovedConnection:Disconnect()
+                            aimware.Visuals.Active[debugid] = nil
+							esp.Line:Remove()
+                            esp.Box:Remove()
+						end
+					end,
+				})
+				esp.Line = Drawing.new("Line")
+				esp.Line.Thickness = 1
+                esp.Line.Visible = tracerstoggle.Activated
+                esp.Line.Color = Color3.fromRGB(255,108,108)
+                esp.Box = Drawing.new("Square")
+                esp.Box.Filled = false
+                esp.Box.Visible = boxestoggle.Activated
+                esp.Box.Size = Vector2.new(12,12)
+                esp.Box.Position = Vector2.new(12,12)
+                esp.Box.Thickness = 1
+                esp.Box.Color = Color3.fromRGB(255,108,108)
+				esp.RenderConnection = aimware.RunService.RenderStepped:Connect(function()
+                    local aimpart,torso = character:FindFirstChild(aimware.ApI:Translate(aimpartdropdown.Selected)),character:FindFirstChild(aimware.ApI:Translate("TORSO"))
+                    torso = torso or aimpart
+                    if aimpart then
+                        local orientation,boundingsize = character:GetBoundingBox()
+                        local width = boundingsize.X > boundingsize.Z and boundingsize.X or boundingsize.Z
+
+                        local aimpartposition,aimpartonscreen = aimware.Camera:WorldToViewportPoint(aimpart.Position)
+                        local torsoposition,torsonscreen = aimware.Camera:WorldToViewportPoint(torso.Position)
+                        local aimpartvisible = #aimware.Camera:GetPartsObscuringTarget({aimpart.Position},{character,aimware.Camera,aimware.ApI:GetLocalCharacter(),unpack(aimware.ApI:GetIgnorables())})==0
+
+                        local color = (visualchecktoggle.Activated) and aimpartvisible and Color3.fromRGB(108,255,108) or (visualchecktoggle.Activated) and Color3.fromRGB(255,108,108) or not visualchecktoggle.Activated and Color3.fromRGB(255,108,0)
+                        if tracerstoggle.Activated then
+                            if aimpartonscreen then
+                                esp.Line.Visible = true
+                                esp.Line.From = self.MiddleScreen
+                                esp.Line.To = Vector2.new(aimpartposition.x,aimpartposition.y)
+                                esp.Line.Color = color
+                            else
+                                esp.Line.Visible = false
+                            end
+                        end
+                        if boxestoggle.Activated then
+                            if torsonscreen then
+                                esp.Box.Visible = true
+                                local distance = (aimware.Camera.CFrame.Position-torso.Position).magnitude
+                                esp.Box.Size = Vector2.new((width*500)/distance,(boundingsize.y*500)/distance)
+                                esp.Box.Position = Vector2.new(torsoposition.x-esp.Box.Size.x/2,torsoposition.y-esp.Box.Size.y/2)
+                                esp.Box.Color = color
+                            else
+                                esp.Box.Visible = false
+                            end
+                        end
+                    else
+                        esp:Invalidate()
+                    end
+				end)
+				if removeparent then
+					esp.ParentRemovedConnection = removeparent.ChildRemoved:Connect(function(child)
+						if child == character or child == character.Parent then
+							esp:Invalidate()
+						end
+					end)
+				else
+					esp:Invalidate()
+				end
+                self.Active[debugid] = esp
+				return esp
+			end
+		end or index == "Remove" and function(self,character)
+
+		end or index == "" and function(self)
+		end
+	end,
+})
+
+aimware.Visuals.AimAtLine.Visible = false
+aimware.Visuals.AimAtLine.Thickness = 1
+aimware.Visuals.AimAtLine.Color = Color3.fromRGB(108,108,255)
+aimware.Visuals.AimAtLine.From = aimware.Visuals.MiddleScreen
+aimware.Visuals.AimAtLine.To = aimware.Visuals.MiddleScreen
+aimware.Visuals.FovCircle.Visible = fovtoggle.Activated
+aimware.Visuals.FovCircle.Radius = fovslider.Procent
+aimware.Visuals.FovCircle.Thickness = 1
+aimware.Visuals.FovCircle.Color = Color3.fromRGB(255,108,0)
+aimware.Visuals.FovCircle.Filled = false
+aimware.Visuals.FovCircle.ZIndex = 10
+aimware.Visuals.FovCircle.Position = aimware.Visuals.MiddleScreen
+
+boxestoggle.OnUpdate = function(self)
+    for _,esp in next, aimware.Visuals.Active do
+        esp.Box.Visible = boxestoggle.Activated
+    end
+end
+tracerstoggle.OnUpdate = function(self)
+    for _,esp in next, aimware.Visuals.Active do
+        esp.Line.Visible = tracerstoggle.Activated
+    end
+end
+drawfovtoggle.OnUpdate = function(self)
+	aimware.Visuals.FovCircle.Visible = drawfovtoggle.Activated
+end
+fovslider.OnUpdate = function(self)
+	aimware.Visuals.FovCircle.Radius = fovslider.Procent
+end
+aimtypedropdown.OnUpdate = function(self)
+    
+end
+
+aimware.UserInputService.InputBegan:Connect(function(key)
+	if key.KeyCode == activateaimbot.Key then
+		aimware.Visuals.AimAtLine.Visible = true
+		aimware.Data.AimAt = true
+	end
+end)
+
+aimware.UserInputService.InputEnded:Connect(function(key)
+	if key.KeyCode == activateaimbot.Key then
+		aimware.Visuals.AimAtLine.Visible = false
+		aimware.Data.AimAt = false
+		aimware.Data.AimData = nil
+	end
+end)
+aimware.Mouse.Button1Down:Connect(function()
+	if activateaimbot.Key == "RightMouse" then
+		aimware.Visuals.AimAtLine.Visible = true
+		aimware.Data.AimAt = true
+	end
+end)
+aimware.Mouse.Button2Down:Connect(function()
+	if activateaimbot.Key == "LeftMouse" then
+		aimware.Visuals.AimAtLine.Visible = true
+		aimware.Data.AimAt = true
+	end
+end)
+aimware.Mouse.Button1Up:Connect(function()
+	if activateaimbot.Key == "RightMouse" then
+		aimware.Visuals.AimAtLine.Visible = false
+		aimware.Data.AimAt = false
+		aimware.Data.AimData = nil
+	end
+end)
+aimware.Mouse.Button2Up:Connect(function()
+	if activateaimbot.Key == "LeftMouse" then
+		aimware.Visuals.AimAtLine.Visible = false
+		aimware.Data.AimAt = false
+		aimware.Data.AimData = nil
+	end
+end)
+
+aimware.RunService.RenderStepped:Connect(function(deltatime)
+    aimware.RenderStepped.Steps1+=1
+    if aimware.RenderStepped.AddedSteps == aimware.RenderStepped.Steps1 then
+        aimware.RenderStepped.Steps1 = 0
+        for _,enemy in next, aimware.ApI:GetEnemies() do
+            aimware.Visuals:Add(enemy.Instance,enemy.Parent)
+            if periodicheckingtoggle.Activated then
+                aimware.Data.AimData = nil
+            end
+        end
+    end
+	if (aimware.Data.AimAt) and aimware.ApI:Valid() then
+		if not aimware.Data.AimData then
+			local enemies = aimware.ApI:GetEnemies()
+			if aimtypedropdown.Selected == "mousedist" then
+				local mouseposition = Vector2.new(aimware.Mouse.x,aimware.Mouse.y)
+				for index,character in next, (enemies) do
+					local instance = character.Instance
+					if instance then
+						local aimatpart = instance:FindFirstChild(aimware.ApI:Translate(aimpartdropdown.Selected))
+						if aimatpart then
+							local vector,onscreen = aimware.Camera:WorldToScreenPoint(aimatpart.Position)
+							local distancefromiddle = (aimware.Visuals.MiddleScreen-Vector2.new(vector.x,vector.y)).magnitude
+							if not visualchecktoggle.Activated or #aimware.Camera:GetPartsObscuringTarget({aimatpart.Position},{instance,aimware.Camera,aimware.ApI:GetLocalCharacter(),unpack(aimware.ApI:GetIgnorables())})==0 then
+                                if onscreen then
+                                    local distance = (mouseposition-Vector2.new(vector.x,vector.y)).magnitude
+                                    if not aimware.Data.AimData then
+                                        aimware.Data.AimData = {
+                                            MouseDistance = distance,
+                                            Character = character,
+                                            Part = aimatpart,
+                                            MiddleDistance = distancefromiddle,
+                                        }
+                                    elseif aimware.Data.AimData.MouseDistance > distance then
+                                        aimware.Data.AimData = {
+                                            MouseDistance = distance,
+                                            Character = character,
+                                            Part = aimatpart,
+                                            MiddleDistance = distancefromiddle,
+                                        }
+                                    end
+                                end
+                            end
+						end
+					end
+				end
+			elseif aimtypedropdown.Selected == "characterdist" then
+				for index,character in next, (enemies) do
+					local instance = character.Instance
+					if instance then
+						local aimatpart = instance:FindFirstChild(aimware.ApI:Translate(aimpartdropdown.Selected))
+						if aimatpart then
+							local vector,onscreen = aimware.Camera:WorldToScreenPoint(aimatpart.Position)
+							local distancefromiddle = (aimware.Visuals.MiddleScreen-Vector2.new(vector.x,vector.y)).magnitude
+							if not visualchecktoggle.Activated or #aimware.Camera:GetPartsObscuringTarget({aimatpart.Position},{instance,aimware.Camera,aimware.ApI:GetLocalCharacter(),unpack(aimware.ApI:GetIgnorables())})==0 then
+                                if onscreen then
+                                    local distance = (aimware.ApI:GetLocalPosition()-aimatpart.Position).magnitude
+                                    if not aimware.Data.AimData then
+                                        aimware.Data.AimData = {
+                                            CharacterDistance = distance,
+                                            Character = character,
+                                            Part = aimatpart,
+                                            MiddleDistance = distancefromiddle,
+                                        }
+                                    elseif aimware.Data.AimData.CharacterDistance > distance then
+                                        aimware.Data.AimData = {
+                                            CharacterDistance = distance,
+                                            Character = character,
+                                            Part = aimatpart,
+                                            MiddleDistance = distancefromiddle,
+                                        }
+                                    end
+                                end
+                            end
+						end
+					end
+				end
+			end
+		end
+		if (aimware.Data.AimData) and aimware.Data.AimData.Part and aimware.Data.AimData.MiddleDistance < fovslider.Procent then
+			if aimbotypedropdown.Selected == "mouse" then
+				local screenposition,visible = aimware.Camera:WorldToScreenPoint(aimware.Data.AimData.Part.Position)
+				mousemoverel(-((aimware.Mouse.x-screenposition.x)/smoothingslider.Procent),-((aimware.Mouse.y-screenposition.y)/smoothingslider.Procent))
+				aimware.Visuals.AimAtLine.To = Vector2.new(screenposition.X,screenposition.Y+18)
+			elseif aimbotypedropdown.Selected == "camera" then
+				local screenposition,visible = aimware.Camera:WorldToScreenPoint(aimware.Data.AimData.Part.Position)
+				aimware.ApI:SetCFrame(CFrame.new(aimware.Camera.CFrame.Position,aimware.Data.AimData.Part.CFrame.Position))
+				aimware.Visuals.AimAtLine.To = Vector2.new(screenposition.X,screenposition.Y+18)
+			end
+		else
+		    aimware.Data.AimData = nil
+		end
+	end
+end)
