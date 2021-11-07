@@ -274,6 +274,11 @@ aimware.Visuals.FovCircle.Filled = false
 aimware.Visuals.FovCircle.ZIndex = 10
 aimware.Visuals.FovCircle.Position = aimware.Visuals.MiddleScreen
 
+aimware.Camera.Changed:Connect(function()
+	if camerafovtoggle.Activated then
+		aimware.Camera.FieldOfView = camerafov.Procent
+	end
+end)
 boxestoggle.OnUpdate = function(self)
     for _,esp in next, aimware.Visuals.Active do
         esp.Box.Visible = boxestoggle.Activated
@@ -296,40 +301,34 @@ end
 
 aimware.UserInputService.InputBegan:Connect(function(key)
 	if key.KeyCode == activateaimbot.Key then
-		aimware.Visuals.AimAtLine.Visible = true
 		aimware.Data.AimAt = true
 	end
 end)
 
 aimware.UserInputService.InputEnded:Connect(function(key)
 	if key.KeyCode == activateaimbot.Key then
-		aimware.Visuals.AimAtLine.Visible = false
 		aimware.Data.AimAt = false
 		aimware.Data.AimData = nil
 	end
 end)
 aimware.Mouse.Button1Down:Connect(function()
 	if activateaimbot.Key == "RightMouse" then
-		aimware.Visuals.AimAtLine.Visible = true
 		aimware.Data.AimAt = true
 	end
 end)
 aimware.Mouse.Button2Down:Connect(function()
 	if activateaimbot.Key == "LeftMouse" then
-		aimware.Visuals.AimAtLine.Visible = true
 		aimware.Data.AimAt = true
 	end
 end)
 aimware.Mouse.Button1Up:Connect(function()
 	if activateaimbot.Key == "RightMouse" then
-		aimware.Visuals.AimAtLine.Visible = false
 		aimware.Data.AimAt = false
 		aimware.Data.AimData = nil
 	end
 end)
 aimware.Mouse.Button2Up:Connect(function()
 	if activateaimbot.Key == "LeftMouse" then
-		aimware.Visuals.AimAtLine.Visible = false
 		aimware.Data.AimAt = false
 		aimware.Data.AimData = nil
 	end
@@ -339,6 +338,7 @@ aimware.RunService.RenderStepped:Connect(function(deltatime)
     aimware.RenderStepped.Steps1+=1
     if aimware.RenderStepped.AddedSteps == aimware.RenderStepped.Steps1 then
         aimware.RenderStepped.Steps1 = 0
+        aimware.Visuals.MiddleScreen = lib.GUI.AbsoluteSize/2+Vector2.new(0,18)
         for _,enemy in next, aimware.ApI:GetEnemies() do
             aimware.Visuals:Add(enemy.Instance,enemy.Parent)
             if periodicheckingtoggle.Activated then
@@ -420,9 +420,7 @@ aimware.RunService.RenderStepped:Connect(function(deltatime)
 				mousemoverel(-((aimware.Mouse.x-screenposition.x)/smoothingslider.Procent),-((aimware.Mouse.y-screenposition.y)/smoothingslider.Procent))
 				aimware.Visuals.AimAtLine.To = Vector2.new(screenposition.X,screenposition.Y+18)
 			elseif aimbotypedropdown.Selected == "camera" then
-				local screenposition,visible = aimware.Camera:WorldToScreenPoint(aimware.Data.AimData.Part.Position)
 				aimware.ApI:SetCFrame(CFrame.new(aimware.Camera.CFrame.Position,aimware.Data.AimData.Part.CFrame.Position))
-				aimware.Visuals.AimAtLine.To = Vector2.new(screenposition.X,screenposition.Y+18)
 			end
 		else
 		    aimware.Data.AimData = nil
