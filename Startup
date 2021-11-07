@@ -1,4 +1,4 @@
-local lib = loadstring(game:HttpGet("https://pastebin.com/raw/ePPzNaQD"))()
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Wheeleee/AIMWARE/main/Library"))()
 
 lib:Init()
 frame = lib:CreateFrame({Size="Medium",GUIName="AIMWARE"})
@@ -146,7 +146,7 @@ aimware.Visuals = {
 	AimAtLine = Drawing.new("Line"),
 	MiddleScreen = lib.GUI.AbsoluteSize/2+Vector2.new(0,18),
 }
-aimware.ApITable = _G.a or loadstring(game:HttpGet("https://pastebin.com/raw/8SxpAELY"))()
+aimware.ApITable = _G.a or loadstring(game:HttpGet("https://raw.githubusercontent.com/Wheeleee/AIMWARE/main/ApI"))()
 aimware.ApI = aimware.ApITable[game.GameId] or aimware.ApITable.UNIVERSAL
 aimware.ApITable = nil
 
