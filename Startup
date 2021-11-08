@@ -180,7 +180,7 @@ setmetatable(aimware.Account,{
 setmetatable(aimware.Visuals,{
 	__index = function(self,index)
 		return index == "Add" and function(self,table,removeparent)
-		    local character = table.Character
+		    local character = table.Instance
             local debugid = character:GetDebugId()
 			if not self.Active[debugid] then
 				local esp = {}
