@@ -26,6 +26,7 @@ return {
                     enemies[#enemies+1] = {
                         Instance = player.Character,
                         Parent = player.Character.Parent,
+                        Ignore = player.Character,
                     }
                 end
             end
@@ -84,6 +85,7 @@ return {
                     enemies[#enemies+1] = {
                         Instance = character,
                         Parent = character.Parent,
+                        Ignore = player.Character,
                     }
                 end
             end
@@ -169,6 +171,7 @@ return {
                     enemies[#enemies+1] = {
                         Instance = character.Body,
                         Parent = character.Parent,
+                        Ignore = character,
                     }
                 end
             end
@@ -228,6 +231,7 @@ return {
                     enemies[#enemies+1] = {
                         Instance = character,
                         Parent = character.Parent,
+                        Ignore = player.Character,
                     }
                 end
             end
@@ -286,6 +290,7 @@ return {
                     enemies[#enemies+1] = {
                         Instance = player.Character,
                         Parent = player.Character.Parent,
+                        Ignore = player.Character,
                     }
                 end
             end
@@ -344,6 +349,7 @@ return {
                     enemies[#enemies+1] = {
                         Instance = player.Character,
                         Parent = player.Character.Parent,
+                        Ignore = player.Character,
                     }
                 end
             end
