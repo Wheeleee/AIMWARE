@@ -359,7 +359,8 @@ aimware.RunService.RenderStepped:Connect(function(deltatime)
 						if aimatpart then
 							local vector,onscreen = aimware.Camera:WorldToScreenPoint(aimatpart.Position)
 							local distancefromiddle = (aimware.Visuals.MiddleScreen-Vector2.new(vector.x,vector.y)).magnitude
-							if not visualchecktoggle.Activated or #aimware.Camera:GetPartsObscuringTarget({aimatpart.Position},{instance,aimware.Camera,aimware.ApI:GetLocalCharacter(),unpack(aimware.ApI:GetIgnorables())})==0 then
+							local x = aimware.Camera:GetPartsObscuringTarget({aimatpart.Position},{character.Ignore,aimware.Camera,aimware.ApI:GetLocalCharacter(),unpack(aimware.ApI:GetIgnorables())})
+							if not visualchecktoggle.Activated or #x==0 then
                                 if onscreen then
                                     local distance = (mouseposition-Vector2.new(vector.x,vector.y)).magnitude
                                     if not aimware.Data.AimData then
@@ -390,7 +391,7 @@ aimware.RunService.RenderStepped:Connect(function(deltatime)
 						if aimatpart then
 							local vector,onscreen = aimware.Camera:WorldToScreenPoint(aimatpart.Position)
 							local distancefromiddle = (aimware.Visuals.MiddleScreen-Vector2.new(vector.x,vector.y)).magnitude
-							if not visualchecktoggle.Activated or #aimware.Camera:GetPartsObscuringTarget({aimatpart.Position},{instance,aimware.Camera,aimware.ApI:GetLocalCharacter(),unpack(aimware.ApI:GetIgnorables())})==0 then
+							if not visualchecktoggle.Activated or #aimware.Camera:GetPartsObscuringTarget({aimatpart.Position},{character.Ignore,aimware.Camera,aimware.ApI:GetLocalCharacter(),unpack(aimware.ApI:GetIgnorables())})==0 then
                                 if onscreen then
                                     local distance = (aimware.ApI:GetLocalPosition()-aimatpart.Position).magnitude
                                     if not aimware.Data.AimData then
