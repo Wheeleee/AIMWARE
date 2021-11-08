@@ -179,7 +179,8 @@ setmetatable(aimware.Account,{
 })
 setmetatable(aimware.Visuals,{
 	__index = function(self,index)
-		return index == "Add" and function(self,character,removeparent)
+		return index == "Add" and function(self,table,removeparent)
+		    local character = table.Character
             local debugid = character:GetDebugId()
 			if not self.Active[debugid] then
 				local esp = {}
@@ -214,7 +215,7 @@ setmetatable(aimware.Visuals,{
 
                         local aimpartposition,aimpartonscreen = aimware.Camera:WorldToViewportPoint(aimpart.Position)
                         local torsoposition,torsonscreen = aimware.Camera:WorldToViewportPoint(torso.Position)
-                        local aimpartvisible = #aimware.Camera:GetPartsObscuringTarget({aimpart.Position},{character,aimware.Camera,aimware.ApI:GetLocalCharacter(),unpack(aimware.ApI:GetIgnorables())})==0
+                        local aimpartvisible = #aimware.Camera:GetPartsObscuringTarget({aimpart.Position},{table.Ignore,aimware.Camera,aimware.ApI:GetLocalCharacter(),unpack(aimware.ApI:GetIgnorables())})==0
 
                         local color = (visualchecktoggle.Activated) and aimpartvisible and Color3.fromRGB(108,255,108) or (visualchecktoggle.Activated) and Color3.fromRGB(255,108,108) or not visualchecktoggle.Activated and Color3.fromRGB(255,108,0)
                         if tracerstoggle.Activated then
@@ -242,8 +243,8 @@ setmetatable(aimware.Visuals,{
                         esp:Invalidate()
                     end
 				end)
-				if removeparent then
-					esp.ParentRemovedConnection = removeparent.ChildRemoved:Connect(function(child)
+				if table.Parent then
+					esp.ParentRemovedConnection = table.Parent.ChildRemoved:Connect(function(child)
 						if child == character or child == character.Parent then
 							esp:Invalidate()
 						end
@@ -341,7 +342,7 @@ aimware.RunService.RenderStepped:Connect(function(deltatime)
     if aimware.RenderStepped.AddedSteps == aimware.RenderStepped.Steps1 then
         aimware.RenderStepped.Steps1 = 0
         for _,enemy in next, aimware.ApI:GetEnemies() do
-            aimware.Visuals:Add(enemy.Instance,enemy.Parent)
+            aimware.Visuals:Add(enemy)
             if periodicheckingtoggle.Activated then
                 aimware.Data.AimData = nil
             end
