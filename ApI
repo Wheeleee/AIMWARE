@@ -160,7 +160,14 @@ return {
             return self.BodyParts[text:upper()] or ""
         end,
         GetIgnorables = function(self)
-            return {unpack(workspace.Ragdolls:GetChildren()),unpack(workspace.Projectiles:GetChildren())}
+            local weapon
+            for _,descendant in pairs(workspace:GetChildren()) do
+                if (descendant:IsA("Model")) and descendant:FindFirstChild("AnimationController") then
+                    weapon=descendant
+                    break
+                end
+            end
+            return {unpack(workspace.Ragdolls:GetChildren()),unpack(workspace.Projectiles:GetChildren()),weapon}
         end,
         GetEnemies = function(self)
             local enemies = {}
