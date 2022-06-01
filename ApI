@@ -1,391 +1,395 @@
+local players = game:GetService("Players")
+local localplayer = players.LocalPlayer
+local camera = workspace.CurrentCamera
+
 return {
-    UNIVERSAL={
-        BodyParts = {
-            ["TORSO"] = "UpperTorso",
-            ["HEAD"] = "Head",
-        },
-        Init = function(self)
-            
-        end,
-        SetCFrame = function(self,CFrame)
-            workspace.CurrentCamera.CFrame = CFrame
-        end,
-        Valid = function(self)
-            return true
-        end,
-        Translate = function(self,text)
-            return self.BodyParts[text:upper()] or ""
-        end,
-        GetIgnorables = function(self)
-            return {}
-        end,
-        GetEnemies = function(self)
-            local enemies = {}
-            for _,player in next, game:GetService("Players"):GetPlayers() do
-                if (player.Character and (player.Neutral or player.Team ~= game:GetService("Players").LocalPlayer)) and player ~= game:GetService("Players").LocalPlayer and player.Character:FindFirstChild("Humanoid").Health>0 then
-                    enemies[#enemies+1] = {
-                        Instance = player.Character,
-                        Parent = player.Character.Parent,
-                        Ignore = player.Character,
-                    }
-                end
-            end
-            return enemies
-        end,
-        GetLocalCharacter = function(self)
-            return game:GetService("Players").LocalPlayer.Character
-        end,
-        GetLocalPosition = function(self)
-            local character = self:GetLocalCharacter()
-            if character then
-                return character[self:Translate("HEAD")].Position
-            end
-        end,
-        Tabs = {
-            Silent = false,
-            WeaponModding = false,
-            Visuals = true,
-        },
-        Info = {
-            Created = os.time(),
-            GameName = game.Name,
-            GameId = game.GameId,
-            PlaceId = game.GameId,
-            AntiCheatHash = "N/A",
-            ClientHash = "N/A",
-            GetClientHash = function() return "N/A" end,
-            GetAntiCheatHash = function() return "N/A" end,
-            __TYPE = "UNVIERSAL",
-        },
-    },
-    [113491250] = {
-        BodyParts = {
-            ["TORSO"] = "Torso",
-            ["HEAD"] = "Head",
-        },
-        Init = function(self)
-        end,
-        SetCFrame = function(self,CFrame)
-            workspace.CurrentCamera.CFrame = CFrame
-        end,
-        Valid = function(self)
-            return self:GetLocalCharacter() and true or false
-        end,
-        Translate = function(self,text)
-            return self.BodyParts[text:upper()] or ""
-        end,
-        GetIgnorables = function(self)
-            return workspace.Ignore:GetChildren()
-        end,
-        GetEnemies = function(self)
-            local enemies = {}
-            if self:Valid() then
-                local enemyfolder = game:GetService("Players").LocalPlayer.Team.Name=="Phantoms" and workspace.Players:FindFirstChild("Bright orange") or workspace.Players:FindFirstChild("Bright blue")
-                for _,character in next, enemyfolder:GetChildren() do
-                    enemies[#enemies+1] = {
-                        Instance = character,
-                        Parent = character.Parent,
-                        Ignore = player.Character,
-                    }
-                end
-            end
-            return enemies
-        end,
-        GetLocalCharacter = function(self)
-            return game:GetService("Players").LocalPlayer.Character
-        end,
-        GetLocalPosition = function(self)
-            local character = self:GetLocalCharacter()
-            if character then
-                return character[self:Translate("HEAD")].Position
-            end
-        end,
-        Tabs = {
-            Silent = false,
-            WeaponModding = false,
-            Visuals = true,
-        },
-        Info = {
-            Created = 1635860552,
-            GameName = "Phantom Forces",
-            GameId = 113491250,
-            PlaceId = 292439477,
-            AntiCheatHash = "N/A",
-            ClientHash = "N/A",
-            GetClientHash = function() return "N/A" end,
-            GetAntiCheatHash = function() return "N/A" end,
-            __TYPE = "API",
-        },
-    },
-    [1168263273] = {
-        BodyParts = {
-            ["TORSO"] = "Chest",
-            ["HEAD"] = "Head",
-        },
-        Init = function(self)
-            local weaponframe = _G.weaponsframe
-            local teamservice = game:GetService("ReplicatedStorage"):WaitForChild("TS")
-            _G.TS = require(teamservice)
-            _G.TS.Characters.CharacterAdded:Connect(function(player,character)
-                if (weaponframe.removerecoil.Activated) and player == game:GetService("Players").LocalPlayer then 
-                    wait(2)
-                    for _,f in pairs(getgc()) do
-                        if ((typeof(f)=="function") and debug.getinfo(f).name=="Shoot") and debug.getupvalue(f,1) ~= nil then
-                            debug.setupvalue(f,8,function() end)
-                            debug.setupvalue(f,9,function() end)
-                            debug.setupvalue(f,10,function() end)
-                        end
-                    end
-                end
-            end)
-            weaponframe.removerecoil.OnUpdate = function()
-                if (self:Valid()) and weaponframe.removerecoil.Activated then
-                    for _,f in pairs(getgc()) do
-                        if ((typeof(f)=="function") and debug.getinfo(f).name=="Shoot") and debug.getupvalue(f,1) ~= nil then
-                            debug.setupvalue(f,8,function() end)
-                            debug.setupvalue(f,9,function() end)
-                            debug.setupvalue(f,10,function() end)
-                        end
-                    end
-                end
-            end
-        end,
-        SetCFrame = function(self,CFrame)
-            workspace.CurrentCamera = CFrame
-        end,
-        Valid = function(self)
-            return self:GetLocalCharacter() and true or false
-        end,
-        Translate = function(self,text)
-            return self.BodyParts[text:upper()] or ""
-        end,
-        GetIgnorables = function(self)
-            local weapon
-            for _,descendant in pairs(workspace:GetChildren()) do
-                if (descendant:IsA("Model")) and descendant:FindFirstChild("AnimationController") then
-                    weapon=descendant
-                    break
-                end
-            end
-            return {unpack(workspace.Ragdolls:GetChildren()),unpack(workspace.Projectiles:GetChildren()),weapon}
-        end,
-        GetEnemies = function(self)
-            local enemies = {}
-            local localteam = _G.TS.Teams:GetPlayerTeam(game:GetService("Players").LocalPlayer)
-            for _,player in next, game:GetService("Players"):GetPlayers() do
-                local character = _G.TS.Characters:GetCharacter(player)
-                if (localteam~=_G.TS.Teams:GetPlayerTeam(player)) and character then
-                    enemies[#enemies+1] = {
-                        Instance = character.Body,
-                        Parent = character.Parent,
-                        Ignore = character,
-                    }
-                end
-            end
-            return enemies
-        end,
-        GetLocalCharacter = function(self)
-            local character = _G.TS.Characters:GetCharacter(game:GetService("Players").LocalPlayer)
-            return character and character.Body or nil
-        end,
-        GetLocalPosition = function(self)
-            local character = self:GetLocalCharacter()
-            if character then
-                return character[self:Translate("HEAD")].Position
-            end
-        end,
-        Tabs = {
-            Silent = false,
-            WeaponModding = true,
-            Visuals = true,
-        },
-        Info = {
-            Created = 1635872321,
-            GameName = "Bad Buisness",
-            GameId = 1168263273,
-            PlaceId = 3233893879,
-            AntiCheatHash = "N/A",
-            ClientHash = "N/A",
-            GetClientHash = function() return "N/A" end,
-            GetAntiCheatHash = function() return "N/A" end,
-            __TYPE = "API",
-        },
-    },
-    [1390601379] = {
-        BodyParts = {
-            ["TORSO"] = "Torso",
-            ["HEAD"] = "Head",
-        },
-        Init = function(self)
-            
-        end,
-        SetCFrame = function(self,CFrame)
-            workspace.CurrentCamera.CFrame = CFrame
-        end,
-        Valid = function(self)
-            return self:GetLocalCharacter() and true or false
-        end,
-        Translate = function(self,text)
-            return self.BodyParts[text:upper()] or ""
-        end,
-        GetIgnorables = function(self)
-            return {unpack(workspace.FakeCharacters:GetChildren()),unpack(workspace.EffectsJunk:GetChildren())}
-        end,
-        GetEnemies = function(self)
-            local enemies = {}
-            for _,character in next, workspace.PlayerCharacters:GetChildren() do
-                if character.Name~=game:GetService("Players").LocalPlayer.Name then
-                    enemies[#enemies+1] = {
-                        Instance = character,
-                        Parent = character.Parent,
-                        Ignore = player.Character,
-                    }
-                end
-            end
-            return enemies
-        end,
-        GetLocalCharacter = function(self)
-            return game:GetService("Players").LocalPlayer.Character
-        end,
-        GetLocalPosition = function(self)
-            local character = self:GetLocalCharacter()
-            if character then
-                return character[self:Translate("HEAD")].Position
-            end
-        end,
-        Tabs = {
-            Silent = true,
-            WeaponModding = false,
-            Visuals = true,
-        },
-        Info = {
-            Created = 1635938874,
-            GameName = "Combat Warriors",
-            GameId = 1390601379,
-            PlaceId = 4282985734,
-            AntiCheatHash = "N/A",
-            ClientHash = "N/A",
-            GetClientHash = function() return "N/A" end,
-            GetAntiCheatHash = function() return "N/A" end,
-            __TYPE = "API",
-        },
-    },
-    [833423526] = {
-        BodyParts = {
-            ["TORSO"] = "UpperTorso",
-            ["HEAD"] = "Head",
-        },
-        Init = function(self)
-            
-        end,
-        SetCFrame = function(self,CFrame)
-            workspace.CurrentCamera.CFrame = CFrame
-        end,
-        Valid = function(self)
-            return self:GetLocalCharacter() and true or false
-        end,
-        Translate = function(self,text)
-            return self.BodyParts[text:upper()] or ""
-        end,
-        GetIgnorables = function(self)
-            return {unpack(workspace.IgnoreThese:GetChildren())}
-        end,
-        GetEnemies = function(self)
-            local enemies = {}
-            for _,player in next, game:GetService("Players"):GetPlayers() do
-                if (player~=game:GetService("Players").LocalPlayer and player.Character) and (player.Neutral or player.Team ~= game:GetService("Players").LocalPlayer.Team) then
-                    enemies[#enemies+1] = {
-                        Instance = player.Character,
-                        Parent = player.Character.Parent,
-                        Ignore = player.Character,
-                    }
-                end
-            end
-            return enemies
-        end,
-        GetLocalCharacter = function(self)
-            return game:GetService("Players").LocalPlayer.Character
-        end,
-        GetLocalPosition = function(self)
-            local character = self:GetLocalCharacter()
-            if character then
-                return character[self:Translate("HEAD")].Position
-            end
-        end,
-        Tabs = {
-            Silent = false,
-            WeaponModding = false,
-            Visuals = true,
-        },
-        Info = {
-            Created = 1635960653,
-            GameName = "Strucid",
-            GameId = 833423526,
-            PlaceId = 2377868063,
-            AntiCheatHash = "N/A",
-            ClientHash = "N/A",
-            GetClientHash = function() return "N/A" end,
-            GetAntiCheatHash = function() return "N/A" end,
-            __TYPE = "API",
-        },
-    },
-    [111958650] = {
-        BodyParts = {
-            ["TORSO"] = "UpperTorso",
-            ["HEAD"] = "Head",
-        },
-        Init = function(self)
-            
-        end,
-        SetCFrame = function(self,CFrame)
-            workspace.CurrentCamera.CFrame = CFrame
-        end,
-        Valid = function(self)
-            return (self:GetLocalCharacter()) and self:GetLocalCharacter():FindFirstChild("Gun") and true or false
-        end,
-        Translate = function(self,text)
-            return self.BodyParts[text:upper()] or ""
-        end,
-        GetIgnorables = function(self)
-            return {unpack(workspace.Ray_Ignore:GetChildren()),unpack(workspace.Debris:GetChildren())}
-        end,
-        GetEnemies = function(self)
-            local enemies = {}
-            for _,player in next, game:GetService("Players"):GetPlayers() do
-                if (player~=game:GetService("Players").LocalPlayer and player.Character) and (player.Neutral or player.Team ~= game:GetService("Players").LocalPlayer.Team) then
-                    enemies[#enemies+1] = {
-                        Instance = player.Character,
-                        Parent = player.Character.Parent,
-                        Ignore = player.Character,
-                    }
-                end
-            end
-            return enemies
-        end,
-        GetLocalCharacter = function(self)
-            return game:GetService("Players").LocalPlayer.Character
-        end,
-        GetLocalPosition = function(self)
-            local character = self:GetLocalCharacter()
-            if character then
-                return character[self:Translate("HEAD")].Position
-            end
-        end,
-        Tabs = {
-            Silent = false,
-            WeaponModding = false,
-            Visuals = true,
-        },
-        Info = {
-            Created = 1636009701,
-            GameName = "Arsenal",
-            GameId = 111958650,
-            PlaceId = 286090429,
-            AntiCheatHash = "N/A",
-            ClientHash = "N/A",
-            GetClientHash = function() return "N/A" end,
-            GetAntiCheatHash = function() return "N/A" end,
-            __TYPE = "API",
-        },
-    },
+	UNIVERSAL={
+		BodyParts = {
+			["TORSO"] = "UpperTorso",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+
+		end,
+		SetCFrame = function(self,CFrame)
+			camera.CFrame = CFrame
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return {}
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,player in next, players:GetPlayers() do
+				if (player.Character and (player.Neutral or player.Team ~= localplayer)) and player ~= localplayer and player.Character:FindFirstChild("Humanoid").Health>0 then
+					enemies[#enemies+1] = {
+						Instance = player.Character,
+						Parent = player.Character.Parent,
+						Ignore = player.Character,
+					}
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return localplayer.Character
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Tabs = {
+			Silent = false,
+			WeaponModding = false,
+			Visuals = true,
+		},
+		Info = {
+			Created = os.time(),
+			GameName = game.Name,
+			GameId = game.GameId,
+			PlaceId = game.GameId,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "UNVIERSAL",
+		},
+	},
+	[113491250] = {
+		BodyParts = {
+			["TORSO"] = "Torso",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+		end,
+		SetCFrame = function(self,CFrame)
+			camera.CFrame = CFrame
+		end,
+		Valid = function(self)
+			return self:GetLocalCharacter() and true or false
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return workspace.Ignore:GetChildren()
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			if self:Valid() then
+				local enemyfolder = localplayer.Team.Name=="Phantoms" and workspace.Players:FindFirstChild("Bright orange") or workspace.Players:FindFirstChild("Bright blue")
+				for _,character in next, enemyfolder:GetChildren() do
+					enemies[#enemies+1] = {
+						Instance = character,
+						Parent = character.Parent,
+						Ignore = player.Character,
+					}
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return localplayer.Character
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Tabs = {
+			Silent = false,
+			WeaponModding = false,
+			Visuals = true,
+		},
+		Info = {
+			Created = 1635860552,
+			GameName = "Phantom Forces",
+			GameId = 113491250,
+			PlaceId = 292439477,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[1168263273] = {
+		BodyParts = {
+			["TORSO"] = "Chest",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+			local weaponframe = _G.weaponsframe
+			local teamservice = game:GetService("ReplicatedStorage"):WaitForChild("TS")
+			_G.TS = require(teamservice)
+			_G.TS.Characters.CharacterAdded:Connect(function(player,character)
+				if (weaponframe.removerecoil.Activated) and player == localplayer then 
+					wait(2)
+					for _,f in pairs(getgc()) do
+						if ((typeof(f)=="function") and debug.getinfo(f).name=="Shoot") and debug.getupvalue(f,1) ~= nil then
+							debug.setupvalue(f,8,function() end)
+							debug.setupvalue(f,9,function() end)
+							debug.setupvalue(f,10,function() end)
+						end
+					end
+				end
+			end)
+			weaponframe.removerecoil.OnUpdate = function()
+				if (self:Valid()) and weaponframe.removerecoil.Activated then
+					for _,f in pairs(getgc()) do
+						if ((typeof(f)=="function") and debug.getinfo(f).name=="Shoot") and debug.getupvalue(f,1) ~= nil then
+							debug.setupvalue(f,8,function() end)
+							debug.setupvalue(f,9,function() end)
+							debug.setupvalue(f,10,function() end)
+						end
+					end
+				end
+			end
+		end,
+		SetCFrame = function(self,CFrame)
+			camera = CFrame
+		end,
+		Valid = function(self)
+			return self:GetLocalCharacter() and true or false
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			local weapon
+			for _,descendant in pairs(workspace:GetChildren()) do
+				if (descendant:IsA("Model")) and descendant:FindFirstChild("AnimationController") then
+					weapon=descendant
+					break
+				end
+			end
+			return {unpack(workspace.Ragdolls:GetChildren()),unpack(workspace.Projectiles:GetChildren()),weapon}
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			local localteam = _G.TS.Teams:GetPlayerTeam(localplayer)
+			for _,player in next, players:GetPlayers() do
+				local character = _G.TS.Characters:GetCharacter(player)
+				if (localteam~=_G.TS.Teams:GetPlayerTeam(player)) and character then
+					enemies[#enemies+1] = {
+						Instance = character.Body,
+						Parent = character.Parent,
+						Ignore = character,
+					}
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			local character = _G.TS.Characters:GetCharacter(localplayer)
+			return character and character.Body or nil
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Tabs = {
+			Silent = false,
+			WeaponModding = true,
+			Visuals = true,
+		},
+		Info = {
+			Created = 1635872321,
+			GameName = "Bad Buisness",
+			GameId = 1168263273,
+			PlaceId = 3233893879,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[1390601379] = {
+		BodyParts = {
+			["TORSO"] = "Torso",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+
+		end,
+		SetCFrame = function(self,CFrame)
+			camera.CFrame = CFrame
+		end,
+		Valid = function(self)
+			return self:GetLocalCharacter() and true or false
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return {unpack(workspace.FakeCharacters:GetChildren()),unpack(workspace.EffectsJunk:GetChildren())}
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,character in next, workspace.PlayerCharacters:GetChildren() do
+				if character.Name~=localplayer.Name then
+					enemies[#enemies+1] = {
+						Instance = character,
+						Parent = character.Parent,
+						Ignore = player.Character,
+					}
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return localplayer.Character
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Tabs = {
+			Silent = true,
+			WeaponModding = false,
+			Visuals = true,
+		},
+		Info = {
+			Created = 1635938874,
+			GameName = "Combat Warriors",
+			GameId = 1390601379,
+			PlaceId = 4282985734,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[833423526] = {
+		BodyParts = {
+			["TORSO"] = "UpperTorso",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+
+		end,
+		SetCFrame = function(self,CFrame)
+			camera.CFrame = CFrame
+		end,
+		Valid = function(self)
+			return self:GetLocalCharacter() and true or false
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return {unpack(workspace.IgnoreThese:GetChildren())}
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,player in next, players:GetPlayers() do
+				if (player~=localplayer and player.Character) and (player.Neutral or player.Team ~= localplayer.Team) then
+					enemies[#enemies+1] = {
+						Instance = player.Character,
+						Parent = player.Character.Parent,
+						Ignore = player.Character,
+					}
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return localplayer.Character
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Tabs = {
+			Silent = false,
+			WeaponModding = false,
+			Visuals = true,
+		},
+		Info = {
+			Created = 1635960653,
+			GameName = "Strucid",
+			GameId = 833423526,
+			PlaceId = 2377868063,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[111958650] = {
+		BodyParts = {
+			["TORSO"] = "UpperTorso",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+
+		end,
+		SetCFrame = function(self,CFrame)
+			camera.CFrame = CFrame
+		end,
+		Valid = function(self)
+			return (self:GetLocalCharacter()) and self:GetLocalCharacter():FindFirstChild("Gun") and true or false
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return {unpack(workspace.Ray_Ignore:GetChildren()),unpack(workspace.Debris:GetChildren())}
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,player in next, players:GetPlayers() do
+				if (player~=localplayer and player.Character) and (player.Neutral or player.Team ~= localplayer.Team) then
+					enemies[#enemies+1] = {
+						Instance = player.Character,
+						Parent = player.Character.Parent,
+						Ignore = player.Character,
+					}
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return localplayer.Character
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Tabs = {
+			Silent = false,
+			WeaponModding = false,
+			Visuals = true,
+		},
+		Info = {
+			Created = 1636009701,
+			GameName = "Arsenal",
+			GameId = 111958650,
+			PlaceId = 286090429,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
 }
