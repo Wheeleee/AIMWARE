@@ -127,32 +127,6 @@ return {
 			["HEAD"] = "Head",
 		},
 		Init = function(self)
-			local weaponframe = _G.weaponsframe
-			local teamservice = game:GetService("ReplicatedStorage"):WaitForChild("TS")
-			_G.TS = require(teamservice)
-			_G.TS.Characters.CharacterAdded:Connect(function(player,character)
-				if (weaponframe.removerecoil.Activated) and player == localplayer then 
-					wait(2)
-					for _,f in pairs(getgc()) do
-						if ((typeof(f)=="function") and debug.getinfo(f).name=="Shoot") and debug.getupvalue(f,1) ~= nil then
-							debug.setupvalue(f,8,function() end)
-							debug.setupvalue(f,9,function() end)
-							debug.setupvalue(f,10,function() end)
-						end
-					end
-				end
-			end)
-			weaponframe.removerecoil.OnUpdate = function()
-				if (self:Valid()) and weaponframe.removerecoil.Activated then
-					for _,f in pairs(getgc()) do
-						if ((typeof(f)=="function") and debug.getinfo(f).name=="Shoot") and debug.getupvalue(f,1) ~= nil then
-							debug.setupvalue(f,8,function() end)
-							debug.setupvalue(f,9,function() end)
-							debug.setupvalue(f,10,function() end)
-						end
-					end
-				end
-			end
 		end,
 		SetCFrame = function(self,CFrame)
 			camera = CFrame
@@ -175,22 +149,17 @@ return {
 		end,
 		GetEnemies = function(self)
 			local enemies = {}
-			local localteam = _G.TS.Teams:GetPlayerTeam(localplayer)
-			for _,player in next, players:GetPlayers() do
-				local character = _G.TS.Characters:GetCharacter(player)
-				if (localteam~=_G.TS.Teams:GetPlayerTeam(player)) and character then
-					enemies[#enemies+1] = {
-						Instance = character.Body,
-						Parent = character.Parent,
-						Ignore = character,
-					}
-				end
+			for _,character in pairs(workspace.Characters:GetChildren()) do
+		        enemies[#enemies+1] = {
+					Instance = character,
+					Parent = character.Parent,
+					Ignore = character,
+				}
 			end
 			return enemies
 		end,
 		GetLocalCharacter = function(self)
-			local character = _G.TS.Characters:GetCharacter(localplayer)
-			return character and character.Body or nil
+			return true
 		end,
 		GetLocalPosition = function(self)
 			local character = self:GetLocalCharacter()
