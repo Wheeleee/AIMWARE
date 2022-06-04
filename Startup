@@ -1,432 +1,977 @@
-local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Wheeleee/AIMWARE/main/Library"))()
+local gui = Instance.new("ScreenGui")
+local TextButton = Instance.new("TextButton")
+local UICorner = Instance.new("UICorner")
+local UIPadding = Instance.new("UIPadding")
+local BodypartSelect = Instance.new("ImageLabel")
+local UICorner_2 = Instance.new("UICorner")
+local ImageLabel = Instance.new("ImageLabel")
+local Body = Instance.new("ImageLabel")
+local Chams = Instance.new("Frame")
+local Frame = Instance.new("Frame")
+local Frame_2 = Instance.new("Frame")
+local Frame_3 = Instance.new("Frame")
+local Frame_4 = Instance.new("Frame")
+local Torso = Instance.new("ImageButton")
+local Head = Instance.new("ImageButton")
+local Lines = Instance.new("Frame")
+local PointB = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local ImageLabel_2 = Instance.new("ImageLabel")
+local QUESTIONMARK = Instance.new("ImageLabel")
+local UIPadding_2 = Instance.new("UIPadding")
+local PointFrame = Instance.new("Frame")
+local UICorner_4 = Instance.new("UICorner")
+local Longitude = Instance.new("Frame")
+local Latitude = Instance.new("Frame")
+local AimbotCheck = Instance.new("TextButton")
+local UICorner_5 = Instance.new("UICorner")
+local ImageLabel_3 = Instance.new("ImageLabel")
+local NameTextLabel = Instance.new("TextLabel")
+local Slider = Instance.new("Frame")
+local UICorner_6 = Instance.new("UICorner")
+local VisualCheck = Instance.new("TextButton")
+local UICorner_7 = Instance.new("UICorner")
+local ImageLabel_4 = Instance.new("ImageLabel")
+local NameTextLabel_2 = Instance.new("TextLabel")
+local Slider_2 = Instance.new("Frame")
+local UICorner_8 = Instance.new("UICorner")
+local ChamsCheck = Instance.new("TextButton")
+local UICorner_9 = Instance.new("UICorner")
+local NameTextLabel_3 = Instance.new("TextLabel")
+local ImageLabel_5 = Instance.new("ImageLabel")
+local Slider_3 = Instance.new("Frame")
+local UICorner_10 = Instance.new("UICorner")
+local LinesCheck = Instance.new("TextButton")
+local UICorner_11 = Instance.new("UICorner")
+local ImageLabel_6 = Instance.new("ImageLabel")
+local NameTextLabel_4 = Instance.new("TextLabel")
+local Slider_4 = Instance.new("Frame")
+local UICorner_12 = Instance.new("UICorner")
+local FrommiddleCheck = Instance.new("TextButton")
+local UICorner_13 = Instance.new("UICorner")
+local ImageLabel_7 = Instance.new("ImageLabel")
+local NameTextLabel_5 = Instance.new("TextLabel")
+local Slider_5 = Instance.new("Frame")
+local UICorner_14 = Instance.new("UICorner")
+local SmoothnessSlider = Instance.new("Frame")
+local UICorner_15 = Instance.new("UICorner")
+local SliderButton = Instance.new("TextButton")
+local UICorner_16 = Instance.new("UICorner")
+local CurrentValue = Instance.new("TextLabel")
+local NameTextLabel_6 = Instance.new("TextLabel")
+local FovSlider = Instance.new("Frame")
+local UICorner_17 = Instance.new("UICorner")
+local SliderButton_2 = Instance.new("TextButton")
+local UICorner_18 = Instance.new("UICorner")
+local CurrentValue_2 = Instance.new("TextLabel")
+local NameTextLabel_7 = Instance.new("TextLabel")
+local VersionText = Instance.new("TextLabel")
+local UIGradient = Instance.new("UIGradient")
+local Outline = Instance.new("ImageLabel")
+local ImageLabel_8 = Instance.new("ImageLabel")
+local UICorner_19 = Instance.new("UICorner")
 
-lib:Init()
-frame = lib:CreateFrame({Size="Medium",GUIName="AIMWARE"})
-aimbotbutton = frame:CreateButton({Name="aimbot"})
-silentbutton = frame:CreateButton({Name="silent"})
-visualsbutton = frame:CreateButton({Name="visuals"})
-weaponsbutton = frame:CreateButton({Name="weapons"})
+gui.Name = "gui"
+gui.Parent = game.CoreGui
+gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-silentaimframe = frame:CreateViewFrame({Size="Whole"})
-visualsframe = frame:CreateViewFrame({Size="Whole"})
-aimbotframe = frame:CreateViewFrame({Size="Whole"})
-weaponsframe = frame:CreateViewFrame({Size="Whole"})
+TextButton.Parent = gui
+TextButton.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+TextButton.Position = UDim2.new(0.5, -171, 0.5, -135)
+TextButton.Size = UDim2.new(0, 342, 0, 271)
+TextButton.AutoButtonColor = false
+TextButton.Font = Enum.Font.SourceSansBold
+TextButton.Text = "AIMWARE"
+TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.TextSize = 42.000
+TextButton.TextWrapped = true
+TextButton.TextXAlignment = Enum.TextXAlignment.Left
+TextButton.TextYAlignment = Enum.TextYAlignment.Bottom
 
-hitchanceslider = silentaimframe:CreateSlider({Position=UDim2.new(0,0,0,0)})
-hitchanceslider.Name = "hitchance"
-hitchanceslider:Update()
-maskedpartdropdown = silentaimframe:CreateDropdown({Position=UDim2.new(0,0,0,45)})
-maskedpartdropdown.Name = "hitpart"
-maskedpartdropdown.Items = {[1]={Name="head"},[2]={Name="torso"},[3]={Name="random"}}
-maskedpartdropdown.Selected = "head"
-maskedpartdropdown:Update()
-maskedpartdropdown:UpdateList()
+UICorner.Parent = TextButton
 
-smoothingslider = aimbotframe:CreateSlider({Position=UDim2.new(0,0,0,0)})
-smoothingslider.Name = "smoothing"
-smoothingslider.Procent = 2
-smoothingslider:Update()
-fovtoggle = aimbotframe:CreateToggleButton({Position=UDim2.new(0,0,45,0)})
-fovtoggle.Name = "fov"
-fovtoggle.Activated = false
-fovtoggle:Update()
-autoaimtoggle = aimbotframe:CreateToggleButton({Position=UDim2.new(0,316,0,0)})
-autoaimtoggle.Name = "autoaim"
-autoaimtoggle.Activated = false
-autoaimtoggle:Update()
-periodicheckingtoggle = aimbotframe:CreateToggleButton({Position=UDim2.new(0,474,0,0)})
-periodicheckingtoggle.Name = "periodichecking"
-periodicheckingtoggle.Activated = false
-periodicheckingtoggle:Update()
-autoshootoggle = aimbotframe:CreateToggleButton({Position=UDim2.new(0,158,0,0)})
-autoshootoggle.Name = "autoshoot"
-autoshootoggle.Activated = false
-autoshootoggle:Update()
-activateaimbot = aimbotframe:CreateKeyChoose({Position=UDim2.new(0,0,0,45)})
-activateaimbot.Name = "activate"
-activateaimbot.Key = "LeftMouse"
-activateaimbot:Update()
-aimbotypedropdown = aimbotframe:CreateDropdown({Position=UDim2.new(0,128,0,45)})
-aimbotypedropdown.Name = "aimbotype"
-aimbotypedropdown.Items = {[1]={Name="camera"},[2]={Name="mouse"}}
-aimbotypedropdown.Selected = "mouse"
-aimbotypedropdown:Update()
-aimbotypedropdown:UpdateList()
-aimtypedropdown = aimbotframe:CreateDropdown({Position=UDim2.new(0,236,0,45)})
-aimtypedropdown.Name = "aimtype"
-aimtypedropdown.Items = {[1]={Name="mousedist"},[2]={Name="characterdist"}}
-aimtypedropdown.Selected = "mousedist"
-aimtypedropdown:Update()
-aimtypedropdown:UpdateList()
-aimpartdropdown = aimbotframe:CreateDropdown({Position=UDim2.new(0,344,0,45)})
-aimpartdropdown.Name = "aimpart"
-aimpartdropdown.Items = {[1]={Name="head"},[2]={Name="torso"}}
-aimpartdropdown.Selected = "head"
-aimpartdropdown:Update()
-aimpartdropdown:UpdateList()
+UIPadding.Parent = TextButton
+UIPadding.PaddingBottom = UDim.new(0, 8)
+UIPadding.PaddingLeft = UDim.new(0, 8)
+UIPadding.PaddingRight = UDim.new(0, 8)
+UIPadding.PaddingTop = UDim.new(0, 8)
 
-removerecoiltoggle = weaponsframe:CreateToggleButton({Position=UDim2.new(0,0,0,0)})
-removerecoiltoggle.Name = "removerecoil"
-removerecoiltoggle.Activated = false
-removerecoiltoggle:Update()
-removespreadtoggle = weaponsframe:CreateToggleButton({Position=UDim2.new(0,158,0,0)})
-removespreadtoggle.Name = "removespread"
-removespreadtoggle.Activated = false
-removespreadtoggle:Update()
+BodypartSelect.Name = "BodypartSelect"
+BodypartSelect.Parent = TextButton
+BodypartSelect.AnchorPoint = Vector2.new(1, 0)
+BodypartSelect.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+BodypartSelect.BackgroundTransparency = 1.000
+BodypartSelect.BorderSizePixel = 0
+BodypartSelect.ClipsDescendants = true
+BodypartSelect.Position = UDim2.new(1, 0, 0, 0)
+BodypartSelect.Size = UDim2.new(0, 182, 1, 0)
+BodypartSelect.Image = "http://www.roblox.com/asset/?id=9805981848"
+BodypartSelect.ScaleType = Enum.ScaleType.Crop
+BodypartSelect.SliceScale = 0.000
 
-chamstoggle = visualsframe:CreateToggleButton({Position=UDim2.new(0,316,0,0)})
-chamstoggle.Name = "chams"
-chamstoggle:Update()
-tracerstoggle = visualsframe:CreateToggleButton({Position=UDim2.new(0,158,0,0)})
-tracerstoggle.Name = "tracers"
-tracerstoggle:Update()
-drawfovtoggle = visualsframe:CreateToggleButton({Position=UDim2.new(0,0,0,0)})
-drawfovtoggle.Name = "drawfov"
-drawfovtoggle:Update()
-boxestoggle = visualsframe:CreateToggleButton({Position=UDim2.new(0,474,0,0)})
-boxestoggle.Name = "boxes"
-boxestoggle:Update()
-visualchecktoggle = visualsframe:CreateToggleButton({Position=UDim2.new(0,158,0,45)})
-visualchecktoggle.Name = "visualcheck"
-visualchecktoggle.Activated = false
-visualchecktoggle:Update()
-fovslider = visualsframe:CreateSlider({Position=UDim2.new(0,0,0,45)})
-fovslider.Name = "fov"
-fovslider.Procent = 75
-fovslider.MaxProcent = 1200
-fovslider:Update()
-camerafovtoggle = visualsframe:CreateToggleButton({Position=UDim2.new(0,474,0,45)})
-camerafovtoggle.Name = "camerafov"
-camerafovtoggle.OnUpdate = function()
-	if camerafovtoggle.Activated then
-		workspace.Camera.FieldOfView = camerafov.Procent
+UICorner_2.CornerRadius = UDim.new(0, 10)
+UICorner_2.Parent = BodypartSelect
+
+ImageLabel.Parent = BodypartSelect
+ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel.BackgroundTransparency = 1.000
+ImageLabel.BorderSizePixel = 0
+ImageLabel.ClipsDescendants = true
+ImageLabel.Position = UDim2.new(0, -4, 0, -4)
+ImageLabel.Size = UDim2.new(1, 8, 1, 8)
+ImageLabel.Image = "http://www.roblox.com/asset/?id=9731691467"
+ImageLabel.ImageColor3 = Color3.fromRGB(26, 26, 26)
+ImageLabel.ScaleType = Enum.ScaleType.Slice
+ImageLabel.SliceCenter = Rect.new(6, 6, 94, 94)
+
+Body.Name = "Body"
+Body.Parent = ImageLabel
+Body.AnchorPoint = Vector2.new(0.5, 0.5)
+Body.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Body.BackgroundTransparency = 1.000
+Body.BorderSizePixel = 0
+Body.Position = UDim2.new(0.5, 0, 0.5, 17)
+Body.Size = UDim2.new(0, 125, 0, 124)
+Body.ZIndex = 2
+Body.Image = "http://www.roblox.com/asset/?id=9807578695"
+
+Chams.Name = "Chams"
+Chams.Parent = Body
+Chams.AnchorPoint = Vector2.new(0.5, 0.5)
+Chams.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Chams.BackgroundTransparency = 1.000
+Chams.BorderSizePixel = 0
+Chams.Position = UDim2.new(0.5, 0, 0.5, -18)
+Chams.Size = UDim2.new(0, 156, 0, 200)
+Chams.Visible = false
+
+Frame.Parent = Chams
+Frame.BackgroundColor3 = Color3.fromRGB(255, 118, 21)
+Frame.BorderSizePixel = 0
+Frame.Size = UDim2.new(1, 0, 0, 1)
+
+Frame_2.Parent = Chams
+Frame_2.BackgroundColor3 = Color3.fromRGB(255, 118, 21)
+Frame_2.BorderSizePixel = 0
+Frame_2.Size = UDim2.new(0, 1, 1, 0)
+
+Frame_3.Parent = Chams
+Frame_3.AnchorPoint = Vector2.new(0, 1)
+Frame_3.BackgroundColor3 = Color3.fromRGB(255, 118, 21)
+Frame_3.BorderSizePixel = 0
+Frame_3.Position = UDim2.new(0, 0, 1, 0)
+Frame_3.Size = UDim2.new(1, 0, 0, 1)
+
+Frame_4.Parent = Chams
+Frame_4.AnchorPoint = Vector2.new(1, 0)
+Frame_4.BackgroundColor3 = Color3.fromRGB(255, 118, 21)
+Frame_4.BorderSizePixel = 0
+Frame_4.Position = UDim2.new(1, 0, 0, 0)
+Frame_4.Size = UDim2.new(0, 1, 1, 0)
+
+Torso.Name = "Torso"
+Torso.Parent = Body
+Torso.AnchorPoint = Vector2.new(0.5, 0)
+Torso.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Torso.BackgroundTransparency = 1.000
+Torso.BorderSizePixel = 0
+Torso.Position = UDim2.new(0.5, 0, 0, -2)
+Torso.Size = UDim2.new(0, 63, 0, 63)
+Torso.AutoButtonColor = false
+Torso.Image = "http://www.roblox.com/asset/?id=9807591983"
+
+Head.Name = "Head"
+Head.Parent = Body
+Head.AnchorPoint = Vector2.new(0.5, 1)
+Head.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Head.BackgroundTransparency = 1.000
+Head.BorderSizePixel = 0
+Head.Position = UDim2.new(0.5, 0, 0, 0)
+Head.Size = UDim2.new(0, 35, 0, 35)
+Head.AutoButtonColor = false
+Head.Image = "http://www.roblox.com/asset/?id=9807583931"
+Head.ImageColor3 = Color3.fromRGB(255, 80, 80)
+
+Lines.Name = "Lines"
+Lines.Parent = ImageLabel
+Lines.BackgroundColor3 = Color3.fromRGB(255, 118, 21)
+Lines.BorderSizePixel = 0
+Lines.Position = UDim2.new(0, 90, 0, 114)
+Lines.Size = UDim2.new(0, 1, 0, 141)
+Lines.Visible = false
+Lines.ZIndex = 2
+
+PointB.Name = "PointB"
+PointB.Parent = BodypartSelect
+PointB.AnchorPoint = Vector2.new(1, 1)
+PointB.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+PointB.Position = UDim2.new(1, 0, 1, 0)
+PointB.Size = UDim2.new(0, 41, 0, 20)
+PointB.Visible = false
+PointB.ZIndex = 3
+PointB.AutoButtonColor = false
+PointB.Selected = true
+PointB.Font = Enum.Font.SourceSansBold
+PointB.Text = "POINT"
+PointB.TextColor3 = Color3.fromRGB(156, 156, 156)
+PointB.TextSize = 12.000
+
+UICorner_3.Parent = PointB
+
+ImageLabel_2.Parent = PointB
+ImageLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_2.BackgroundTransparency = 1.000
+ImageLabel_2.BorderSizePixel = 0
+ImageLabel_2.Size = UDim2.new(1, 0, 1, 0)
+ImageLabel_2.Image = "http://www.roblox.com/asset/?id=9731691467"
+ImageLabel_2.ImageColor3 = Color3.fromRGB(12, 12, 12)
+ImageLabel_2.ScaleType = Enum.ScaleType.Slice
+ImageLabel_2.SliceCenter = Rect.new(6, 6, 94, 94)
+
+QUESTIONMARK.Name = "QUESTIONMARK"
+QUESTIONMARK.Parent = PointB
+QUESTIONMARK.AnchorPoint = Vector2.new(1, 0.5)
+QUESTIONMARK.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+QUESTIONMARK.BackgroundTransparency = 1.000
+QUESTIONMARK.BorderSizePixel = 0
+QUESTIONMARK.Position = UDim2.new(0, -4, 0.5, 0)
+QUESTIONMARK.Size = UDim2.new(1, -8, 1, -8)
+QUESTIONMARK.SizeConstraint = Enum.SizeConstraint.RelativeYY
+QUESTIONMARK.Image = "http://www.roblox.com/asset/?id=9806761350"
+
+UIPadding_2.Parent = BodypartSelect
+UIPadding_2.PaddingBottom = UDim.new(0, 4)
+UIPadding_2.PaddingLeft = UDim.new(0, 4)
+UIPadding_2.PaddingRight = UDim.new(0, 4)
+UIPadding_2.PaddingTop = UDim.new(0, 4)
+
+PointFrame.Name = "PointFrame"
+PointFrame.Parent = BodypartSelect
+PointFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+PointFrame.BackgroundColor3 = Color3.fromRGB(165, 32, 32)
+PointFrame.BorderSizePixel = 0
+PointFrame.Position = UDim2.new(0, 50, 0, 50)
+PointFrame.Size = UDim2.new(0, 5, 0, 5)
+PointFrame.Visible = false
+PointFrame.ZIndex = 3
+
+UICorner_4.CornerRadius = UDim.new(1, 0)
+UICorner_4.Parent = PointFrame
+
+Longitude.Name = "Longitude"
+Longitude.Parent = PointFrame
+Longitude.AnchorPoint = Vector2.new(0.5, 0.5)
+Longitude.BackgroundColor3 = Color3.fromRGB(165, 32, 32)
+Longitude.BorderSizePixel = 0
+Longitude.Position = UDim2.new(0.5, 0, 0.5, 0)
+Longitude.Size = UDim2.new(0, 1, 0, 1000)
+
+Latitude.Name = "Latitude"
+Latitude.Parent = PointFrame
+Latitude.AnchorPoint = Vector2.new(0.5, 0.5)
+Latitude.BackgroundColor3 = Color3.fromRGB(165, 32, 32)
+Latitude.BorderSizePixel = 0
+Latitude.Position = UDim2.new(0.5, 0, 0.5, 0)
+Latitude.Size = UDim2.new(0, 1000, 0, 1)
+
+AimbotCheck.Name = "AimbotCheck"
+AimbotCheck.Parent = TextButton
+AimbotCheck.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+AimbotCheck.Size = UDim2.new(0, 56, 0, 14)
+AimbotCheck.ZIndex = 3
+AimbotCheck.AutoButtonColor = false
+AimbotCheck.Font = Enum.Font.SourceSans
+AimbotCheck.Text = ""
+AimbotCheck.TextColor3 = Color3.fromRGB(0, 0, 0)
+AimbotCheck.TextSize = 14.000
+
+UICorner_5.Parent = AimbotCheck
+
+ImageLabel_3.Parent = AimbotCheck
+ImageLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_3.BackgroundTransparency = 1.000
+ImageLabel_3.BorderSizePixel = 0
+ImageLabel_3.Size = UDim2.new(1, 0, 1, 0)
+ImageLabel_3.Image = "http://www.roblox.com/asset/?id=9731691467"
+ImageLabel_3.ImageColor3 = Color3.fromRGB(12, 12, 12)
+ImageLabel_3.ScaleType = Enum.ScaleType.Slice
+ImageLabel_3.SliceCenter = Rect.new(6, 6, 94, 94)
+
+NameTextLabel.Name = "NameTextLabel"
+NameTextLabel.Parent = AimbotCheck
+NameTextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NameTextLabel.BackgroundTransparency = 1.000
+NameTextLabel.BorderSizePixel = 0
+NameTextLabel.Position = UDim2.new(1, 5, 0, 0)
+NameTextLabel.Size = UDim2.new(0, 50, 1, 0)
+NameTextLabel.Font = Enum.Font.SourceSansBold
+NameTextLabel.Text = "AIMBOT"
+NameTextLabel.TextColor3 = Color3.fromRGB(156, 156, 156)
+NameTextLabel.TextSize = 12.000
+NameTextLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+Slider.Name = "Slider"
+Slider.Parent = AimbotCheck
+Slider.AnchorPoint = Vector2.new(0, 0.5)
+Slider.BackgroundColor3 = Color3.fromRGB(190, 190, 190)
+Slider.Position = UDim2.new(0, 0, 0.5, 0)
+Slider.Size = UDim2.new(1, -2, 1, 2)
+Slider.SizeConstraint = Enum.SizeConstraint.RelativeYY
+Slider.ZIndex = 2
+
+UICorner_6.CornerRadius = UDim.new(0, 4)
+UICorner_6.Parent = Slider
+
+VisualCheck.Name = "VisualCheck"
+VisualCheck.Parent = TextButton
+VisualCheck.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+VisualCheck.Position = UDim2.new(1, -244, 0, 18)
+VisualCheck.Size = UDim2.new(0, 56, 0, 14)
+VisualCheck.ZIndex = 3
+VisualCheck.AutoButtonColor = false
+VisualCheck.Font = Enum.Font.SourceSans
+VisualCheck.Text = ""
+VisualCheck.TextColor3 = Color3.fromRGB(0, 0, 0)
+VisualCheck.TextSize = 14.000
+
+UICorner_7.Parent = VisualCheck
+
+ImageLabel_4.Parent = VisualCheck
+ImageLabel_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_4.BackgroundTransparency = 1.000
+ImageLabel_4.BorderSizePixel = 0
+ImageLabel_4.Size = UDim2.new(1, 0, 1, 0)
+ImageLabel_4.Image = "http://www.roblox.com/asset/?id=9731691467"
+ImageLabel_4.ImageColor3 = Color3.fromRGB(12, 12, 12)
+ImageLabel_4.ScaleType = Enum.ScaleType.Slice
+ImageLabel_4.SliceCenter = Rect.new(6, 6, 94, 94)
+
+NameTextLabel_2.Name = "NameTextLabel"
+NameTextLabel_2.Parent = VisualCheck
+NameTextLabel_2.AnchorPoint = Vector2.new(1, 0)
+NameTextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NameTextLabel_2.BackgroundTransparency = 1.000
+NameTextLabel_2.BorderSizePixel = 0
+NameTextLabel_2.Position = UDim2.new(0, -5, 0, 0)
+NameTextLabel_2.Size = UDim2.new(0, 50, 1, 0)
+NameTextLabel_2.Font = Enum.Font.SourceSansBold
+NameTextLabel_2.Text = "VISUAL CHECK"
+NameTextLabel_2.TextColor3 = Color3.fromRGB(156, 156, 156)
+NameTextLabel_2.TextSize = 12.000
+NameTextLabel_2.TextXAlignment = Enum.TextXAlignment.Right
+
+Slider_2.Name = "Slider"
+Slider_2.Parent = VisualCheck
+Slider_2.AnchorPoint = Vector2.new(0, 0.5)
+Slider_2.BackgroundColor3 = Color3.fromRGB(190, 190, 190)
+Slider_2.Position = UDim2.new(0, 0, 0.5, 0)
+Slider_2.Size = UDim2.new(1, -2, 1, 2)
+Slider_2.SizeConstraint = Enum.SizeConstraint.RelativeYY
+Slider_2.ZIndex = 2
+
+UICorner_8.CornerRadius = UDim.new(0, 4)
+UICorner_8.Parent = Slider_2
+
+ChamsCheck.Name = "ChamsCheck"
+ChamsCheck.Parent = TextButton
+ChamsCheck.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+ChamsCheck.Position = UDim2.new(1, -244, 0, 36)
+ChamsCheck.Size = UDim2.new(0, 56, 0, 14)
+ChamsCheck.ZIndex = 3
+ChamsCheck.AutoButtonColor = false
+ChamsCheck.Font = Enum.Font.SourceSans
+ChamsCheck.Text = ""
+ChamsCheck.TextColor3 = Color3.fromRGB(0, 0, 0)
+ChamsCheck.TextSize = 14.000
+
+UICorner_9.Parent = ChamsCheck
+
+NameTextLabel_3.Name = "NameTextLabel"
+NameTextLabel_3.Parent = ChamsCheck
+NameTextLabel_3.AnchorPoint = Vector2.new(1, 0)
+NameTextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NameTextLabel_3.BackgroundTransparency = 1.000
+NameTextLabel_3.BorderSizePixel = 0
+NameTextLabel_3.Position = UDim2.new(0, -5, 0, 0)
+NameTextLabel_3.Size = UDim2.new(0, 50, 1, 0)
+NameTextLabel_3.Font = Enum.Font.SourceSansBold
+NameTextLabel_3.Text = "CHAMS"
+NameTextLabel_3.TextColor3 = Color3.fromRGB(156, 156, 156)
+NameTextLabel_3.TextSize = 12.000
+NameTextLabel_3.TextXAlignment = Enum.TextXAlignment.Right
+
+ImageLabel_5.Parent = ChamsCheck
+ImageLabel_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_5.BackgroundTransparency = 1.000
+ImageLabel_5.BorderSizePixel = 0
+ImageLabel_5.Size = UDim2.new(1, 0, 1, 0)
+ImageLabel_5.Image = "http://www.roblox.com/asset/?id=9731691467"
+ImageLabel_5.ImageColor3 = Color3.fromRGB(12, 12, 12)
+ImageLabel_5.ScaleType = Enum.ScaleType.Slice
+ImageLabel_5.SliceCenter = Rect.new(6, 6, 94, 94)
+
+Slider_3.Name = "Slider"
+Slider_3.Parent = ChamsCheck
+Slider_3.AnchorPoint = Vector2.new(0, 0.5)
+Slider_3.BackgroundColor3 = Color3.fromRGB(190, 190, 190)
+Slider_3.Position = UDim2.new(0, 0, 0.5, 0)
+Slider_3.Size = UDim2.new(1, -2, 1, 2)
+Slider_3.SizeConstraint = Enum.SizeConstraint.RelativeYY
+Slider_3.ZIndex = 2
+
+UICorner_10.CornerRadius = UDim.new(0, 4)
+UICorner_10.Parent = Slider_3
+
+LinesCheck.Name = "LinesCheck"
+LinesCheck.Parent = TextButton
+LinesCheck.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+LinesCheck.Position = UDim2.new(1, -244, 0, 54)
+LinesCheck.Size = UDim2.new(0, 56, 0, 14)
+LinesCheck.ZIndex = 3
+LinesCheck.AutoButtonColor = false
+LinesCheck.Font = Enum.Font.SourceSans
+LinesCheck.Text = ""
+LinesCheck.TextColor3 = Color3.fromRGB(0, 0, 0)
+LinesCheck.TextSize = 14.000
+
+UICorner_11.Parent = LinesCheck
+
+ImageLabel_6.Parent = LinesCheck
+ImageLabel_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_6.BackgroundTransparency = 1.000
+ImageLabel_6.BorderSizePixel = 0
+ImageLabel_6.Size = UDim2.new(1, 0, 1, 0)
+ImageLabel_6.Image = "http://www.roblox.com/asset/?id=9731691467"
+ImageLabel_6.ImageColor3 = Color3.fromRGB(12, 12, 12)
+ImageLabel_6.ScaleType = Enum.ScaleType.Slice
+ImageLabel_6.SliceCenter = Rect.new(6, 6, 94, 94)
+
+NameTextLabel_4.Name = "NameTextLabel"
+NameTextLabel_4.Parent = LinesCheck
+NameTextLabel_4.AnchorPoint = Vector2.new(1, 0)
+NameTextLabel_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NameTextLabel_4.BackgroundTransparency = 1.000
+NameTextLabel_4.BorderSizePixel = 0
+NameTextLabel_4.Position = UDim2.new(0, -5, 0, 0)
+NameTextLabel_4.Size = UDim2.new(0, 50, 1, 0)
+NameTextLabel_4.Font = Enum.Font.SourceSansBold
+NameTextLabel_4.Text = "LINES"
+NameTextLabel_4.TextColor3 = Color3.fromRGB(156, 156, 156)
+NameTextLabel_4.TextSize = 12.000
+NameTextLabel_4.TextXAlignment = Enum.TextXAlignment.Right
+
+Slider_4.Name = "Slider"
+Slider_4.Parent = LinesCheck
+Slider_4.AnchorPoint = Vector2.new(0, 0.5)
+Slider_4.BackgroundColor3 = Color3.fromRGB(190, 190, 190)
+Slider_4.Position = UDim2.new(0, 0, 0.5, 0)
+Slider_4.Size = UDim2.new(1, -2, 1, 2)
+Slider_4.SizeConstraint = Enum.SizeConstraint.RelativeYY
+Slider_4.ZIndex = 2
+
+UICorner_12.CornerRadius = UDim.new(0, 4)
+UICorner_12.Parent = Slider_4
+
+FrommiddleCheck.Name = "FrommiddleCheck"
+FrommiddleCheck.Parent = TextButton
+FrommiddleCheck.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+FrommiddleCheck.Position = UDim2.new(1, -244, 0, 72)
+FrommiddleCheck.Size = UDim2.new(0, 56, 0, 14)
+FrommiddleCheck.ZIndex = 3
+FrommiddleCheck.AutoButtonColor = false
+FrommiddleCheck.Font = Enum.Font.SourceSans
+FrommiddleCheck.Text = ""
+FrommiddleCheck.TextColor3 = Color3.fromRGB(0, 0, 0)
+FrommiddleCheck.TextSize = 14.000
+
+UICorner_13.Parent = FrommiddleCheck
+
+ImageLabel_7.Parent = FrommiddleCheck
+ImageLabel_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_7.BackgroundTransparency = 1.000
+ImageLabel_7.BorderSizePixel = 0
+ImageLabel_7.Size = UDim2.new(1, 0, 1, 0)
+ImageLabel_7.Image = "http://www.roblox.com/asset/?id=9731691467"
+ImageLabel_7.ImageColor3 = Color3.fromRGB(12, 12, 12)
+ImageLabel_7.ScaleType = Enum.ScaleType.Slice
+ImageLabel_7.SliceCenter = Rect.new(6, 6, 94, 94)
+
+NameTextLabel_5.Name = "NameTextLabel"
+NameTextLabel_5.Parent = FrommiddleCheck
+NameTextLabel_5.AnchorPoint = Vector2.new(1, 0)
+NameTextLabel_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NameTextLabel_5.BackgroundTransparency = 1.000
+NameTextLabel_5.BorderSizePixel = 0
+NameTextLabel_5.Position = UDim2.new(0, -5, 0, 0)
+NameTextLabel_5.Size = UDim2.new(0, 50, 1, 0)
+NameTextLabel_5.Font = Enum.Font.SourceSansBold
+NameTextLabel_5.Text = "FROM MIDDLE"
+NameTextLabel_5.TextColor3 = Color3.fromRGB(156, 156, 156)
+NameTextLabel_5.TextSize = 12.000
+NameTextLabel_5.TextXAlignment = Enum.TextXAlignment.Right
+
+Slider_5.Name = "Slider"
+Slider_5.Parent = FrommiddleCheck
+Slider_5.AnchorPoint = Vector2.new(0, 0.5)
+Slider_5.BackgroundColor3 = Color3.fromRGB(190, 190, 190)
+Slider_5.Position = UDim2.new(0, 0, 0.5, 0)
+Slider_5.Size = UDim2.new(1, -2, 1, 2)
+Slider_5.SizeConstraint = Enum.SizeConstraint.RelativeYY
+Slider_5.ZIndex = 2
+
+UICorner_14.CornerRadius = UDim.new(0, 4)
+UICorner_14.Parent = Slider_5
+
+SmoothnessSlider.Name = "SmoothnessSlider"
+SmoothnessSlider.Parent = TextButton
+SmoothnessSlider.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+SmoothnessSlider.BorderSizePixel = 0
+SmoothnessSlider.Position = UDim2.new(1, -301, 0, 98)
+SmoothnessSlider.Size = UDim2.new(0, 111, 0, 7)
+
+UICorner_15.CornerRadius = UDim.new(1, 0)
+UICorner_15.Parent = SmoothnessSlider
+
+SliderButton.Name = "SliderButton"
+SliderButton.Parent = SmoothnessSlider
+SliderButton.AnchorPoint = Vector2.new(0, 0.5)
+SliderButton.BackgroundColor3 = Color3.fromRGB(190, 190, 190)
+SliderButton.Position = UDim2.new(0.100000001, 0, 0.5, 0)
+SliderButton.Size = UDim2.new(1, 0, 1, 6)
+SliderButton.SizeConstraint = Enum.SizeConstraint.RelativeYY
+SliderButton.Font = Enum.Font.SourceSans
+SliderButton.Text = ""
+SliderButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+SliderButton.TextSize = 14.000
+
+UICorner_16.CornerRadius = UDim.new(0, 4)
+UICorner_16.Parent = SliderButton
+
+CurrentValue.Name = "CurrentValue"
+CurrentValue.Parent = SmoothnessSlider
+CurrentValue.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CurrentValue.BackgroundTransparency = 1.000
+CurrentValue.BorderSizePixel = 0
+CurrentValue.Position = UDim2.new(0, 0, 0, 10)
+CurrentValue.Size = UDim2.new(0, 100, 0, 20)
+CurrentValue.Font = Enum.Font.SourceSansItalic
+CurrentValue.Text = "100"
+CurrentValue.TextColor3 = Color3.fromRGB(63, 63, 63)
+CurrentValue.TextSize = 13.000
+CurrentValue.TextXAlignment = Enum.TextXAlignment.Left
+CurrentValue.TextYAlignment = Enum.TextYAlignment.Top
+
+NameTextLabel_6.Name = "NameTextLabel"
+NameTextLabel_6.Parent = SmoothnessSlider
+NameTextLabel_6.AnchorPoint = Vector2.new(1, 0)
+NameTextLabel_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NameTextLabel_6.BackgroundTransparency = 1.000
+NameTextLabel_6.BorderSizePixel = 0
+NameTextLabel_6.Position = UDim2.new(1, 0, 0, 10)
+NameTextLabel_6.Size = UDim2.new(1, 0, 0, 20)
+NameTextLabel_6.Font = Enum.Font.SourceSansBold
+NameTextLabel_6.Text = "SMOOTHNES"
+NameTextLabel_6.TextColor3 = Color3.fromRGB(172, 172, 172)
+NameTextLabel_6.TextSize = 14.000
+NameTextLabel_6.TextXAlignment = Enum.TextXAlignment.Right
+NameTextLabel_6.TextYAlignment = Enum.TextYAlignment.Top
+
+FovSlider.Name = "FovSlider"
+FovSlider.Parent = TextButton
+FovSlider.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+FovSlider.BorderSizePixel = 0
+FovSlider.Position = UDim2.new(1, -301, 0, 127)
+FovSlider.Size = UDim2.new(0, 111, 0, 7)
+
+UICorner_17.CornerRadius = UDim.new(1, 0)
+UICorner_17.Parent = FovSlider
+
+SliderButton_2.Name = "SliderButton"
+SliderButton_2.Parent = FovSlider
+SliderButton_2.AnchorPoint = Vector2.new(0, 0.5)
+SliderButton_2.BackgroundColor3 = Color3.fromRGB(190, 190, 190)
+SliderButton_2.Position = UDim2.new(0.100000001, 0, 0.5, 0)
+SliderButton_2.Size = UDim2.new(1, 0, 1, 6)
+SliderButton_2.SizeConstraint = Enum.SizeConstraint.RelativeYY
+SliderButton_2.Font = Enum.Font.SourceSans
+SliderButton_2.Text = ""
+SliderButton_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+SliderButton_2.TextSize = 14.000
+
+UICorner_18.CornerRadius = UDim.new(0, 4)
+UICorner_18.Parent = SliderButton_2
+
+CurrentValue_2.Name = "CurrentValue"
+CurrentValue_2.Parent = FovSlider
+CurrentValue_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CurrentValue_2.BackgroundTransparency = 1.000
+CurrentValue_2.BorderSizePixel = 0
+CurrentValue_2.Position = UDim2.new(0, 0, 0, 10)
+CurrentValue_2.Size = UDim2.new(0, 100, 0, 20)
+CurrentValue_2.Font = Enum.Font.SourceSansItalic
+CurrentValue_2.Text = "100"
+CurrentValue_2.TextColor3 = Color3.fromRGB(63, 63, 63)
+CurrentValue_2.TextSize = 13.000
+CurrentValue_2.TextXAlignment = Enum.TextXAlignment.Left
+CurrentValue_2.TextYAlignment = Enum.TextYAlignment.Top
+
+NameTextLabel_7.Name = "NameTextLabel"
+NameTextLabel_7.Parent = FovSlider
+NameTextLabel_7.AnchorPoint = Vector2.new(1, 0)
+NameTextLabel_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NameTextLabel_7.BackgroundTransparency = 1.000
+NameTextLabel_7.BorderSizePixel = 0
+NameTextLabel_7.Position = UDim2.new(1, 0, 0, 10)
+NameTextLabel_7.Size = UDim2.new(1, 0, 0, 20)
+NameTextLabel_7.Font = Enum.Font.SourceSansBold
+NameTextLabel_7.Text = "FOV"
+NameTextLabel_7.TextColor3 = Color3.fromRGB(172, 172, 172)
+NameTextLabel_7.TextSize = 14.000
+NameTextLabel_7.TextXAlignment = Enum.TextXAlignment.Right
+NameTextLabel_7.TextYAlignment = Enum.TextYAlignment.Top
+
+VersionText.Name = "VersionText"
+VersionText.Parent = TextButton
+VersionText.AnchorPoint = Vector2.new(0, 1)
+VersionText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+VersionText.BackgroundTransparency = 1.000
+VersionText.BorderSizePixel = 0
+VersionText.Position = UDim2.new(0, 0, 1, 2)
+VersionText.Size = UDim2.new(0, 10, 0, 10)
+VersionText.Font = Enum.Font.SourceSansItalic
+VersionText.Text = "v0.0.012A"
+VersionText.TextColor3 = Color3.fromRGB(59, 59, 59)
+VersionText.TextSize = 14.000
+VersionText.TextXAlignment = Enum.TextXAlignment.Left
+VersionText.TextYAlignment = Enum.TextYAlignment.Bottom
+
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.46, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(206, 206, 206)), ColorSequenceKeypoint.new(0.94, Color3.fromRGB(206, 206, 206)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(206, 206, 206))}
+UIGradient.Parent = TextButton
+
+Outline.Name = "Outline"
+Outline.Parent = TextButton
+Outline.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Outline.BackgroundTransparency = 1.000
+Outline.BorderSizePixel = 0
+Outline.Position = UDim2.new(0, -8, 0, -8)
+Outline.Size = UDim2.new(1, 16, 1, 16)
+Outline.ZIndex = -1
+Outline.Image = "http://www.roblox.com/asset/?id=9731691467"
+Outline.ImageColor3 = Color3.fromRGB(26, 26, 26)
+Outline.ScaleType = Enum.ScaleType.Slice
+Outline.SliceCenter = Rect.new(6, 6, 94, 94)
+
+ImageLabel_8.Parent = TextButton
+ImageLabel_8.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_8.BackgroundTransparency = 1.000
+ImageLabel_8.Position = UDim2.new(0, -8, 0, -8)
+ImageLabel_8.Size = UDim2.new(1, 16, 1, 16)
+ImageLabel_8.ZIndex = -3
+ImageLabel_8.Image = "http://www.roblox.com/asset/?id=6756524275"
+ImageLabel_8.ImageColor3 = Color3.fromRGB(50, 50, 50)
+ImageLabel_8.ScaleType = Enum.ScaleType.Tile
+ImageLabel_8.TileSize = UDim2.new(0, 256, 0, 256)
+
+UICorner_19.Parent = ImageLabel_8
+
+local runservice = game:GetService("RunService")
+local httpservice = game:GetService("HttpService")
+local tweenservice = game:GetService("TweenService")
+local camera = workspace.CurrentCamera
+local localplayer = game:GetService("Players").LocalPlayer
+local mouse = localplayer:GetMouse()
+
+Head.ResampleMode = Enum.ResamplerMode.Pixelated
+Torso.ResampleMode = Enum.ResamplerMode.Pixelated
+
+local color3 = Color3.fromRGB
+local udim2 = UDim2.new
+local vector2 = Vector2.new
+local cframe= CFrame.new
+
+local esp = {}
+local aimdata = {}
+local aimtype = "mousedist"
+local aimpart = "head"
+local aim = false
+local fov,maxfov = 100,1000
+local bottomscreen = vector2(1,1)
+local middlescreen = gui.AbsoluteSize/2
+local smoothingprocent,maxsmoothing = 1,10
+local renderstep = runservice.RenderStepped
+
+local visualcheck = false
+local aimboton = false
+local chamson = false
+local lineson = false
+local frommiddleon = false
+
+local apitable = _G.a or loadstring(game:HttpGet("https://raw.githubusercontent.com/Wheeleee/AIMWARE/main/ApI"))()
+local api = apitable[game.GameId] or apitable.UNIVERSAL
+
+local translate = api.Translate
+
+local fovcircle = Drawing.new("Circle")
+fovcircle.ZIndex = 100
+fovcircle.Filled = false
+fovcircle.Color = color3(255, 118, 21)
+fovcircle.Radius = fov
+fovcircle.Position = middlescreen
+fovcircle.Visible = true
+fovcircle.Thickness = 1
+
+AimbotCheck.MouseButton1Down:Connect(function()
+	tweenservice:Create(AimbotCheck.Slider,TweenInfo.new(.12),{BackgroundColor3 = aimboton and color3(190, 190, 190) or color3(42, 180, 51),Position = aimboton and udim2(0,0,0.5,0) or udim2(1,-12,0.5,0)}):Play()
+	aimboton = not aimboton	
+end)
+VisualCheck.MouseButton1Down:Connect(function()
+	tweenservice:Create(VisualCheck.Slider,TweenInfo.new(.12),{BackgroundColor3 = visualcheck and color3(190, 190, 190) or color3(42, 180, 51),Position = visualcheck and udim2(0,0,0.5,0) or udim2(1,-12,0.5,0)}):Play()
+	visualcheck = not visualcheck	
+end)
+ChamsCheck.MouseButton1Down:Connect(function()
+	tweenservice:Create(ChamsCheck.Slider,TweenInfo.new(.12),{BackgroundColor3 = chamson and color3(190, 190, 190) or color3(42, 180, 51),Position = chamson and udim2(0,0,0.5,0) or udim2(1,-12,0.5,0)}):Play()
+	chamson = not chamson
+	Chams.Visible = chamson	
+end)
+LinesCheck.MouseButton1Down:Connect(function()
+	tweenservice:Create(LinesCheck.Slider,TweenInfo.new(.12),{BackgroundColor3 = lineson and color3(190, 190, 190) or color3(42, 180, 51),Position = lineson and udim2(0,0,0.5,0) or udim2(1,-12,0.5,0)}):Play()
+	lineson = not lineson	
+	Lines.Visible = lineson
+end)
+FrommiddleCheck.MouseButton1Down:Connect(function()
+	tweenservice:Create(FrommiddleCheck.Slider,TweenInfo.new(.12),{BackgroundColor3 = frommiddleon and color3(190, 190, 190) or color3(42, 180, 51),Position = frommiddleon and udim2(0,0,0.5,0) or udim2(1,-12,0.5,0)}):Play()
+	frommiddleon = not frommiddleon	
+end)
+
+local on = false
+FovSlider.SliderButton.MouseButton1Down:Connect(function()
+	on = true
+	repeat renderstep:wait()
+		local procent = ((mouse.X-FovSlider.AbsolutePosition.X)/FovSlider.AbsoluteSize.X)
+		procent = procent > 1 and 1 or procent < 0 and 0 or procent
+		FovSlider.SliderButton.Position = udim2(procent,0,.5,0)
+		local calculated = maxfov*procent
+		FovSlider.CurrentValue.Text = math.ceil(calculated)
+		fov = calculated 
+	until not on
+end)
+FovSlider.SliderButton.MouseButton1Up:Connect(function()
+	on = false
+end)
+
+local on = false
+SmoothnessSlider.SliderButton.MouseButton1Down:Connect(function()
+	on = true
+	repeat renderstep:wait()
+		local procent = ((mouse.X-SmoothnessSlider.AbsolutePosition.X)/SmoothnessSlider.AbsoluteSize.X)
+		procent = procent > 1 and 1 or procent < 0 and 0 or procent
+		SmoothnessSlider.SliderButton.Position = udim2(procent,0,.5,0)
+		local calculated = maxsmoothing*procent
+		SmoothnessSlider.CurrentValue.Text = math.ceil(calculated)
+		smoothingprocent = calculated 
+	until not on
+end)
+SmoothnessSlider.SliderButton.MouseButton1Up:Connect(function()
+	on = false
+end)
+
+local function moveable(textbutton)
+	if textbutton then
+		local moving = false
+		textbutton.MouseButton1Down:Connect(function()
+			local offset = textbutton.AbsolutePosition-vector2(mouse.X,mouse.Y)
+			moving = true
+			repeat runservice.RenderStepped:Wait()
+				textbutton.Position = UDim2.new(0,mouse.X+offset.X,0,mouse.Y+offset.Y)
+			until not moving
+		end)
+		textbutton.MouseButton1Up:Connect(function()
+			moving = false
+		end)
 	end
 end
-camerafovtoggle:Update()
-camerafov = visualsframe:CreateSlider({Position=UDim2.new(0,316,0,45)})
-camerafov.OnUpdate = function()
-	if camerafovtoggle.Activated then
-		workspace.Camera.FieldOfView = camerafov.Procent
-	end
-end
-camerafov.Name = "camerafov"
-camerafov.Procent = workspace.CurrentCamera.FieldOfView
-camerafov.MaxProcent = 120
-camerafov:Update()
 
-silentbutton:Link(silentaimframe)
-visualsbutton:Link(visualsframe)
-weaponsbutton:Link(weaponsframe)
-aimbotbutton:Link(aimbotframe)
+local function addesp(player)
+	local character = player.Instance
+	local debugid = character:GetDebugId()
+	if not esp[debugid] then
+		esp[debugid]=true
+		local line = Drawing.new("Line")
+		line.Thickness = 1
+		line.Color = color3(255, 118, 21)
+		local box = Drawing.new("Square")
+		box.Filled = false
+		box.Thickness = 1
+		box.Color = color3(255, 118, 21)
+		local count,countmax = 0,1
+		local renderconnection;renderconnection = runservice.RenderStepped:Connect(function()
+			local torso = character:FindFirstChild(translate(api,"head"))
+			if (character) and character.Parent and torso then
+				count+=1
+				local torsoposition = torso.Position
+				local distance = (camera.CFrame.Position-torsoposition).magnitude
+				countmax = distance > 200 and 3 or distance > 350 and 5 or distance < 200 and 1 or 7
+				if count >= countmax then
+					count = 0
+					local orientation,boundingsize = character:GetBoundingBox()
+					local width = boundingsize.X > boundingsize.Z and boundingsize.X or boundingsize.Z
 
-local aimware = {};setmetatable(aimware,{
-	__index = function(self,index)
-		local success,service = pcall(game.GetService,game,index)
-		return success and service or index == "DebugPrint" and function(self,text)
-			rconsoleprint("[AIMWARE] "..text.."\n")
-		end or index == "" and function()
+					local aimpartposition2d,aimpartonscreen = camera:WorldToViewportPoint(torsoposition)
+					
+					local aimpartvisible
+					if visualcheck then
+						local cameraposition = camera.CFrame.Position
+						local params = RaycastParams.new()
+						params.FilterDescendantsInstances={camera,api:GetLocalCharacter()}
+						local raycastresult = workspace:Raycast(cameraposition,cframe(cameraposition,torsoposition).LookVector*100000,params)
+						aimpartvisible = (raycastresult) and raycastresult.Instance:IsDescendantOf(character) or false
+					else
+						aimpartvisible = false
+					end
+					local color = (visualcheck) and aimpartvisible and color3(108,255,108) or (visualcheck) and color3(255,55,55) or color3(255, 118, 21)
 
-		end
-	end
-})
-
-_G.weaponsframe = weaponsframe
-_G.aimbotframe = aimbotframe
-
-aimware.RenderStepped = {
-    Steps1 = 0,
-    AddedSteps = 10,
-}
-aimware.Account = {
-	BaseAccount = {},
-}
-aimware.Visuals = {
-	Active = {},
-	FovCircle = Drawing.new("Circle"),
-	AimAtLine = Drawing.new("Line"),
-	MiddleScreen = lib.GUI.AbsoluteSize/2+Vector2.new(0,18),
-}
-aimware.ApITable = _G.a or loadstring(game:HttpGet("https://raw.githubusercontent.com/Wheeleee/AIMWARE/main/ApI"))()
-aimware.ApI = aimware.ApITable[game.GameId] or aimware.ApITable.UNIVERSAL
-aimware.ApITable = nil
-
-if not aimware.ApI.Info.AntiCheatHash == aimware.ApI.Info:GetAntiCheatHash() then
-	lib.GUI:Destroy()
-	return
-end
-aimware.ApI:Init()
-
-silentbutton:Lock(aimware.ApI.Tabs.Silent)
-weaponsbutton:Lock(aimware.ApI.Tabs.WeaponModding)
-visualsbutton:Lock(aimware.ApI.Tabs.Visuals)
-
-aimware.LocalPlayer = aimware.Players.LocalPlayer
-aimware.Mouse = aimware.LocalPlayer:GetMouse()
-aimware.Camera = workspace.CurrentCamera
-
-aimware.Data = {    
-	AimAt = false,
-	AimData = nil,
-}
-
-setmetatable(aimware.Account,{
-	__index = function(self,index)
-		return index == "Save" and function(self)
-		end or index == "Read" and function(self)
-		end or index == "Check" and function(self)
-		end
-	end,
-})
-setmetatable(aimware.Visuals,{
-	__index = function(self,index)
-		return index == "Add" and function(self,table,removeparent)
-		    local character = table.Instance
-            local debugid = character:GetDebugId()
-			if not self.Active[debugid] then
-				local esp = {}
-				setmetatable(esp,{
-					__index = function(self,index)
-						return index == "Invalidate" and function(self)
-							esp.RenderConnection:Disconnect()
-							esp.ParentRemovedConnection:Disconnect()
-                            aimware.Visuals.Active[debugid] = nil
-							esp.Line:Remove()
-                            esp.Box:Remove()
-						end
-					end,
-				})
-				esp.Line = Drawing.new("Line")
-				esp.Line.Thickness = 1
-                esp.Line.Visible = tracerstoggle.Activated
-                esp.Line.Color = Color3.fromRGB(255,108,108)
-                esp.Box = Drawing.new("Square")
-                esp.Box.Filled = false
-                esp.Box.Visible = boxestoggle.Activated
-                esp.Box.Size = Vector2.new(12,12)
-                esp.Box.Position = Vector2.new(12,12)
-                esp.Box.Thickness = 1
-                esp.Box.Color = Color3.fromRGB(255,108,108)
-				esp.RenderConnection = aimware.RunService.RenderStepped:Connect(function()
-                    local aimpart,torso = character:FindFirstChild(aimware.ApI:Translate(aimpartdropdown.Selected)),character:FindFirstChild(aimware.ApI:Translate("TORSO"))
-                    torso = torso or aimpart
-                    if aimpart then
-                        local orientation,boundingsize = character:GetBoundingBox()
-                        local width = boundingsize.X > boundingsize.Z and boundingsize.X or boundingsize.Z
-
-                        local aimpartposition,aimpartonscreen = aimware.Camera:WorldToViewportPoint(aimpart.Position)
-                        local torsoposition,torsonscreen = aimware.Camera:WorldToViewportPoint(torso.Position)
-                        local aimpartvisible = #aimware.Camera:GetPartsObscuringTarget({aimpart.Position},{table.Ignore,aimware.Camera,aimware.ApI:GetLocalCharacter(),unpack(aimware.ApI:GetIgnorables())})==0
-
-                        local color = (visualchecktoggle.Activated) and aimpartvisible and Color3.fromRGB(108,255,108) or (visualchecktoggle.Activated) and Color3.fromRGB(255,108,108) or not visualchecktoggle.Activated and Color3.fromRGB(255,108,0)
-                        if tracerstoggle.Activated then
-                            if aimpartonscreen then
-                                esp.Line.Visible = true
-                                esp.Line.From = self.MiddleScreen
-                                esp.Line.To = Vector2.new(aimpartposition.x,aimpartposition.y)
-                                esp.Line.Color = color
-                            else
-                                esp.Line.Visible = false
-                            end
-                        end
-                        if boxestoggle.Activated then
-                            if torsonscreen then
-                                esp.Box.Visible = true
-                                local distance = (aimware.Camera.CFrame.Position-torso.Position).magnitude
-                                esp.Box.Size = Vector2.new((width*500)/distance,(boundingsize.y*500)/distance)
-                                esp.Box.Position = Vector2.new(torsoposition.x-esp.Box.Size.x/2,torsoposition.y-esp.Box.Size.y/2)
-                                esp.Box.Color = color
-                            else
-                                esp.Box.Visible = false
-                            end
-                        end
-                    else
-                        esp:Invalidate()
-                    end
-				end)
-				if table.Parent then
-					esp.ParentRemovedConnection = table.Parent.ChildRemoved:Connect(function(child)
-						if child == character or child == character.Parent then
-							esp:Invalidate()
-						end
-					end)
-				else
-					esp:Invalidate()
+					if lineson and aimpartonscreen then
+						line.Visible = true
+						line.From = frommiddleon and middlescreen or bottomscreen
+						line.To = vector2(aimpartposition2d.x,aimpartposition2d.y)
+						line.Color = color
+					else
+						line.Visible = false
+					end
+					if chamson and aimpartonscreen then
+						box.Visible = true
+						box.Size = vector2((width*500)/distance,(boundingsize.y*515)/distance)/(camera.FieldOfView/70)
+						box.Position = vector2(aimpartposition2d.x-box.Size.x/2,aimpartposition2d.y-box.Size.y/2)
+						box.Color = color
+					else
+						box.Visible = false
+					end
 				end
-                self.Active[debugid] = esp
-				return esp
+			else
+				renderconnection:Disconnect()
+				box:Remove()
+				line:Remove()
+				esp[debugid]=false
 			end
-		end or index == "Remove" and function(self,character)
+		end)
+	end
+end
 
-		end or index == "" and function(self)
+moveable(TextButton)
+
+Head.MouseButton1Click:Connect(function()
+	aimpart = "head"
+	tweenservice:Create(Head,TweenInfo.new(.12),{ImageColor3=color3(255, 80, 80)}):Play()
+	tweenservice:Create(Torso,TweenInfo.new(.12),{ImageColor3=color3(255,255,255)}):Play()
+end)
+Torso.MouseButton1Click:Connect(function()
+	aimpart = "torso"
+	tweenservice:Create(Torso,TweenInfo.new(.12),{ImageColor3=color3(255, 80, 80)}):Play()
+	tweenservice:Create(Head,TweenInfo.new(.12),{ImageColor3=color3(255,255,255)}):Play()
+end)
+
+mouse.Button2Down:Connect(function()
+	aim = true
+end)
+mouse.Button2Up:Connect(function()
+	aim = false
+	aimdata = nil
+end)
+
+--[[local point = nil
+local on = false
+PointB.MouseButton1Down:Connect(function()
+	if not point then
+		PointFrame.Visible = true
+		on = true
+		local absolutesize = BodypartSelect.AbsoluteSize
+		repeat renderstep:Wait()
+			PointFrame.Position = udim2(0,mouse.x-absolutesize.x,0,mouse.y-absolutesize.y)
+		until not on
+	end
+end)
+PointB.MouseButton1Up:Connect(function()
+	on = false
+	if point then
+		PointFrame.Visible = false
+		point = nil
+	else
+		Longitude.Visible = false
+		Latitude.Visible = false
+		point = true
+	end
+end)]]
+
+spawn(function()
+	while task.wait(3) do
+		local enemies = api:GetEnemies()
+		for index = 1,#enemies do
+			addesp(enemies[index])
 		end
-	end,
-})
-
-aimware.Visuals.AimAtLine.Visible = false
-aimware.Visuals.AimAtLine.Thickness = 1
-aimware.Visuals.AimAtLine.Color = Color3.fromRGB(108,108,255)
-aimware.Visuals.AimAtLine.From = aimware.Visuals.MiddleScreen
-aimware.Visuals.AimAtLine.To = aimware.Visuals.MiddleScreen
-aimware.Visuals.FovCircle.Visible = fovtoggle.Activated
-aimware.Visuals.FovCircle.Radius = fovslider.Procent
-aimware.Visuals.FovCircle.Thickness = 1
-aimware.Visuals.FovCircle.Color = Color3.fromRGB(255,108,0)
-aimware.Visuals.FovCircle.Filled = false
-aimware.Visuals.FovCircle.ZIndex = 10
-aimware.Visuals.FovCircle.Position = aimware.Visuals.MiddleScreen
-
-aimware.Camera.Changed:Connect(function()
-	if camerafovtoggle.Activated then
-		aimware.Camera.FieldOfView = camerafov.Procent
-	end
-end)
-boxestoggle.OnUpdate = function(self)
-    for _,esp in next, aimware.Visuals.Active do
-        esp.Box.Visible = boxestoggle.Activated
-    end
-end
-tracerstoggle.OnUpdate = function(self)
-    for _,esp in next, aimware.Visuals.Active do
-        esp.Line.Visible = tracerstoggle.Activated
-    end
-end
-drawfovtoggle.OnUpdate = function(self)
-	aimware.Visuals.FovCircle.Visible = drawfovtoggle.Activated
-end
-fovslider.OnUpdate = function(self)
-	aimware.Visuals.FovCircle.Radius = fovslider.Procent
-end
-aimtypedropdown.OnUpdate = function(self)
-    
-end
-
-aimware.UserInputService.InputBegan:Connect(function(key)
-	if key.KeyCode == activateaimbot.Key then
-		aimware.Data.AimAt = true
 	end
 end)
 
-aimware.UserInputService.InputEnded:Connect(function(key)
-	if key.KeyCode == activateaimbot.Key then
-		aimware.Data.AimAt = false
-		aimware.Data.AimData = nil
-	end
-end)
-aimware.Mouse.Button1Down:Connect(function()
-	if activateaimbot.Key == "RightMouse" then
-		aimware.Data.AimAt = true
-	end
-end)
-aimware.Mouse.Button2Down:Connect(function()
-	if activateaimbot.Key == "LeftMouse" then
-		aimware.Data.AimAt = true
-	end
-end)
-aimware.Mouse.Button1Up:Connect(function()
-	if activateaimbot.Key == "RightMouse" then
-		aimware.Data.AimAt = false
-		aimware.Data.AimData = nil
-	end
-end)
-aimware.Mouse.Button2Up:Connect(function()
-	if activateaimbot.Key == "LeftMouse" then
-		aimware.Data.AimAt = false
-		aimware.Data.AimData = nil
-	end
-end)
-
-aimware.RunService.RenderStepped:Connect(function(deltatime)
-    aimware.RenderStepped.Steps1+=1
-    aimware.Visuals.MiddleScreen = lib.GUI.AbsoluteSize/2+Vector2.new(0,18)
-    aimware.Visuals.FovCircle.Position = aimware.Visuals.MiddleScreen
-    if aimware.RenderStepped.AddedSteps == aimware.RenderStepped.Steps1 then
-        aimware.RenderStepped.Steps1 = 0
-        for _,enemy in next, aimware.ApI:GetEnemies() do
-            aimware.Visuals:Add(enemy)
-            if periodicheckingtoggle.Activated then
-                aimware.Data.AimData = nil
-            end
-        end
-    end
-	if (aimware.Data.AimAt) and aimware.ApI:Valid() then
-		if not aimware.Data.AimData then
-			local enemies = aimware.ApI:GetEnemies()
-			if aimtypedropdown.Selected == "mousedist" then
-				local mouseposition = Vector2.new(aimware.Mouse.x,aimware.Mouse.y)
-				for index,character in next, (enemies) do
+runservice.RenderStepped:Connect(function()
+	local absolute = gui.AbsoluteSize
+	middlescreen = absolute/2+vector2(0,18)
+	bottomscreen = vector2(absolute.X/2,absolute.Y)
+	fovcircle.Position = middlescreen
+	local field = camera.FieldOfView/70
+	local actualfov = fov/field
+	fovcircle.Radius = actualfov
+	if (aim) and api:Valid() and aimboton then
+		if not aimdata then
+			local enemies = api:GetEnemies()
+			if aimtype == "mousedist" then
+				local mouseposition = vector2(mouse.x,mouse.y)
+				for index = 1,#enemies do
+					local character = enemies[index]
 					local instance = character.Instance
 					if instance then
-						local aimatpart = instance:FindFirstChild(aimware.ApI:Translate(aimpartdropdown.Selected))
+						local aimatpart = instance:FindFirstChild(translate(api,aimpart))
 						if aimatpart then
-							local vector,onscreen = aimware.Camera:WorldToScreenPoint(aimatpart.Position)
-							local distancefromiddle = (aimware.Visuals.MiddleScreen-Vector2.new(vector.x,vector.y)).magnitude
-							local x = aimware.Camera:GetPartsObscuringTarget({aimatpart.Position},{character.Ignore,aimware.Camera,aimware.ApI:GetLocalCharacter(),unpack(aimware.ApI:GetIgnorables())})
-							if not visualchecktoggle.Activated or #x==0 then
-                                if onscreen then
-                                    local distance = (mouseposition-Vector2.new(vector.x,vector.y)).magnitude
-                                    if not aimware.Data.AimData then
-                                        aimware.Data.AimData = {
-                                            MouseDistance = distance,
-                                            Character = character,
-                                            Part = aimatpart,
-                                            MiddleDistance = distancefromiddle,
-                                        }
-                                    elseif aimware.Data.AimData.MouseDistance > distance then
-                                        aimware.Data.AimData = {
-                                            MouseDistance = distance,
-                                            Character = character,
-                                            Part = aimatpart,
-                                            MiddleDistance = distancefromiddle,
-                                        }
-                                    end
-                                end
-                            end
+							local vector,onscreen = camera:WorldToScreenPoint(aimatpart.Position)
+							vector = vector2(vector.x,vector.y)
+							local distancefromiddle = (middlescreen-vector).magnitude
+							if onscreen and distancefromiddle < actualfov then
+								local cameraposition = camera.CFrame.Position
+								local params = RaycastParams.new()
+								params.FilterDescendantsInstances={camera,api:GetLocalCharacter()}
+								local raycastresult = workspace:Raycast(cameraposition,cframe(cameraposition,aimatpart.Position).LookVector*100000,params)
+								if not visualcheck or (raycastresult) and raycastresult.Instance:IsDescendantOf(instance) then
+									local distance = (mouseposition-vector).magnitude
+									if not aimdata then
+										local table = {true,true,true} 
+										table[1] = distance
+										table[2] = character
+										table[3] = aimatpart
+										aimdata = table
+									elseif aimdata[1] > distance then
+										local table = {true,true,true}
+										table[1] = distance
+										table[2] = character
+										table[3] = aimatpart
+										aimdata = table
+									end
+								end
+							end
 						end
 					end
 				end
-			elseif aimtypedropdown.Selected == "characterdist" then
-				for index,character in next, (enemies) do
-					local instance = character.Instance
-					if instance then
-						local aimatpart = instance:FindFirstChild(aimware.ApI:Translate(aimpartdropdown.Selected))
-						if aimatpart then
-							local vector,onscreen = aimware.Camera:WorldToScreenPoint(aimatpart.Position)
-							local distancefromiddle = (aimware.Visuals.MiddleScreen-Vector2.new(vector.x,vector.y)).magnitude
-							if not visualchecktoggle.Activated or #aimware.Camera:GetPartsObscuringTarget({aimatpart.Position},{character.Ignore,aimware.Camera,aimware.ApI:GetLocalCharacter(),unpack(aimware.ApI:GetIgnorables())})==0 then
-                                if onscreen then
-                                    local distance = (aimware.ApI:GetLocalPosition()-aimatpart.Position).magnitude
-                                    if not aimware.Data.AimData then
-                                        aimware.Data.AimData = {
-                                            CharacterDistance = distance,
-                                            Character = character,
-                                            Part = aimatpart,
-                                            MiddleDistance = distancefromiddle,
-                                        }
-                                    elseif aimware.Data.AimData.CharacterDistance > distance then
-                                        aimware.Data.AimData = {
-                                            CharacterDistance = distance,
-                                            Character = character,
-                                            Part = aimatpart,
-                                            MiddleDistance = distancefromiddle,
-                                        }
-                                    end
-                                end
-                            end
-						end
-					end
-				end
 			end
 		end
-		if (aimware.Data.AimData) and aimware.Data.AimData.Part and aimware.Data.AimData.MiddleDistance < fovslider.Procent then
-			if aimbotypedropdown.Selected == "mouse" then
-				local screenposition,visible = aimware.Camera:WorldToScreenPoint(aimware.Data.AimData.Part.Position)
-				mousemoverel(-((aimware.Mouse.x-screenposition.x)/smoothingslider.Procent),-((aimware.Mouse.y-screenposition.y)/smoothingslider.Procent))
-				aimware.Visuals.AimAtLine.To = Vector2.new(screenposition.X,screenposition.Y+18)
-			elseif aimbotypedropdown.Selected == "camera" then
-				aimware.ApI:SetCFrame(CFrame.new(aimware.Camera.CFrame.Position,aimware.Data.AimData.Part.CFrame.Position))
+		if (aimdata) then
+			local aimatpart = aimdata[3]
+			if aimatpart then
+				if aimtype == "mousedist" and aimatpart then
+					local screenposition,visible = camera:WorldToScreenPoint(aimatpart.Position)
+					mousemoverel(-((mouse.x-screenposition.x)*field),-((mouse.y-screenposition.y)*field))
+				elseif aimtype == "camera" then
+					api:SetCFrame(cframe(camera.Position,aimatpart.CFrame.Position))
+				end
 			end
 		else
-		    aimware.Data.AimData = nil
+			aimdata = nil
 		end
 	end
 end)
