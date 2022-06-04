@@ -314,7 +314,7 @@ return {
 			camera.CFrame = CFrame
 		end,
 		Valid = function(self)
-			return (self:GetLocalCharacter()) and self:GetLocalCharacter():FindFirstChild("Gun") and true or false
+			return true
 		end,
 		Translate = function(self,text)
 			return self.BodyParts[text:upper()] or ""
@@ -323,14 +323,20 @@ return {
 			return {unpack(workspace.Ray_Ignore:GetChildren()),unpack(workspace.Debris:GetChildren())}
 		end,
 		GetEnemies = function(self)
+		    local enemies = {}
 			for i,v in pairs(game.Players:GetPlayers()) do
-                local enemies = {}
-                local character = workspace.MapFolder.Players:FindFirstChild(v.Name)
-                if character then
-                    enemies[#enemies+1] = character
+                if v~=game.Players.LocalPlayer then
+                    local character = workspace.MapFolder.Players:FindFirstChild(v.Name)
+                    if character then
+                        enemies[#enemies+1] = {
+                            Instance = character,
+                            Ignore = character,
+                            Parent = character.Parent
+                        }
+                    end
                 end
-                return enemies
-            end
+			end
+        return enemies
 		end,
 		GetLocalCharacter = function(self)
 			return localplayer.Character
