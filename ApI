@@ -65,6 +65,60 @@ return {
 			__TYPE = "UNVIERSAL",
 		},
 	},
+	[1175300013] = {
+    	BodyParts = {
+    		["TORSO"] = "UpperTorso",
+    		["HEAD"] = "Head",
+    	},
+    	Init = function(self)
+    
+    	end,
+    	SetCFrame = function(self,CFrame)
+    		camera.CFrame = CFrame
+    	end,
+    	Valid = function(self)
+    		return true
+    	end,
+    	Translate = function(self,text)
+    		return self.BodyParts[text:upper()] or ""
+    	end,
+    	GetIgnorables = function(self)
+    		return {}
+    	end,
+    	GetEnemies = function(self)
+    		local enemies = {}
+    		for _,player in next, players:GetPlayers() do
+    			if (player.Character) and player ~= localplayer then
+    				enemies[#enemies+1] = {
+    					Instance = player.Character,
+    					Parent = player.Character.Parent,
+    					Ignore = player.Character,
+    				}
+    			end
+    		end
+    		return enemies
+    	end,
+    	GetLocalCharacter = function(self)
+    		return localplayer.Character
+    	end,
+    	GetLocalPosition = function(self)
+    		local character = self:GetLocalCharacter()
+    		if character then
+    			return character[self:Translate("HEAD")].Position
+    		end
+    	end,
+    	Info = {
+    		Created = 1654452304,
+    		GameName = "Blacklands",
+    		GameId = 1175300013,
+    		PlaceId = 3254838662,
+    		AntiCheatHash = "N/A",
+    		ClientHash = "N/A",
+    		GetClientHash = function() return "N/A" end,
+    		GetAntiCheatHash = function() return "N/A" end,
+    		__TYPE = "API",
+    	},
+    },
 	[1168263273] = {
 		BodyParts = {
 			["TORSO"] = "Chest",
