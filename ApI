@@ -1,3 +1,4 @@
+ 
 local players = game:GetService("Players")
 local localplayer = players.LocalPlayer
 local camera = workspace.CurrentCamera
@@ -26,7 +27,8 @@ return {
 		GetEnemies = function(self)
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
-				if (player.Character and (player.Neutral or player.Team ~= localplayer)) and player ~= localplayer and player.Character:FindFirstChild("Humanoid").Health>0 then
+			    local humanoid = player.Character:FindFirstChild("Humanoid")
+				if (player.Character and (player.Neutral or player.Team ~= localplayer)) and player ~= localplayer and ((humanoid) and humanoid.Health>0 or true) then
 					enemies[#enemies+1] = {
 						Instance = player.Character,
 						Parent = player.Character.Parent,
