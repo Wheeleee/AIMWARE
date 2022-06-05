@@ -54,7 +54,7 @@ return {
 			Visuals = true,
 		},
 		Info = {
-			Created = os.time(),
+			Created = 1654459251,
 			GameName = game.Name,
 			GameId = game.GameId,
 			PlaceId = game.GameId,
