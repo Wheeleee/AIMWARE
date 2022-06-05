@@ -71,9 +71,17 @@ local UIGradient = Instance.new("UIGradient")
 local Outline = Instance.new("ImageLabel")
 local ImageLabel_8 = Instance.new("ImageLabel")
 local UICorner_19 = Instance.new("UICorner")
+local MousefovCheck = Instance.new("TextButton")
+local UICorner_20 = Instance.new("UICorner")
+local ImageLabel_9 = Instance.new("ImageLabel")
+local NameTextLabel_8 = Instance.new("TextLabel")
+local Slider_6 = Instance.new("Frame")
+local UICorner_21 = Instance.new("UICorner")
+
+--Properties:
 
 gui.Name = "gui"
-gui.Parent = game.CoreGui
+gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 TextButton.Parent = gui
@@ -537,7 +545,7 @@ SmoothnessSlider.Name = "SmoothnessSlider"
 SmoothnessSlider.Parent = TextButton
 SmoothnessSlider.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
 SmoothnessSlider.BorderSizePixel = 0
-SmoothnessSlider.Position = UDim2.new(1, -301, 0, 98)
+SmoothnessSlider.Position = UDim2.new(1, -301, 0, 116)
 SmoothnessSlider.Size = UDim2.new(0, 111, 0, 7)
 
 UICorner_15.CornerRadius = UDim.new(1, 0)
@@ -591,7 +599,7 @@ FovSlider.Name = "FovSlider"
 FovSlider.Parent = TextButton
 FovSlider.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
 FovSlider.BorderSizePixel = 0
-FovSlider.Position = UDim2.new(1, -301, 0, 127)
+FovSlider.Position = UDim2.new(1, -301, 0, 145)
 FovSlider.Size = UDim2.new(0, 111, 0, 7)
 
 UICorner_17.CornerRadius = UDim.new(1, 0)
@@ -685,9 +693,58 @@ ImageLabel_8.TileSize = UDim2.new(0, 256, 0, 256)
 
 UICorner_19.Parent = ImageLabel_8
 
+MousefovCheck.Name = "MousefovCheck"
+MousefovCheck.Parent = TextButton
+MousefovCheck.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+MousefovCheck.Position = UDim2.new(1, -244, 0, 90)
+MousefovCheck.Size = UDim2.new(0, 56, 0, 14)
+MousefovCheck.ZIndex = 3
+MousefovCheck.AutoButtonColor = false
+MousefovCheck.Font = Enum.Font.SourceSans
+MousefovCheck.Text = ""
+MousefovCheck.TextColor3 = Color3.fromRGB(0, 0, 0)
+MousefovCheck.TextSize = 14.000
+
+UICorner_20.Parent = MousefovCheck
+
+ImageLabel_9.Parent = MousefovCheck
+ImageLabel_9.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_9.BackgroundTransparency = 1.000
+ImageLabel_9.BorderSizePixel = 0
+ImageLabel_9.Size = UDim2.new(1, 0, 1, 0)
+ImageLabel_9.Image = "http://www.roblox.com/asset/?id=9731691467"
+ImageLabel_9.ImageColor3 = Color3.fromRGB(12, 12, 12)
+ImageLabel_9.ScaleType = Enum.ScaleType.Slice
+ImageLabel_9.SliceCenter = Rect.new(6, 6, 94, 94)
+
+NameTextLabel_8.Name = "NameTextLabel"
+NameTextLabel_8.Parent = MousefovCheck
+NameTextLabel_8.AnchorPoint = Vector2.new(1, 0)
+NameTextLabel_8.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NameTextLabel_8.BackgroundTransparency = 1.000
+NameTextLabel_8.BorderSizePixel = 0
+NameTextLabel_8.Position = UDim2.new(0, -5, 0, 0)
+NameTextLabel_8.Size = UDim2.new(0, 50, 1, 0)
+NameTextLabel_8.Font = Enum.Font.SourceSansBold
+NameTextLabel_8.Text = "MOUSE FOV"
+NameTextLabel_8.TextColor3 = Color3.fromRGB(156, 156, 156)
+NameTextLabel_8.TextSize = 12.000
+NameTextLabel_8.TextXAlignment = Enum.TextXAlignment.Right
+
+Slider_6.Name = "Slider"
+Slider_6.Parent = MousefovCheck
+Slider_6.AnchorPoint = Vector2.new(0, 0.5)
+Slider_6.BackgroundColor3 = Color3.fromRGB(190, 190, 190)
+Slider_6.Position = UDim2.new(0, 0, 0.5, 0)
+Slider_6.Size = UDim2.new(1, -2, 1, 2)
+Slider_6.SizeConstraint = Enum.SizeConstraint.RelativeYY
+Slider_6.ZIndex = 2
+
+UICorner_21.CornerRadius = UDim.new(0, 4)
+UICorner_21.Parent = Slider_6
+
 local runservice = game:GetService("RunService")
 local httpservice = game:GetService("HttpService")
-local userinputservice = game:GetService("UserInputService")
 local tweenservice = game:GetService("TweenService")
 local camera = workspace.CurrentCamera
 local localplayer = game:GetService("Players").LocalPlayer
@@ -712,6 +769,7 @@ local middlescreen = gui.AbsoluteSize/2
 local smoothingprocent,maxsmoothing = 1,10
 local renderstep = runservice.RenderStepped
 
+local mousefov = false
 local visualcheck = false
 local aimboton = false
 local chamson = false
@@ -760,6 +818,10 @@ FrommiddleCheck.MouseButton1Down:Connect(function()
 	LinesH.Visible = not frommiddleon
 	tweenservice:Create(FrommiddleCheck.Slider,TweenInfo.new(.12),{BackgroundColor3 = frommiddleon and color3(190, 190, 190) or color3(42, 180, 51),Position = frommiddleon and udim2(0,0,0.5,0) or udim2(1,-12,0.5,0)}):Play()
 	frommiddleon = not frommiddleon	
+end)
+MousefovCheck.MouseButton1Down:Connect(function()
+	tweenservice:Create(MousefovCheck.Slider,TweenInfo.new(.12),{BackgroundColor3 = mousefov and color3(190, 190, 190) or color3(42, 180, 51),Position = mousefov and udim2(0,0,0.5,0) or udim2(1,-12,0.5,0)}):Play()
+	mousefov = not mousefov	
 end)
 
 local on = false
@@ -824,7 +886,7 @@ local function addesp(player)
 		box.Color = color3(255, 118, 21)
 		local count,countmax = 0,1
 		local renderconnection;renderconnection = runservice.RenderStepped:Connect(function()
-			local torso = character:FindFirstChild(translate(api,"HEAD"))
+			local torso = character:FindFirstChild(translate(api,"torso"))
 			if (character) and character.Parent and torso then
 				count+=1
 				local torsoposition = torso.Position
@@ -832,8 +894,8 @@ local function addesp(player)
 				countmax = distance > 200 and 3 or distance > 350 and 5 or distance < 200 and 1 or 7
 				if count >= countmax then
 					count = 0
-					--local orientation,boundingsize = character:GetBoundingBox()
-					local width,height = 6,11--boundingsize.X > boundingsize.Z and boundingsize.X or boundingsize.Z
+					local orientation,boundingsize = character:GetBoundingBox()
+					local width = boundingsize.X > boundingsize.Z and boundingsize.X or boundingsize.Z
 
 					local aimpartposition2d,aimpartonscreen = camera:WorldToViewportPoint(torsoposition)
 					
@@ -859,9 +921,8 @@ local function addesp(player)
 					end
 					if chamson and aimpartonscreen then
 						box.Visible = true
-						local size = vector2((width*500)/distance,(height*515)/distance)/(camera.FieldOfView/70)
-						box.Size = size
-						box.Position = vector2(aimpartposition2d.x-size.x/2,aimpartposition2d.y-size.y/2)
+						box.Size = vector2((width*500)/distance,(boundingsize.y*515)/distance)/(camera.FieldOfView/70)
+						box.Position = vector2(aimpartposition2d.x-box.Size.x/2,aimpartposition2d.y-box.Size.y/2)
 						box.Color = color
 					else
 						box.Visible = false
@@ -890,16 +951,12 @@ Torso.MouseButton1Click:Connect(function()
 	tweenservice:Create(Head,TweenInfo.new(.12),{ImageColor3=color3(255,255,255)}):Play()
 end)
 
-userinputservice.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton2 then
-        aim = true
-    end
+mouse.Button2Down:Connect(function()
+	aim = true
 end)
-userinputservice.InputEnded:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton2 then
-        aim = false
-        aimdata = nil
-    end
+mouse.Button2Up:Connect(function()
+	aim = false
+	aimdata = nil
 end)
 
 --[[local point = nil
@@ -937,9 +994,10 @@ end)
 
 runservice.RenderStepped:Connect(function()
 	local absolute = gui.AbsoluteSize
+	local mouseposition = vector2(mouse.x,mouse.y)
 	middlescreen = absolute/2+vector2(0,18)
 	bottomscreen = vector2(absolute.X/2,absolute.Y)
-	fovcircle.Position = middlescreen
+	fovcircle.Position = mousefov and mouseposition+vector2(0,26) or middlescreen
 	local field = camera.FieldOfView/70
 	local actualfov = fov/field
 	fovcircle.Radius = actualfov
@@ -947,7 +1005,6 @@ runservice.RenderStepped:Connect(function()
 		if not aimdata then
 			local enemies = api:GetEnemies()
 			if aimtype == "mousedist" then
-				local mouseposition = vector2(mouse.x,mouse.y)
 				for index = 1,#enemies do
 					local character = enemies[index]
 					local instance = character.Instance
@@ -956,15 +1013,12 @@ runservice.RenderStepped:Connect(function()
 						if aimatpart then
 							local vector,onscreen = camera:WorldToScreenPoint(aimatpart.Position)
 							vector = vector2(vector.x,vector.y)
-							local distancefromiddle = (middlescreen-vector).magnitude
+							local distancefromiddle = ((mousefov and mouseposition or middlescreen)-vector).magnitude
 							if onscreen and distancefromiddle < actualfov then
-							    local raycastresult
-								if visualcheck then
-								    local cameraposition = camera.CFrame.Position
-    								local params = RaycastParams.new()
-    								params.FilterDescendantsInstances={camera,api:GetLocalCharacter()}
-    								raycastresult = workspace:Raycast(cameraposition,cframe(cameraposition,aimatpart.Position).LookVector*100000,params)
-								end
+								local cameraposition = camera.CFrame.Position
+								local params = RaycastParams.new()
+								params.FilterDescendantsInstances={camera,api:GetLocalCharacter()}
+								local raycastresult = workspace:Raycast(cameraposition,cframe(cameraposition,aimatpart.Position).LookVector*100000,params)
 								if not visualcheck or (raycastresult) and raycastresult.Instance:IsDescendantOf(instance) then
 									local distance = (mouseposition-vector).magnitude
 									if not aimdata then
