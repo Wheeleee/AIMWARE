@@ -743,6 +743,7 @@ Slider_6.ZIndex = 2
 UICorner_21.CornerRadius = UDim.new(0, 4)
 UICorner_21.Parent = Slider_6
 
+local userinputservice = game:GetService("UserInputService")
 local runservice = game:GetService("RunService")
 local httpservice = game:GetService("HttpService")
 local tweenservice = game:GetService("TweenService")
@@ -941,6 +942,9 @@ end
 
 moveable(TextButton)
 
+local mousepositiononui = vector2(mouse.x,mouse.y)-BodypartSelect.AbsolutePosition
+local offsetfrommiddleui = BodypartSelect.AbsoluteSize/2-mousepositiononui
+
 Head.MouseButton1Click:Connect(function()
 	aimpart = "head"
 	tweenservice:Create(Head,TweenInfo.new(.12),{ImageColor3=color3(255, 80, 80)}):Play()
@@ -952,12 +956,16 @@ Torso.MouseButton1Click:Connect(function()
 	tweenservice:Create(Head,TweenInfo.new(.12),{ImageColor3=color3(255,255,255)}):Play()
 end)
 
-mouse.Button2Down:Connect(function()
-	aim = true
+userinputservice.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton2 then
+		aim = true
+	end
 end)
-mouse.Button2Up:Connect(function()
-	aim = false
-	aimdata = nil
+userinputservice.InputEnded:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton2 then
+		aim = false
+		aimdata = nil
+	end
 end)
 
 --[[local point = nil
