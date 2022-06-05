@@ -896,10 +896,10 @@ local function addesp(player)
 				if count >= countmax then
 					count = 0
 					local orientation,boundingsize = character:GetBoundingBox()
-					local width = boundingsize.X > boundingsize.Z and boundingsize.X or boundingsize.Z
+					local width,height = 7,11 --boundingsize.X > boundingsize.Z and boundingsize.X or boundingsize.Z
 
 					local aimpartposition2d,aimpartonscreen = camera:WorldToViewportPoint(torsoposition)
-					
+
 					local aimpartvisible
 					if visualcheck then
 						local cameraposition = camera.CFrame.Position
@@ -922,7 +922,7 @@ local function addesp(player)
 					end
 					if chamson and aimpartonscreen then
 						box.Visible = true
-						box.Size = vector2((width*500)/distance,(boundingsize.y*515)/distance)/(camera.FieldOfView/70)
+						box.Size = vector2((width*500)/distance,(height*515)/distance)/(camera.FieldOfView/70)
 						box.Position = vector2(aimpartposition2d.x-box.Size.x/2,aimpartposition2d.y-box.Size.y/2)
 						box.Color = color
 					else
