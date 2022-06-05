@@ -1,7 +1,6 @@
 local gui = Instance.new("ScreenGui")
 local TextButton = Instance.new("TextButton")
 local UICorner = Instance.new("UICorner")
-local UIPadding = Instance.new("UIPadding")
 local BodypartSelect = Instance.new("ImageLabel")
 local UICorner_2 = Instance.new("UICorner")
 local ImageLabel = Instance.new("ImageLabel")
@@ -13,14 +12,21 @@ local Frame_3 = Instance.new("Frame")
 local Frame_4 = Instance.new("Frame")
 local Torso = Instance.new("ImageButton")
 local Head = Instance.new("ImageButton")
+local PointFrame = Instance.new("Frame")
+local Frame_5 = Instance.new("Frame")
+local Frame_6 = Instance.new("Frame")
+local Frame_7 = Instance.new("Frame")
+local Frame_8 = Instance.new("Frame")
 local Lines = Instance.new("Frame")
 local LinesH = Instance.new("Frame")
+local CurrentAimpart = Instance.new("TextLabel")
+local UIPadding = Instance.new("UIPadding")
 local PointB = Instance.new("TextButton")
 local UICorner_3 = Instance.new("UICorner")
 local ImageLabel_2 = Instance.new("ImageLabel")
 local QUESTIONMARK = Instance.new("ImageLabel")
 local UIPadding_2 = Instance.new("UIPadding")
-local PointFrame = Instance.new("Frame")
+local PointFrame_2 = Instance.new("Frame")
 local UICorner_4 = Instance.new("UICorner")
 local Longitude = Instance.new("Frame")
 local Latitude = Instance.new("Frame")
@@ -77,6 +83,17 @@ local ImageLabel_9 = Instance.new("ImageLabel")
 local NameTextLabel_8 = Instance.new("TextLabel")
 local Slider_6 = Instance.new("Frame")
 local UICorner_21 = Instance.new("UICorner")
+local StatusFrame = Instance.new("Frame")
+local UICorner_22 = Instance.new("UICorner")
+local UIPadding_3 = Instance.new("UIPadding")
+local Outline_2 = Instance.new("ImageLabel")
+local ImageLabel_10 = Instance.new("ImageLabel")
+local UICorner_23 = Instance.new("UICorner")
+local Createdtext = Instance.new("TextLabel")
+local Anticheatcheck = Instance.new("TextLabel")
+local getenemiesMS = Instance.new("TextLabel")
+local Anticheatcheck_2 = Instance.new("TextLabel")
+local UIPadding_4 = Instance.new("UIPadding")
 
 --Properties:
 
@@ -98,12 +115,6 @@ TextButton.TextXAlignment = Enum.TextXAlignment.Left
 TextButton.TextYAlignment = Enum.TextYAlignment.Bottom
 
 UICorner.Parent = TextButton
-
-UIPadding.Parent = TextButton
-UIPadding.PaddingBottom = UDim.new(0, 8)
-UIPadding.PaddingLeft = UDim.new(0, 8)
-UIPadding.PaddingRight = UDim.new(0, 8)
-UIPadding.PaddingTop = UDim.new(0, 8)
 
 BodypartSelect.Name = "BodypartSelect"
 BodypartSelect.Parent = TextButton
@@ -201,6 +212,40 @@ Head.AutoButtonColor = false
 Head.Image = "http://www.roblox.com/asset/?id=9807583931"
 Head.ImageColor3 = Color3.fromRGB(255, 80, 80)
 
+PointFrame.Name = "PointFrame"
+PointFrame.Parent = Body
+PointFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+PointFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+PointFrame.BackgroundTransparency = 1.000
+PointFrame.BorderSizePixel = 0
+PointFrame.Position = UDim2.new(0.5, 0, 0.5, -18)
+PointFrame.Size = UDim2.new(0, 125, 0, 159)
+PointFrame.Visible = false
+
+Frame_5.Parent = PointFrame
+Frame_5.BackgroundColor3 = Color3.fromRGB(255, 55, 55)
+Frame_5.BorderSizePixel = 0
+Frame_5.Size = UDim2.new(1, 0, 0, 1)
+
+Frame_6.Parent = PointFrame
+Frame_6.BackgroundColor3 = Color3.fromRGB(255, 55, 55)
+Frame_6.BorderSizePixel = 0
+Frame_6.Size = UDim2.new(0, 1, 1, 0)
+
+Frame_7.Parent = PointFrame
+Frame_7.AnchorPoint = Vector2.new(0, 1)
+Frame_7.BackgroundColor3 = Color3.fromRGB(255, 55, 55)
+Frame_7.BorderSizePixel = 0
+Frame_7.Position = UDim2.new(0, 0, 1, 0)
+Frame_7.Size = UDim2.new(1, 0, 0, 1)
+
+Frame_8.Parent = PointFrame
+Frame_8.AnchorPoint = Vector2.new(1, 0)
+Frame_8.BackgroundColor3 = Color3.fromRGB(255, 55, 55)
+Frame_8.BorderSizePixel = 0
+Frame_8.Position = UDim2.new(1, 0, 0, 0)
+Frame_8.Size = UDim2.new(0, 1, 1, 0)
+
 Lines.Name = "Lines"
 Lines.Parent = ImageLabel
 Lines.BackgroundColor3 = Color3.fromRGB(255, 118, 21)
@@ -219,6 +264,27 @@ LinesH.Position = UDim2.new(0.5, 0, 0.5, 0)
 LinesH.Size = UDim2.new(0, 10, 0, 1)
 LinesH.Visible = false
 LinesH.ZIndex = 2
+
+CurrentAimpart.Name = "CurrentAimpart"
+CurrentAimpart.Parent = ImageLabel
+CurrentAimpart.AnchorPoint = Vector2.new(0, 1)
+CurrentAimpart.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CurrentAimpart.BackgroundTransparency = 1.000
+CurrentAimpart.BorderSizePixel = 0
+CurrentAimpart.Position = UDim2.new(0, 0, 1, 0)
+CurrentAimpart.Size = UDim2.new(1, 0, 0, 22)
+CurrentAimpart.Font = Enum.Font.SourceSansItalic
+CurrentAimpart.Text = "Current Aimpart: HEAD"
+CurrentAimpart.TextColor3 = Color3.fromRGB(255, 255, 255)
+CurrentAimpart.TextSize = 14.000
+CurrentAimpart.TextXAlignment = Enum.TextXAlignment.Left
+CurrentAimpart.TextYAlignment = Enum.TextYAlignment.Bottom
+
+UIPadding.Parent = ImageLabel
+UIPadding.PaddingBottom = UDim.new(0, 4)
+UIPadding.PaddingLeft = UDim.new(0, 4)
+UIPadding.PaddingRight = UDim.new(0, 4)
+UIPadding.PaddingTop = UDim.new(0, 4)
 
 PointB.Name = "PointB"
 PointB.Parent = BodypartSelect
@@ -264,21 +330,21 @@ UIPadding_2.PaddingLeft = UDim.new(0, 4)
 UIPadding_2.PaddingRight = UDim.new(0, 4)
 UIPadding_2.PaddingTop = UDim.new(0, 4)
 
-PointFrame.Name = "PointFrame"
-PointFrame.Parent = BodypartSelect
-PointFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-PointFrame.BackgroundColor3 = Color3.fromRGB(165, 32, 32)
-PointFrame.BorderSizePixel = 0
-PointFrame.Position = UDim2.new(0, 50, 0, 50)
-PointFrame.Size = UDim2.new(0, 5, 0, 5)
-PointFrame.Visible = false
-PointFrame.ZIndex = 3
+PointFrame_2.Name = "PointFrame"
+PointFrame_2.Parent = BodypartSelect
+PointFrame_2.AnchorPoint = Vector2.new(0.5, 0.5)
+PointFrame_2.BackgroundColor3 = Color3.fromRGB(165, 32, 32)
+PointFrame_2.BorderSizePixel = 0
+PointFrame_2.Position = UDim2.new(0, 50, 0, 50)
+PointFrame_2.Size = UDim2.new(0, 5, 0, 5)
+PointFrame_2.Visible = false
+PointFrame_2.ZIndex = 3
 
 UICorner_4.CornerRadius = UDim.new(1, 0)
-UICorner_4.Parent = PointFrame
+UICorner_4.Parent = PointFrame_2
 
 Longitude.Name = "Longitude"
-Longitude.Parent = PointFrame
+Longitude.Parent = PointFrame_2
 Longitude.AnchorPoint = Vector2.new(0.5, 0.5)
 Longitude.BackgroundColor3 = Color3.fromRGB(165, 32, 32)
 Longitude.BorderSizePixel = 0
@@ -286,7 +352,7 @@ Longitude.Position = UDim2.new(0.5, 0, 0.5, 0)
 Longitude.Size = UDim2.new(0, 1, 0, 1000)
 
 Latitude.Name = "Latitude"
-Latitude.Parent = PointFrame
+Latitude.Parent = PointFrame_2
 Latitude.AnchorPoint = Vector2.new(0.5, 0.5)
 Latitude.BackgroundColor3 = Color3.fromRGB(165, 32, 32)
 Latitude.BorderSizePixel = 0
@@ -571,10 +637,10 @@ CurrentValue.Parent = SmoothnessSlider
 CurrentValue.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 CurrentValue.BackgroundTransparency = 1.000
 CurrentValue.BorderSizePixel = 0
-CurrentValue.Position = UDim2.new(0, 0, 0, 10)
+CurrentValue.Position = UDim2.new(0.100000001, 0, 0, 10)
 CurrentValue.Size = UDim2.new(0, 100, 0, 20)
 CurrentValue.Font = Enum.Font.SourceSansItalic
-CurrentValue.Text = "100"
+CurrentValue.Text = "1"
 CurrentValue.TextColor3 = Color3.fromRGB(63, 63, 63)
 CurrentValue.TextSize = 13.000
 CurrentValue.TextXAlignment = Enum.TextXAlignment.Left
@@ -658,13 +724,13 @@ VersionText.BorderSizePixel = 0
 VersionText.Position = UDim2.new(0, 0, 1, 2)
 VersionText.Size = UDim2.new(0, 10, 0, 10)
 VersionText.Font = Enum.Font.SourceSansItalic
-VersionText.Text = "v0.0.012A"
+VersionText.Text = "v0.1.016A"
 VersionText.TextColor3 = Color3.fromRGB(59, 59, 59)
 VersionText.TextSize = 14.000
 VersionText.TextXAlignment = Enum.TextXAlignment.Left
 VersionText.TextYAlignment = Enum.TextYAlignment.Bottom
 
-UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.46, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(206, 206, 206)), ColorSequenceKeypoint.new(0.94, Color3.fromRGB(206, 206, 206)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(206, 206, 206))}
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.42, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.46, Color3.fromRGB(188, 188, 188)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(188, 188, 188))}
 UIGradient.Parent = TextButton
 
 Outline.Name = "Outline"
@@ -743,6 +809,111 @@ Slider_6.ZIndex = 2
 UICorner_21.CornerRadius = UDim.new(0, 4)
 UICorner_21.Parent = Slider_6
 
+StatusFrame.Name = "StatusFrame"
+StatusFrame.Parent = TextButton
+StatusFrame.AnchorPoint = Vector2.new(0.5, 0)
+StatusFrame.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+StatusFrame.Position = UDim2.new(0.5, 0, 1, 10)
+StatusFrame.Size = UDim2.new(0, 260, 0, 41)
+
+UICorner_22.Parent = StatusFrame
+
+UIPadding_3.Parent = StatusFrame
+UIPadding_3.PaddingBottom = UDim.new(0, 8)
+UIPadding_3.PaddingLeft = UDim.new(0, 8)
+UIPadding_3.PaddingRight = UDim.new(0, 8)
+UIPadding_3.PaddingTop = UDim.new(0, 8)
+
+Outline_2.Name = "Outline"
+Outline_2.Parent = StatusFrame
+Outline_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Outline_2.BackgroundTransparency = 1.000
+Outline_2.BorderSizePixel = 0
+Outline_2.Position = UDim2.new(0, -8, 0, -8)
+Outline_2.Size = UDim2.new(1, 16, 1, 16)
+Outline_2.ZIndex = -1
+Outline_2.Image = "http://www.roblox.com/asset/?id=9731691467"
+Outline_2.ImageColor3 = Color3.fromRGB(26, 26, 26)
+Outline_2.ScaleType = Enum.ScaleType.Slice
+Outline_2.SliceCenter = Rect.new(6, 6, 94, 94)
+
+ImageLabel_10.Parent = StatusFrame
+ImageLabel_10.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_10.BackgroundTransparency = 1.000
+ImageLabel_10.Position = UDim2.new(0, -8, 0, -8)
+ImageLabel_10.Size = UDim2.new(1, 16, 1, 16)
+ImageLabel_10.ZIndex = -3
+ImageLabel_10.Image = "http://www.roblox.com/asset/?id=6756524275"
+ImageLabel_10.ImageColor3 = Color3.fromRGB(50, 50, 50)
+ImageLabel_10.ScaleType = Enum.ScaleType.Tile
+ImageLabel_10.TileSize = UDim2.new(0, 256, 0, 256)
+
+UICorner_23.Parent = ImageLabel_10
+
+Createdtext.Name = "Createdtext"
+Createdtext.Parent = StatusFrame
+Createdtext.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Createdtext.BackgroundTransparency = 1.000
+Createdtext.BorderSizePixel = 0
+Createdtext.Size = UDim2.new(0, 117, 0, 12)
+Createdtext.Font = Enum.Font.SourceSansBold
+Createdtext.Text = "CREATED: 0 days ago"
+Createdtext.TextColor3 = Color3.fromRGB(190, 190, 190)
+Createdtext.TextSize = 14.000
+Createdtext.TextWrapped = true
+Createdtext.TextXAlignment = Enum.TextXAlignment.Left
+
+Anticheatcheck.Name = "Anticheatcheck"
+Anticheatcheck.Parent = StatusFrame
+Anticheatcheck.AnchorPoint = Vector2.new(0, 1)
+Anticheatcheck.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Anticheatcheck.BackgroundTransparency = 1.000
+Anticheatcheck.BorderSizePixel = 0
+Anticheatcheck.Position = UDim2.new(0, 0, 1, 0)
+Anticheatcheck.Size = UDim2.new(0, 117, 0, 12)
+Anticheatcheck.Font = Enum.Font.SourceSansBold
+Anticheatcheck.Text = "ANTI-CHEAT: SAME"
+Anticheatcheck.TextColor3 = Color3.fromRGB(190, 190, 190)
+Anticheatcheck.TextSize = 14.000
+Anticheatcheck.TextWrapped = true
+Anticheatcheck.TextXAlignment = Enum.TextXAlignment.Left
+
+getenemiesMS.Name = "getenemiesMS"
+getenemiesMS.Parent = StatusFrame
+getenemiesMS.AnchorPoint = Vector2.new(1, 0)
+getenemiesMS.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+getenemiesMS.BackgroundTransparency = 1.000
+getenemiesMS.BorderSizePixel = 0
+getenemiesMS.Position = UDim2.new(1, 0, 0, 0)
+getenemiesMS.Size = UDim2.new(1, 0, 0, 12)
+getenemiesMS.Font = Enum.Font.SourceSansBold
+getenemiesMS.Text = "GET_ENEMIES MS: 0"
+getenemiesMS.TextColor3 = Color3.fromRGB(190, 190, 190)
+getenemiesMS.TextSize = 14.000
+getenemiesMS.TextWrapped = true
+getenemiesMS.TextXAlignment = Enum.TextXAlignment.Right
+
+Anticheatcheck_2.Name = "Anticheatcheck"
+Anticheatcheck_2.Parent = StatusFrame
+Anticheatcheck_2.AnchorPoint = Vector2.new(1, 1)
+Anticheatcheck_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Anticheatcheck_2.BackgroundTransparency = 1.000
+Anticheatcheck_2.BorderSizePixel = 0
+Anticheatcheck_2.Position = UDim2.new(1, 0, 1, 0)
+Anticheatcheck_2.Size = UDim2.new(0, 117, 0, 12)
+Anticheatcheck_2.Font = Enum.Font.SourceSansBold
+Anticheatcheck_2.Text = "CLIENT: SAME"
+Anticheatcheck_2.TextColor3 = Color3.fromRGB(190, 190, 190)
+Anticheatcheck_2.TextSize = 14.000
+Anticheatcheck_2.TextWrapped = true
+Anticheatcheck_2.TextXAlignment = Enum.TextXAlignment.Right
+
+UIPadding_4.Parent = TextButton
+UIPadding_4.PaddingBottom = UDim.new(0, 8)
+UIPadding_4.PaddingLeft = UDim.new(0, 8)
+UIPadding_4.PaddingRight = UDim.new(0, 8)
+UIPadding_4.PaddingTop = UDim.new(0, 8)
+
 local userinputservice = game:GetService("UserInputService")
 local runservice = game:GetService("RunService")
 local httpservice = game:GetService("HttpService")
@@ -751,6 +922,7 @@ local camera = workspace.CurrentCamera
 local localplayer = game:GetService("Players").LocalPlayer
 local mouse = localplayer:GetMouse()
 
+gui.Parent = game.CoreGui
 Head.ResampleMode = Enum.ResamplerMode.Pixelated
 Torso.ResampleMode = Enum.ResamplerMode.Pixelated
 
@@ -782,6 +954,17 @@ local frommiddleon = false
 local apitable = _G.a or loadstring(game:HttpGet("https://raw.githubusercontent.com/Wheeleee/AIMWARE/main/ApI"))()
 local api = apitable[game.GameId] or apitable.UNIVERSAL
 api:Init()
+local days = math.ceil((os.time()-api.Info.Created)/86400)
+Createdtext.Text = "CREATED: "..days.." days ago"
+getenemiesMS.Text = "GET_ENEMIES MS: calc"
+spawn(function()
+	local start = os.clock()
+	for i = 1,10000 do
+		api:GetEnemies()
+	end
+	local time = math.floor((os.clock()-start)*10)/10
+	getenemiesMS.Text = "GET_ENEMIES MS: "..time
+end)
 
 local translate = api.Translate
 
@@ -800,6 +983,7 @@ AimbotCheck.MouseButton1Down:Connect(function()
 end)
 VisualCheck.MouseButton1Down:Connect(function()
 	Lines.BackgroundColor3 = visualcheck and color3(255, 118, 21) or color3(108,255,108)
+	LinesH.BackgroundColor3 = visualcheck and color3(255, 118, 21) or color3(108,255,108)
 	for i,v in pairs(Chams:GetChildren()) do
 		v.BackgroundColor3 = visualcheck and color3(255, 118, 21) or color3(108,255,108)
 	end
@@ -828,9 +1012,9 @@ MousefovCheck.MouseButton1Down:Connect(function()
 	mousefov = not mousefov	
 end)
 
-local on = false
+local onfovslider = false
 FovSlider.SliderButton.MouseButton1Down:Connect(function()
-	on = true
+	onfovslider = true
 	repeat renderstep:wait()
 		local procent = ((mouse.X-FovSlider.AbsolutePosition.X)/FovSlider.AbsoluteSize.X)
 		procent = procent > 1 and 1 or procent < 0 and 0 or procent
@@ -838,15 +1022,15 @@ FovSlider.SliderButton.MouseButton1Down:Connect(function()
 		local calculated = maxfov*procent
 		FovSlider.CurrentValue.Text = math.ceil(calculated)
 		fov = calculated 
-	until not on
+	until not onfovslider
 end)
 FovSlider.SliderButton.MouseButton1Up:Connect(function()
-	on = false
+	onfovslider = false
 end)
 
-local on = false
+local onsmoothnessslider = false
 SmoothnessSlider.SliderButton.MouseButton1Down:Connect(function()
-	on = true
+	onsmoothnessslider = true
 	repeat renderstep:wait()
 		local procent = ((mouse.X-SmoothnessSlider.AbsolutePosition.X)/SmoothnessSlider.AbsoluteSize.X)
 		procent = procent > 1 and 1 or procent < 0 and 0 or procent
@@ -854,10 +1038,10 @@ SmoothnessSlider.SliderButton.MouseButton1Down:Connect(function()
 		local calculated = maxsmoothing*procent
 		SmoothnessSlider.CurrentValue.Text = math.ceil(calculated)
 		smoothingprocent = math.ceil(calculated)
-	until not on
+	until not onsmoothnessslider
 end)
 SmoothnessSlider.SliderButton.MouseButton1Up:Connect(function()
-	on = false
+	onsmoothnessslider = false
 end)
 
 local function moveable(textbutton)
@@ -945,11 +1129,13 @@ end
 moveable(TextButton)
 
 Head.MouseButton1Click:Connect(function()
+	CurrentAimpart.Text = "Current Aimpart: HEAD"
 	aimpart = "head"
 	tweenservice:Create(Head,TweenInfo.new(.12),{ImageColor3=color3(255, 80, 80)}):Play()
 	tweenservice:Create(Torso,TweenInfo.new(.12),{ImageColor3=color3(255,255,255)}):Play()
 end)
 Torso.MouseButton1Click:Connect(function()
+	CurrentAimpart.Text = "Current Aimpart: TORSO"
 	aimpart = "torso"
 	tweenservice:Create(Torso,TweenInfo.new(.12),{ImageColor3=color3(255, 80, 80)}):Play()
 	tweenservice:Create(Head,TweenInfo.new(.12),{ImageColor3=color3(255,255,255)}):Play()
@@ -968,6 +1154,9 @@ userinputservice.InputEnded:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.MouseButton2 then
 		aim = false
 		aimdata = nil
+	elseif input.UserInputType == Enum.UserInputType.MouseButton1 then 
+		onfovslider = false
+		onsmoothnessslider = false
 	end
 end)
 
