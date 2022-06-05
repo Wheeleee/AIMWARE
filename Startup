@@ -81,7 +81,7 @@ local UICorner_21 = Instance.new("UICorner")
 --Properties:
 
 gui.Name = "gui"
-gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+gui.Parent = game.CoreGui
 gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 TextButton.Parent = gui
@@ -778,6 +778,7 @@ local frommiddleon = false
 
 local apitable = _G.a or loadstring(game:HttpGet("https://raw.githubusercontent.com/Wheeleee/AIMWARE/main/ApI"))()
 local api = apitable[game.GameId] or apitable.UNIVERSAL
+api:Init()
 
 local translate = api.Translate
 
