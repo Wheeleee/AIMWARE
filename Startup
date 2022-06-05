@@ -853,7 +853,7 @@ SmoothnessSlider.SliderButton.MouseButton1Down:Connect(function()
 		SmoothnessSlider.SliderButton.Position = udim2(procent,0,.5,0)
 		local calculated = maxsmoothing*procent
 		SmoothnessSlider.CurrentValue.Text = math.ceil(calculated)
-		smoothingprocent = calculated 
+		smoothingprocent = math.ceil(calculated)
 	until not on
 end)
 SmoothnessSlider.SliderButton.MouseButton1Up:Connect(function()
