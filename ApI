@@ -353,7 +353,7 @@ return {
 			__TYPE = "API",
 		},
 	},
-	[1390601379] = {
+    [1390601379] = {
 		BodyParts = {
 			["TORSO"] = "Torso",
 			["HEAD"] = "Head",
@@ -365,21 +365,21 @@ return {
 			camera.CFrame = CFrame
 		end,
 		Valid = function(self)
-			return self:GetLocalCharacter() and true or false
+			return true
 		end,
 		Translate = function(self,text)
 			return self.BodyParts[text:upper()] or ""
 		end,
 		GetIgnorables = function(self)
-			return {unpack(workspace.FakeCharacters:GetChildren()),unpack(workspace.EffectsJunk:GetChildren())}
+			return {}
 		end,
 		GetEnemies = function(self)
 			local enemies = {}
-			for _,character in next, workspace.PlayerCharacters:GetChildren() do
-				if character.Name~=localplayer.Name then
+			for _,player in next, players:GetPlayers() do
+				if player.Character and player ~= localplayer then
 					enemies[#enemies+1] = {
-						Instance = character,
-						Parent = character.Parent,
+						Instance = player.Character,
+						Parent = player.Character.Parent,
 						Ignore = player.Character,
 					}
 				end
@@ -395,13 +395,8 @@ return {
 				return character[self:Translate("HEAD")].Position
 			end
 		end,
-		Tabs = {
-			Silent = true,
-			WeaponModding = false,
-			Visuals = true,
-		},
 		Info = {
-			Created = 1635938874,
+			Created = 1654609948,
 			GameName = "Combat Warriors",
 			GameId = 1390601379,
 			PlaceId = 4282985734,
