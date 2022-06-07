@@ -982,12 +982,14 @@ AimbotCheck.MouseButton1Down:Connect(function()
 	aimboton = not aimboton	
 end)
 VisualCheck.MouseButton1Down:Connect(function()
-	Lines.BackgroundColor3 = visualcheck and color3(255, 118, 21) or color3(108,255,108)
-	LinesH.BackgroundColor3 = visualcheck and color3(255, 118, 21) or color3(108,255,108)
+    local color = visualcheck and color3(255, 118, 21) or color3(108,255,108)
+	Lines.BackgroundColor3 = color
+	LinesH.BackgroundColor3 = color
 	for i,v in pairs(Chams:GetChildren()) do
-		v.BackgroundColor3 = visualcheck and color3(255, 118, 21) or color3(108,255,108)
+		v.BackgroundColor3 = color
 	end
 	tweenservice:Create(VisualCheck.Slider,TweenInfo.new(.12),{BackgroundColor3 = visualcheck and color3(190, 190, 190) or color3(42, 180, 51),Position = visualcheck and udim2(0,0,0.5,0) or udim2(1,-12,0.5,0)}):Play()
+	fovcircle.Color = color
 	visualcheck = not visualcheck	
 end)
 ChamsCheck.MouseButton1Down:Connect(function()
