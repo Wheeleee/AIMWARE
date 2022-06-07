@@ -283,7 +283,7 @@ return {
     		__TYPE = "API",
     	},
     },
-	[1168263273] = {
+[1168263273] = {
 		BodyParts = {
 			["TORSO"] = "Chest",
 			["HEAD"] = "Head",
@@ -293,7 +293,6 @@ return {
             for _,table in pairs(getgc(true)) do
                 if (typeof(table)=="table") and rawget(table,"SetTeamColor") then
                     v1=table
-                    print("done1")
                     break
                 end
             end
@@ -314,7 +313,7 @@ return {
 			return self.BodyParts[text:upper()] or ""
 		end,
 		GetIgnorables = function(self)
-			return {}
+			return game:GetService("Workspace").Menu.Loadouts:GetChildren()
 		end,
 		GetEnemies = function(self)
 		    local enemies = {}
