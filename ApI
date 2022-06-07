@@ -1,4 +1,4 @@
-local players = game:GetService("Players")
+  local players = game:GetService("Players")
 local localplayer = players.LocalPlayer
 local camera = workspace.CurrentCamera
 
@@ -331,7 +331,7 @@ return {
 			return enemies
 		end,
 		GetLocalCharacter = function(self)
-			return localplayer.Character
+			return debug.getupvalue(v2,1)[localplayer]
 		end,
 		GetLocalPosition = function(self)
 			local character = self:GetLocalCharacter()
