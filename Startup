@@ -953,6 +953,8 @@ local frommiddleon = false
 
 local apitable = _G.a or loadstring(game:HttpGet("https://raw.githubusercontent.com/Wheeleee/AIMWARE/main/ApI"))()
 local api = apitable[game.GameId] or apitable.UNIVERSAL
+local periodic = api.PeriodicChecking
+print(periodic)
 api:Init()
 local days = math.ceil((os.time()-api.Info.Created)/86400)
 Createdtext.Text = "CREATED: "..days.." days ago"
@@ -1194,7 +1196,7 @@ spawn(function()
 		end
 	end
 end)
-
+print(periodic)
 runservice.RenderStepped:Connect(function()
 	local absolute = gui.AbsoluteSize
 	local mouseposition = vector2(mouse.x,mouse.y)
@@ -1205,7 +1207,8 @@ runservice.RenderStepped:Connect(function()
 	local actualfov = fov/field
 	fovcircle.Radius = actualfov
 	if (aim) and api:Valid() and aimboton then
-		if not aimdata then
+		if periodic or not aimdata then
+		    aimdata = nil
 			local enemies = api:GetEnemies()
 			if aimtype == "mousedist" then
 				for index = 1,#enemies do
@@ -1254,12 +1257,8 @@ runservice.RenderStepped:Connect(function()
 					local screenposition,visible = camera:WorldToScreenPoint(aimatpart.Position)
 					local move = vector2(-((mouse.x-screenposition.x)*field),-((mouse.y-screenposition.y)*field))/smoothingprocent
 					mousemoverel(move.x,move.y)
-				elseif aimtype == "camera" then
-					api:SetCFrame(cframe(camera.Position,aimatpart.Position))
 				end
 			end
-		else
-			aimdata = nil
 		end
 	end
 end)
