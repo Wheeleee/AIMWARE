@@ -971,8 +971,8 @@ NotificationText.ZIndex = 4
 NotificationText.Font = Enum.Font.SourceSans
 NotificationText.Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Gravida quis blandit turpis cursus in hac habitasse."
 NotificationText.TextColor3 = Color3.fromRGB(255, 255, 255)
-NotificationText.TextSize = 16.000
-NotificationText.TextWrapped = false
+NotificationText.TextSize = 15.000
+NotificationText.TextWrapped = true
 
 NotificationType.Name = "NotificationType"
 NotificationType.Parent = Notif
