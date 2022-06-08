@@ -94,11 +94,19 @@ local Anticheatcheck = Instance.new("TextLabel")
 local getenemiesMS = Instance.new("TextLabel")
 local Anticheatcheck_2 = Instance.new("TextLabel")
 local UIPadding_4 = Instance.new("UIPadding")
+local Notif = Instance.new("Frame")
+local UICorner_24 = Instance.new("UICorner")
+local Dismiss = Instance.new("TextButton")
+local UICorner_25 = Instance.new("UICorner")
+local ImageLabel_11 = Instance.new("ImageLabel")
+local NotificationText = Instance.new("TextLabel")
+local NotificationType = Instance.new("TextLabel")
+local UIPadding_5 = Instance.new("UIPadding")
 
 --Properties:
 
 gui.Name = "gui"
-gui.Parent = game.CoreGui
+gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 TextButton.Parent = gui
@@ -814,7 +822,7 @@ StatusFrame.Parent = TextButton
 StatusFrame.AnchorPoint = Vector2.new(0.5, 0)
 StatusFrame.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
 StatusFrame.Position = UDim2.new(0.5, 0, 1, 10)
-StatusFrame.Size = UDim2.new(0, 260, 0, 41)
+StatusFrame.Size = UDim2.new(1, -71, 0, 41)
 
 UICorner_22.Parent = StatusFrame
 
@@ -914,6 +922,79 @@ UIPadding_4.PaddingLeft = UDim.new(0, 8)
 UIPadding_4.PaddingRight = UDim.new(0, 8)
 UIPadding_4.PaddingTop = UDim.new(0, 8)
 
+Notif.Name = "Notif"
+Notif.Parent = TextButton
+Notif.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Notif.BackgroundTransparency = 0.150
+Notif.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Notif.Position = UDim2.new(0, -8, 0, -8)
+Notif.Size = UDim2.new(1, 16, 1, 16)
+Notif.Visible = false
+Notif.ZIndex = 4
+
+UICorner_24.CornerRadius = UDim.new(0, 6)
+UICorner_24.Parent = Notif
+
+Dismiss.Name = "Dismiss"
+Dismiss.Parent = Notif
+Dismiss.AnchorPoint = Vector2.new(0.5, 0.5)
+Dismiss.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+Dismiss.BorderSizePixel = 0
+Dismiss.Position = UDim2.new(0.5, 0, 0.5, 26)
+Dismiss.Size = UDim2.new(0, 57, 0, 25)
+Dismiss.ZIndex = 4
+Dismiss.Font = Enum.Font.SourceSansBold
+Dismiss.Text = "DISMISS"
+Dismiss.TextColor3 = Color3.fromRGB(190, 190, 190)
+Dismiss.TextSize = 15.000
+
+UICorner_25.Parent = Dismiss
+
+ImageLabel_11.Parent = Dismiss
+ImageLabel_11.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_11.BackgroundTransparency = 1.000
+ImageLabel_11.BorderSizePixel = 0
+ImageLabel_11.Size = UDim2.new(1, 0, 1, 0)
+ImageLabel_11.Image = "http://www.roblox.com/asset/?id=9731691467"
+ImageLabel_11.ImageColor3 = Color3.fromRGB(255, 52, 52)
+ImageLabel_11.ScaleType = Enum.ScaleType.Slice
+ImageLabel_11.SliceCenter = Rect.new(6, 6, 94, 94)
+
+NotificationText.Name = "NotificationText"
+NotificationText.Parent = Notif
+NotificationText.AnchorPoint = Vector2.new(0.5, 0.5)
+NotificationText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NotificationText.BackgroundTransparency = 1.000
+NotificationText.Position = UDim2.new(0.5, 0, 0.5, -22)
+NotificationText.Size = UDim2.new(1, -40, 0, 50)
+NotificationText.ZIndex = 4
+NotificationText.Font = Enum.Font.SourceSans
+NotificationText.Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Gravida quis blandit turpis cursus in hac habitasse."
+NotificationText.TextColor3 = Color3.fromRGB(255, 255, 255)
+NotificationText.TextSize = 16.000
+NotificationText.TextWrapped = true
+
+NotificationType.Name = "NotificationType"
+NotificationType.Parent = Notif
+NotificationType.AnchorPoint = Vector2.new(0.5, 0)
+NotificationType.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NotificationType.BackgroundTransparency = 1.000
+NotificationType.Position = UDim2.new(0.5, 0, 0, 0)
+NotificationType.Size = UDim2.new(1, -40, 0, 50)
+NotificationType.ZIndex = 4
+NotificationType.Font = Enum.Font.SourceSansBold
+NotificationType.Text = "NOTIFICATION"
+NotificationType.TextColor3 = Color3.fromRGB(180, 180, 180)
+NotificationType.TextSize = 34.000
+NotificationType.TextWrapped = true
+NotificationType.TextYAlignment = Enum.TextYAlignment.Top
+
+UIPadding_5.Parent = Notif
+UIPadding_5.PaddingBottom = UDim.new(0, 8)
+UIPadding_5.PaddingLeft = UDim.new(0, 8)
+UIPadding_5.PaddingRight = UDim.new(0, 8)
+UIPadding_5.PaddingTop = UDim.new(0, 8)
+
 local userinputservice = game:GetService("UserInputService")
 local runservice = game:GetService("RunService")
 local httpservice = game:GetService("HttpService")
@@ -921,6 +1002,14 @@ local tweenservice = game:GetService("TweenService")
 local camera = workspace.CurrentCamera
 local localplayer = game:GetService("Players").LocalPlayer
 local mouse = localplayer:GetMouse()
+
+--[[local config
+
+if isfolder("WARE") then
+	if isfile("WARE/CONFIG.txt") then
+		config = readfile("WARE/CONFIG.txt")
+	end
+end]]
 
 gui.Parent = game.CoreGui
 Head.ResampleMode = Enum.ResamplerMode.Pixelated
@@ -951,20 +1040,37 @@ local chamson = false
 local lineson = false
 local frommiddleon = false
 
+local function notify(notificationtext,type)
+	while true do
+		if not Notif.Visible then
+			break
+		end
+		task.wait(2)
+	end
+	Notif.Visible = true
+	NotificationText.Text = notificationtext or "no text supplied"
+	NotificationType.Text = type or "NOTIFICATION"
+	Dismiss.MouseButton1Click:Connect(function()
+		Notif.Visible = false
+	end)
+end
+
 local apitable = _G.a or loadstring(game:HttpGet("https://raw.githubusercontent.com/Wheeleee/AIMWARE/main/ApI"))()
 local api = apitable[game.GameId] or apitable.UNIVERSAL
+if api.Info.__TYPE  == "UNIVERSAL" then
+	notify("This game is not supported. AIMWARE will do it's best but some things may break. DM me, YouBuggin#6330, with the game link and I'll add support for this game.","WARNING")
+end
 local periodic = api.PeriodicChecking
-print(periodic)
 api:Init()
 local days = math.ceil((os.time()-api.Info.Created)/86400)
 Createdtext.Text = "CREATED: "..days.." days ago"
 getenemiesMS.Text = "GET_ENEMIES MS: calc"
 spawn(function()
 	local start = os.clock()
-	for i = 1,10000 do
+	for i = 1,1000 do
 		api:GetEnemies()
 	end
-	local time = math.floor((os.clock()-start)*10)/10
+	local time = math.floor((os.clock()-start)*100)/10
 	getenemiesMS.Text = "GET_ENEMIES MS: "..time
 end)
 
@@ -984,7 +1090,7 @@ AimbotCheck.MouseButton1Down:Connect(function()
 	aimboton = not aimboton	
 end)
 VisualCheck.MouseButton1Down:Connect(function()
-    local color = visualcheck and color3(255, 118, 21) or color3(108,255,108)
+	local color = visualcheck and color3(255, 118, 21) or color3(108,255,108)
 	Lines.BackgroundColor3 = color
 	LinesH.BackgroundColor3 = color
 	for i,v in pairs(Chams:GetChildren()) do
@@ -1079,7 +1185,7 @@ local function addesp(player)
 		local count,countmax = 0,1
 		local renderconnection;renderconnection = runservice.RenderStepped:Connect(function()
 			local torso = character:FindFirstChild(translate(api,"torso"))
-			if ((character) and character.Parent) and player.Parent.Parent and torso then
+			if (character) and character.Parent and torso then
 				count+=1
 				local torsoposition = torso.Position
 				local distance = (camera.CFrame.Position-torsoposition).magnitude
@@ -1088,8 +1194,6 @@ local function addesp(player)
 					count = 0
 					local orientation,boundingsize = character:GetBoundingBox()
 					local width,height = 7,11 --boundingsize.X > boundingsize.Z and boundingsize.X or boundingsize.Z
-
-					local aimpartposition2d,aimpartonscreen = camera:WorldToViewportPoint(torsoposition)
 
 					local aimpartvisible
 					if visualcheck then
@@ -1102,7 +1206,12 @@ local function addesp(player)
 						aimpartvisible = false
 					end
 					local color = (visualcheck) and aimpartvisible and color3(108,255,108) or (visualcheck) and color3(255,55,55) or color3(255, 118, 21)
-
+					
+					local aimpartposition2d,aimpartonscreen
+					if lineson or chamson then
+						aimpartposition2d,aimpartonscreen = camera:WorldToViewportPoint(torsoposition)
+					end
+					
 					if lineson and aimpartonscreen then
 						line.Visible = true
 						line.From = frommiddleon and middlescreen or bottomscreen
@@ -1164,30 +1273,6 @@ userinputservice.InputEnded:Connect(function(input)
 	end
 end)
 
---[[local point = nil
-local on = false
-PointB.MouseButton1Down:Connect(function()
-	if not point then
-		PointFrame.Visible = true
-		on = true
-		local absolutesize = BodypartSelect.AbsoluteSize
-		repeat renderstep:Wait()
-			PointFrame.Position = udim2(0,mouse.x-absolutesize.x,0,mouse.y-absolutesize.y)
-		until not on
-	end
-end)
-PointB.MouseButton1Up:Connect(function()
-	on = false
-	if point then
-		PointFrame.Visible = false
-		point = nil
-	else
-		Longitude.Visible = false
-		Latitude.Visible = false
-		point = true
-	end
-end)]]
-
 spawn(function()
 	while task.wait(3) do
 		local enemies = api:GetEnemies()
@@ -1196,19 +1281,19 @@ spawn(function()
 		end
 	end
 end)
-print(periodic)
+
 runservice.RenderStepped:Connect(function()
 	local absolute = gui.AbsoluteSize
-	local mouseposition = vector2(mouse.x,mouse.y)
+	local mouseposition = vector2(mouse.X,mouse.Y)
 	middlescreen = absolute/2+vector2(0,18)
 	bottomscreen = vector2(absolute.X/2,absolute.Y)
-	fovcircle.Position = mousefov and mouseposition+vector2(0,26) or middlescreen
+	fovcircle.Position = mousefov and mouseposition or middlescreen
 	local field = camera.FieldOfView/70
 	local actualfov = fov/field
 	fovcircle.Radius = actualfov
 	if (aim) and api:Valid() and aimboton then
 		if periodic or not aimdata then
-		    aimdata = nil
+			aimdata = nil
 			local enemies = api:GetEnemies()
 			if aimtype == "mousedist" then
 				for index = 1,#enemies do
@@ -1254,6 +1339,7 @@ runservice.RenderStepped:Connect(function()
 			local aimatpart = aimdata[3]
 			if aimatpart then
 				if aimtype == "mousedist" and aimatpart then
+					field = field/userinputservice.MouseDeltaSensitivity
 					local screenposition,visible = camera:WorldToScreenPoint(aimatpart.Position)
 					local move = vector2(-((mouse.x-screenposition.x)*field),-((mouse.y-screenposition.y)*field))/smoothingprocent
 					mousemoverel(move.x,move.y)
