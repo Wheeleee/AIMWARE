@@ -64,7 +64,7 @@ return {
 			ClientHash = "N/A",
 			GetClientHash = function() return "N/A" end,
 			GetAntiCheatHash = function() return "N/A" end,
-			__TYPE = "UNVIERSAL",
+			__TYPE = "UNIVERSAL",
 		},
 	},
 	[108629575] = {
