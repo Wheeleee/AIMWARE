@@ -69,7 +69,7 @@ return {
 	},
 	[108629575] = {
 		BodyParts = {
-			["TORSO"] = "UpperTorso",
+			["TORSO"] = "Torso",
 			["HEAD"] = "Head",
 		},
 		Init = function(self)
