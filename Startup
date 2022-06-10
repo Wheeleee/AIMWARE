@@ -1118,6 +1118,8 @@ local chamson = false
 local lineson = false
 local frommiddleon = false
 
+syn.protect_gui(gui)
+
 local function notify(notificationtext,type)
 	while true do
 		if not Notif.Visible then
