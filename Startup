@@ -54,54 +54,63 @@ local ImageLabel_6 = Instance.new("ImageLabel")
 local NameTextLabel_4 = Instance.new("TextLabel")
 local Slider_4 = Instance.new("Frame")
 local UICorner_12 = Instance.new("UICorner")
-local FrommiddleCheck = Instance.new("TextButton")
-local UICorner_13 = Instance.new("UICorner")
-local ImageLabel_7 = Instance.new("ImageLabel")
-local NameTextLabel_5 = Instance.new("TextLabel")
-local Slider_5 = Instance.new("Frame")
-local UICorner_14 = Instance.new("UICorner")
 local SmoothnessSlider = Instance.new("Frame")
-local UICorner_15 = Instance.new("UICorner")
+local UICorner_13 = Instance.new("UICorner")
 local SliderButton = Instance.new("TextButton")
-local UICorner_16 = Instance.new("UICorner")
+local UICorner_14 = Instance.new("UICorner")
 local CurrentValue = Instance.new("TextLabel")
-local NameTextLabel_6 = Instance.new("TextLabel")
+local NameTextLabel_5 = Instance.new("TextLabel")
 local FovSlider = Instance.new("Frame")
-local UICorner_17 = Instance.new("UICorner")
+local UICorner_15 = Instance.new("UICorner")
 local SliderButton_2 = Instance.new("TextButton")
-local UICorner_18 = Instance.new("UICorner")
+local UICorner_16 = Instance.new("UICorner")
 local CurrentValue_2 = Instance.new("TextLabel")
-local NameTextLabel_7 = Instance.new("TextLabel")
+local NameTextLabel_6 = Instance.new("TextLabel")
 local VersionText = Instance.new("TextLabel")
 local UIGradient = Instance.new("UIGradient")
 local Outline = Instance.new("ImageLabel")
-local ImageLabel_8 = Instance.new("ImageLabel")
-local UICorner_19 = Instance.new("UICorner")
+local ImageLabel_7 = Instance.new("ImageLabel")
+local UICorner_17 = Instance.new("UICorner")
 local MousefovCheck = Instance.new("TextButton")
-local UICorner_20 = Instance.new("UICorner")
-local ImageLabel_9 = Instance.new("ImageLabel")
-local NameTextLabel_8 = Instance.new("TextLabel")
-local Slider_6 = Instance.new("Frame")
-local UICorner_21 = Instance.new("UICorner")
+local UICorner_18 = Instance.new("UICorner")
+local ImageLabel_8 = Instance.new("ImageLabel")
+local NameTextLabel_7 = Instance.new("TextLabel")
+local Slider_5 = Instance.new("Frame")
+local UICorner_19 = Instance.new("UICorner")
 local StatusFrame = Instance.new("Frame")
-local UICorner_22 = Instance.new("UICorner")
+local UICorner_20 = Instance.new("UICorner")
 local UIPadding_3 = Instance.new("UIPadding")
 local Outline_2 = Instance.new("ImageLabel")
-local ImageLabel_10 = Instance.new("ImageLabel")
-local UICorner_23 = Instance.new("UICorner")
+local ImageLabel_9 = Instance.new("ImageLabel")
+local UICorner_21 = Instance.new("UICorner")
 local Createdtext = Instance.new("TextLabel")
 local Anticheatcheck = Instance.new("TextLabel")
 local getenemiesMS = Instance.new("TextLabel")
 local Anticheatcheck_2 = Instance.new("TextLabel")
 local UIPadding_4 = Instance.new("UIPadding")
 local Notif = Instance.new("Frame")
-local UICorner_24 = Instance.new("UICorner")
+local UICorner_22 = Instance.new("UICorner")
 local Dismiss = Instance.new("TextButton")
-local UICorner_25 = Instance.new("UICorner")
-local ImageLabel_11 = Instance.new("ImageLabel")
+local UICorner_23 = Instance.new("UICorner")
+local ImageLabel_10 = Instance.new("ImageLabel")
 local NotificationText = Instance.new("TextLabel")
 local NotificationType = Instance.new("TextLabel")
 local UIPadding_5 = Instance.new("UIPadding")
+local LoadingFrame = Instance.new("Frame")
+local UICorner_24 = Instance.new("UICorner")
+local UIPadding_6 = Instance.new("UIPadding")
+local ImageLabel_11 = Instance.new("ImageLabel")
+local UICorner_25 = Instance.new("UICorner")
+local Outline_3 = Instance.new("ImageLabel")
+local LoadingBar = Instance.new("Frame")
+local UICorner_26 = Instance.new("UICorner")
+local LoadingText = Instance.new("TextLabel")
+local FrommiddleCheck = Instance.new("TextButton")
+local UICorner_27 = Instance.new("UICorner")
+local ImageLabel_12 = Instance.new("ImageLabel")
+local NameTextLabel_8 = Instance.new("TextLabel")
+local Slider_6 = Instance.new("Frame")
+local UICorner_28 = Instance.new("UICorner")
 
 --Properties:
 
@@ -565,56 +574,6 @@ Slider_4.ZIndex = 2
 UICorner_12.CornerRadius = UDim.new(0, 4)
 UICorner_12.Parent = Slider_4
 
-FrommiddleCheck.Name = "FrommiddleCheck"
-FrommiddleCheck.Parent = TextButton
-FrommiddleCheck.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
-FrommiddleCheck.Position = UDim2.new(1, -244, 0, 72)
-FrommiddleCheck.Size = UDim2.new(0, 56, 0, 14)
-FrommiddleCheck.ZIndex = 3
-FrommiddleCheck.AutoButtonColor = false
-FrommiddleCheck.Font = Enum.Font.SourceSans
-FrommiddleCheck.Text = ""
-FrommiddleCheck.TextColor3 = Color3.fromRGB(0, 0, 0)
-FrommiddleCheck.TextSize = 14.000
-
-UICorner_13.Parent = FrommiddleCheck
-
-ImageLabel_7.Parent = FrommiddleCheck
-ImageLabel_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ImageLabel_7.BackgroundTransparency = 1.000
-ImageLabel_7.BorderSizePixel = 0
-ImageLabel_7.Size = UDim2.new(1, 0, 1, 0)
-ImageLabel_7.Image = "http://www.roblox.com/asset/?id=9731691467"
-ImageLabel_7.ImageColor3 = Color3.fromRGB(12, 12, 12)
-ImageLabel_7.ScaleType = Enum.ScaleType.Slice
-ImageLabel_7.SliceCenter = Rect.new(6, 6, 94, 94)
-
-NameTextLabel_5.Name = "NameTextLabel"
-NameTextLabel_5.Parent = FrommiddleCheck
-NameTextLabel_5.AnchorPoint = Vector2.new(1, 0)
-NameTextLabel_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-NameTextLabel_5.BackgroundTransparency = 1.000
-NameTextLabel_5.BorderSizePixel = 0
-NameTextLabel_5.Position = UDim2.new(0, -5, 0, 0)
-NameTextLabel_5.Size = UDim2.new(0, 50, 1, 0)
-NameTextLabel_5.Font = Enum.Font.SourceSansBold
-NameTextLabel_5.Text = "FROM MIDDLE"
-NameTextLabel_5.TextColor3 = Color3.fromRGB(156, 156, 156)
-NameTextLabel_5.TextSize = 12.000
-NameTextLabel_5.TextXAlignment = Enum.TextXAlignment.Right
-
-Slider_5.Name = "Slider"
-Slider_5.Parent = FrommiddleCheck
-Slider_5.AnchorPoint = Vector2.new(0, 0.5)
-Slider_5.BackgroundColor3 = Color3.fromRGB(190, 190, 190)
-Slider_5.Position = UDim2.new(0, 0, 0.5, 0)
-Slider_5.Size = UDim2.new(1, -2, 1, 2)
-Slider_5.SizeConstraint = Enum.SizeConstraint.RelativeYY
-Slider_5.ZIndex = 2
-
-UICorner_14.CornerRadius = UDim.new(0, 4)
-UICorner_14.Parent = Slider_5
-
 SmoothnessSlider.Name = "SmoothnessSlider"
 SmoothnessSlider.Parent = TextButton
 SmoothnessSlider.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
@@ -622,8 +581,8 @@ SmoothnessSlider.BorderSizePixel = 0
 SmoothnessSlider.Position = UDim2.new(1, -301, 0, 116)
 SmoothnessSlider.Size = UDim2.new(0, 111, 0, 7)
 
-UICorner_15.CornerRadius = UDim.new(1, 0)
-UICorner_15.Parent = SmoothnessSlider
+UICorner_13.CornerRadius = UDim.new(1, 0)
+UICorner_13.Parent = SmoothnessSlider
 
 SliderButton.Name = "SliderButton"
 SliderButton.Parent = SmoothnessSlider
@@ -637,8 +596,8 @@ SliderButton.Text = ""
 SliderButton.TextColor3 = Color3.fromRGB(0, 0, 0)
 SliderButton.TextSize = 14.000
 
-UICorner_16.CornerRadius = UDim.new(0, 4)
-UICorner_16.Parent = SliderButton
+UICorner_14.CornerRadius = UDim.new(0, 4)
+UICorner_14.Parent = SliderButton
 
 CurrentValue.Name = "CurrentValue"
 CurrentValue.Parent = SmoothnessSlider
@@ -654,20 +613,20 @@ CurrentValue.TextSize = 13.000
 CurrentValue.TextXAlignment = Enum.TextXAlignment.Left
 CurrentValue.TextYAlignment = Enum.TextYAlignment.Top
 
-NameTextLabel_6.Name = "NameTextLabel"
-NameTextLabel_6.Parent = SmoothnessSlider
-NameTextLabel_6.AnchorPoint = Vector2.new(1, 0)
-NameTextLabel_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-NameTextLabel_6.BackgroundTransparency = 1.000
-NameTextLabel_6.BorderSizePixel = 0
-NameTextLabel_6.Position = UDim2.new(1, 0, 0, 10)
-NameTextLabel_6.Size = UDim2.new(1, 0, 0, 20)
-NameTextLabel_6.Font = Enum.Font.SourceSansBold
-NameTextLabel_6.Text = "SMOOTHNESS"
-NameTextLabel_6.TextColor3 = Color3.fromRGB(172, 172, 172)
-NameTextLabel_6.TextSize = 14.000
-NameTextLabel_6.TextXAlignment = Enum.TextXAlignment.Right
-NameTextLabel_6.TextYAlignment = Enum.TextYAlignment.Top
+NameTextLabel_5.Name = "NameTextLabel"
+NameTextLabel_5.Parent = SmoothnessSlider
+NameTextLabel_5.AnchorPoint = Vector2.new(1, 0)
+NameTextLabel_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NameTextLabel_5.BackgroundTransparency = 1.000
+NameTextLabel_5.BorderSizePixel = 0
+NameTextLabel_5.Position = UDim2.new(1, 0, 0, 10)
+NameTextLabel_5.Size = UDim2.new(1, 0, 0, 20)
+NameTextLabel_5.Font = Enum.Font.SourceSansBold
+NameTextLabel_5.Text = "SMOOTHNESS"
+NameTextLabel_5.TextColor3 = Color3.fromRGB(172, 172, 172)
+NameTextLabel_5.TextSize = 14.000
+NameTextLabel_5.TextXAlignment = Enum.TextXAlignment.Right
+NameTextLabel_5.TextYAlignment = Enum.TextYAlignment.Top
 
 FovSlider.Name = "FovSlider"
 FovSlider.Parent = TextButton
@@ -676,8 +635,8 @@ FovSlider.BorderSizePixel = 0
 FovSlider.Position = UDim2.new(1, -301, 0, 145)
 FovSlider.Size = UDim2.new(0, 111, 0, 7)
 
-UICorner_17.CornerRadius = UDim.new(1, 0)
-UICorner_17.Parent = FovSlider
+UICorner_15.CornerRadius = UDim.new(1, 0)
+UICorner_15.Parent = FovSlider
 
 SliderButton_2.Name = "SliderButton"
 SliderButton_2.Parent = FovSlider
@@ -691,8 +650,8 @@ SliderButton_2.Text = ""
 SliderButton_2.TextColor3 = Color3.fromRGB(0, 0, 0)
 SliderButton_2.TextSize = 14.000
 
-UICorner_18.CornerRadius = UDim.new(0, 4)
-UICorner_18.Parent = SliderButton_2
+UICorner_16.CornerRadius = UDim.new(0, 4)
+UICorner_16.Parent = SliderButton_2
 
 CurrentValue_2.Name = "CurrentValue"
 CurrentValue_2.Parent = FovSlider
@@ -708,20 +667,20 @@ CurrentValue_2.TextSize = 13.000
 CurrentValue_2.TextXAlignment = Enum.TextXAlignment.Left
 CurrentValue_2.TextYAlignment = Enum.TextYAlignment.Top
 
-NameTextLabel_7.Name = "NameTextLabel"
-NameTextLabel_7.Parent = FovSlider
-NameTextLabel_7.AnchorPoint = Vector2.new(1, 0)
-NameTextLabel_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-NameTextLabel_7.BackgroundTransparency = 1.000
-NameTextLabel_7.BorderSizePixel = 0
-NameTextLabel_7.Position = UDim2.new(1, 0, 0, 10)
-NameTextLabel_7.Size = UDim2.new(1, 0, 0, 20)
-NameTextLabel_7.Font = Enum.Font.SourceSansBold
-NameTextLabel_7.Text = "FOV"
-NameTextLabel_7.TextColor3 = Color3.fromRGB(172, 172, 172)
-NameTextLabel_7.TextSize = 14.000
-NameTextLabel_7.TextXAlignment = Enum.TextXAlignment.Right
-NameTextLabel_7.TextYAlignment = Enum.TextYAlignment.Top
+NameTextLabel_6.Name = "NameTextLabel"
+NameTextLabel_6.Parent = FovSlider
+NameTextLabel_6.AnchorPoint = Vector2.new(1, 0)
+NameTextLabel_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NameTextLabel_6.BackgroundTransparency = 1.000
+NameTextLabel_6.BorderSizePixel = 0
+NameTextLabel_6.Position = UDim2.new(1, 0, 0, 10)
+NameTextLabel_6.Size = UDim2.new(1, 0, 0, 20)
+NameTextLabel_6.Font = Enum.Font.SourceSansBold
+NameTextLabel_6.Text = "FOV"
+NameTextLabel_6.TextColor3 = Color3.fromRGB(172, 172, 172)
+NameTextLabel_6.TextSize = 14.000
+NameTextLabel_6.TextXAlignment = Enum.TextXAlignment.Right
+NameTextLabel_6.TextYAlignment = Enum.TextYAlignment.Top
 
 VersionText.Name = "VersionText"
 VersionText.Parent = TextButton
@@ -754,18 +713,18 @@ Outline.ImageColor3 = Color3.fromRGB(26, 26, 26)
 Outline.ScaleType = Enum.ScaleType.Slice
 Outline.SliceCenter = Rect.new(6, 6, 94, 94)
 
-ImageLabel_8.Parent = TextButton
-ImageLabel_8.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ImageLabel_8.BackgroundTransparency = 1.000
-ImageLabel_8.Position = UDim2.new(0, -8, 0, -8)
-ImageLabel_8.Size = UDim2.new(1, 16, 1, 16)
-ImageLabel_8.ZIndex = -3
-ImageLabel_8.Image = "http://www.roblox.com/asset/?id=6756524275"
-ImageLabel_8.ImageColor3 = Color3.fromRGB(50, 50, 50)
-ImageLabel_8.ScaleType = Enum.ScaleType.Tile
-ImageLabel_8.TileSize = UDim2.new(0, 256, 0, 256)
+ImageLabel_7.Parent = TextButton
+ImageLabel_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_7.BackgroundTransparency = 1.000
+ImageLabel_7.Position = UDim2.new(0, -8, 0, -8)
+ImageLabel_7.Size = UDim2.new(1, 16, 1, 16)
+ImageLabel_7.ZIndex = -3
+ImageLabel_7.Image = "http://www.roblox.com/asset/?id=6756524275"
+ImageLabel_7.ImageColor3 = Color3.fromRGB(50, 50, 50)
+ImageLabel_7.ScaleType = Enum.ScaleType.Tile
+ImageLabel_7.TileSize = UDim2.new(0, 256, 0, 256)
 
-UICorner_19.Parent = ImageLabel_8
+UICorner_17.Parent = ImageLabel_7
 
 MousefovCheck.Name = "MousefovCheck"
 MousefovCheck.Parent = TextButton
@@ -779,43 +738,43 @@ MousefovCheck.Text = ""
 MousefovCheck.TextColor3 = Color3.fromRGB(0, 0, 0)
 MousefovCheck.TextSize = 14.000
 
-UICorner_20.Parent = MousefovCheck
+UICorner_18.Parent = MousefovCheck
 
-ImageLabel_9.Parent = MousefovCheck
-ImageLabel_9.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ImageLabel_9.BackgroundTransparency = 1.000
-ImageLabel_9.BorderSizePixel = 0
-ImageLabel_9.Size = UDim2.new(1, 0, 1, 0)
-ImageLabel_9.Image = "http://www.roblox.com/asset/?id=9731691467"
-ImageLabel_9.ImageColor3 = Color3.fromRGB(12, 12, 12)
-ImageLabel_9.ScaleType = Enum.ScaleType.Slice
-ImageLabel_9.SliceCenter = Rect.new(6, 6, 94, 94)
+ImageLabel_8.Parent = MousefovCheck
+ImageLabel_8.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_8.BackgroundTransparency = 1.000
+ImageLabel_8.BorderSizePixel = 0
+ImageLabel_8.Size = UDim2.new(1, 0, 1, 0)
+ImageLabel_8.Image = "http://www.roblox.com/asset/?id=9731691467"
+ImageLabel_8.ImageColor3 = Color3.fromRGB(12, 12, 12)
+ImageLabel_8.ScaleType = Enum.ScaleType.Slice
+ImageLabel_8.SliceCenter = Rect.new(6, 6, 94, 94)
 
-NameTextLabel_8.Name = "NameTextLabel"
-NameTextLabel_8.Parent = MousefovCheck
-NameTextLabel_8.AnchorPoint = Vector2.new(1, 0)
-NameTextLabel_8.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-NameTextLabel_8.BackgroundTransparency = 1.000
-NameTextLabel_8.BorderSizePixel = 0
-NameTextLabel_8.Position = UDim2.new(0, -5, 0, 0)
-NameTextLabel_8.Size = UDim2.new(0, 50, 1, 0)
-NameTextLabel_8.Font = Enum.Font.SourceSansBold
-NameTextLabel_8.Text = "MOUSE FOV"
-NameTextLabel_8.TextColor3 = Color3.fromRGB(156, 156, 156)
-NameTextLabel_8.TextSize = 12.000
-NameTextLabel_8.TextXAlignment = Enum.TextXAlignment.Right
+NameTextLabel_7.Name = "NameTextLabel"
+NameTextLabel_7.Parent = MousefovCheck
+NameTextLabel_7.AnchorPoint = Vector2.new(1, 0)
+NameTextLabel_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NameTextLabel_7.BackgroundTransparency = 1.000
+NameTextLabel_7.BorderSizePixel = 0
+NameTextLabel_7.Position = UDim2.new(0, -5, 0, 0)
+NameTextLabel_7.Size = UDim2.new(0, 50, 1, 0)
+NameTextLabel_7.Font = Enum.Font.SourceSansBold
+NameTextLabel_7.Text = "MOUSE FOV"
+NameTextLabel_7.TextColor3 = Color3.fromRGB(156, 156, 156)
+NameTextLabel_7.TextSize = 12.000
+NameTextLabel_7.TextXAlignment = Enum.TextXAlignment.Right
 
-Slider_6.Name = "Slider"
-Slider_6.Parent = MousefovCheck
-Slider_6.AnchorPoint = Vector2.new(0, 0.5)
-Slider_6.BackgroundColor3 = Color3.fromRGB(190, 190, 190)
-Slider_6.Position = UDim2.new(0, 0, 0.5, 0)
-Slider_6.Size = UDim2.new(1, -2, 1, 2)
-Slider_6.SizeConstraint = Enum.SizeConstraint.RelativeYY
-Slider_6.ZIndex = 2
+Slider_5.Name = "Slider"
+Slider_5.Parent = MousefovCheck
+Slider_5.AnchorPoint = Vector2.new(0, 0.5)
+Slider_5.BackgroundColor3 = Color3.fromRGB(190, 190, 190)
+Slider_5.Position = UDim2.new(0, 0, 0.5, 0)
+Slider_5.Size = UDim2.new(1, -2, 1, 2)
+Slider_5.SizeConstraint = Enum.SizeConstraint.RelativeYY
+Slider_5.ZIndex = 2
 
-UICorner_21.CornerRadius = UDim.new(0, 4)
-UICorner_21.Parent = Slider_6
+UICorner_19.CornerRadius = UDim.new(0, 4)
+UICorner_19.Parent = Slider_5
 
 StatusFrame.Name = "StatusFrame"
 StatusFrame.Parent = TextButton
@@ -824,7 +783,7 @@ StatusFrame.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
 StatusFrame.Position = UDim2.new(0.5, 0, 1, 10)
 StatusFrame.Size = UDim2.new(1, -71, 0, 41)
 
-UICorner_22.Parent = StatusFrame
+UICorner_20.Parent = StatusFrame
 
 UIPadding_3.Parent = StatusFrame
 UIPadding_3.PaddingBottom = UDim.new(0, 8)
@@ -845,18 +804,18 @@ Outline_2.ImageColor3 = Color3.fromRGB(26, 26, 26)
 Outline_2.ScaleType = Enum.ScaleType.Slice
 Outline_2.SliceCenter = Rect.new(6, 6, 94, 94)
 
-ImageLabel_10.Parent = StatusFrame
-ImageLabel_10.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ImageLabel_10.BackgroundTransparency = 1.000
-ImageLabel_10.Position = UDim2.new(0, -8, 0, -8)
-ImageLabel_10.Size = UDim2.new(1, 16, 1, 16)
-ImageLabel_10.ZIndex = -3
-ImageLabel_10.Image = "http://www.roblox.com/asset/?id=6756524275"
-ImageLabel_10.ImageColor3 = Color3.fromRGB(50, 50, 50)
-ImageLabel_10.ScaleType = Enum.ScaleType.Tile
-ImageLabel_10.TileSize = UDim2.new(0, 256, 0, 256)
+ImageLabel_9.Parent = StatusFrame
+ImageLabel_9.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_9.BackgroundTransparency = 1.000
+ImageLabel_9.Position = UDim2.new(0, -8, 0, -8)
+ImageLabel_9.Size = UDim2.new(1, 16, 1, 16)
+ImageLabel_9.ZIndex = -3
+ImageLabel_9.Image = "http://www.roblox.com/asset/?id=6756524275"
+ImageLabel_9.ImageColor3 = Color3.fromRGB(50, 50, 50)
+ImageLabel_9.ScaleType = Enum.ScaleType.Tile
+ImageLabel_9.TileSize = UDim2.new(0, 256, 0, 256)
 
-UICorner_23.Parent = ImageLabel_10
+UICorner_21.Parent = ImageLabel_9
 
 Createdtext.Name = "Createdtext"
 Createdtext.Parent = StatusFrame
@@ -932,8 +891,8 @@ Notif.Size = UDim2.new(1, 16, 1, 16)
 Notif.Visible = false
 Notif.ZIndex = 4
 
-UICorner_24.CornerRadius = UDim.new(0, 6)
-UICorner_24.Parent = Notif
+UICorner_22.CornerRadius = UDim.new(0, 6)
+UICorner_22.Parent = Notif
 
 Dismiss.Name = "Dismiss"
 Dismiss.Parent = Notif
@@ -948,17 +907,17 @@ Dismiss.Text = "DISMISS"
 Dismiss.TextColor3 = Color3.fromRGB(190, 190, 190)
 Dismiss.TextSize = 15.000
 
-UICorner_25.Parent = Dismiss
+UICorner_23.Parent = Dismiss
 
-ImageLabel_11.Parent = Dismiss
-ImageLabel_11.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ImageLabel_11.BackgroundTransparency = 1.000
-ImageLabel_11.BorderSizePixel = 0
-ImageLabel_11.Size = UDim2.new(1, 0, 1, 0)
-ImageLabel_11.Image = "http://www.roblox.com/asset/?id=9731691467"
-ImageLabel_11.ImageColor3 = Color3.fromRGB(255, 52, 52)
-ImageLabel_11.ScaleType = Enum.ScaleType.Slice
-ImageLabel_11.SliceCenter = Rect.new(6, 6, 94, 94)
+ImageLabel_10.Parent = Dismiss
+ImageLabel_10.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_10.BackgroundTransparency = 1.000
+ImageLabel_10.BorderSizePixel = 0
+ImageLabel_10.Size = UDim2.new(1, 0, 1, 0)
+ImageLabel_10.Image = "http://www.roblox.com/asset/?id=9731691467"
+ImageLabel_10.ImageColor3 = Color3.fromRGB(255, 52, 52)
+ImageLabel_10.ScaleType = Enum.ScaleType.Slice
+ImageLabel_10.SliceCenter = Rect.new(6, 6, 94, 94)
 
 NotificationText.Name = "NotificationText"
 NotificationText.Parent = Notif
@@ -994,6 +953,125 @@ UIPadding_5.PaddingBottom = UDim.new(0, 8)
 UIPadding_5.PaddingLeft = UDim.new(0, 8)
 UIPadding_5.PaddingRight = UDim.new(0, 8)
 UIPadding_5.PaddingTop = UDim.new(0, 8)
+
+LoadingFrame.Name = "LoadingFrame"
+LoadingFrame.Parent = TextButton
+LoadingFrame.AnchorPoint = Vector2.new(0, 1)
+LoadingFrame.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+LoadingFrame.Position = UDim2.new(0, 0, 0, -10)
+LoadingFrame.Size = UDim2.new(0, 195, 0, 16)
+
+UICorner_24.Parent = LoadingFrame
+
+UIPadding_6.Parent = LoadingFrame
+UIPadding_6.PaddingBottom = UDim.new(0, 8)
+UIPadding_6.PaddingLeft = UDim.new(0, 8)
+UIPadding_6.PaddingRight = UDim.new(0, 8)
+UIPadding_6.PaddingTop = UDim.new(0, 8)
+
+ImageLabel_11.Parent = LoadingFrame
+ImageLabel_11.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_11.BackgroundTransparency = 1.000
+ImageLabel_11.Position = UDim2.new(0, -8, 0, -8)
+ImageLabel_11.Size = UDim2.new(1, 16, 1, 16)
+ImageLabel_11.ZIndex = -3
+ImageLabel_11.Image = "http://www.roblox.com/asset/?id=6756524275"
+ImageLabel_11.ImageColor3 = Color3.fromRGB(50, 50, 50)
+ImageLabel_11.ScaleType = Enum.ScaleType.Tile
+ImageLabel_11.TileSize = UDim2.new(0, 256, 0, 256)
+
+UICorner_25.Parent = ImageLabel_11
+
+Outline_3.Name = "Outline"
+Outline_3.Parent = LoadingFrame
+Outline_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Outline_3.BackgroundTransparency = 1.000
+Outline_3.BorderSizePixel = 0
+Outline_3.Position = UDim2.new(0, -8, 0, -8)
+Outline_3.Size = UDim2.new(1, 16, 1, 16)
+Outline_3.ZIndex = -1
+Outline_3.Image = "http://www.roblox.com/asset/?id=9731691467"
+Outline_3.ImageColor3 = Color3.fromRGB(26, 26, 26)
+Outline_3.ScaleType = Enum.ScaleType.Slice
+Outline_3.SliceCenter = Rect.new(6, 6, 94, 94)
+
+LoadingBar.Name = "LoadingBar"
+LoadingBar.Parent = LoadingFrame
+LoadingBar.AnchorPoint = Vector2.new(0, 0.5)
+LoadingBar.BackgroundColor3 = Color3.fromRGB(180, 180, 180)
+LoadingBar.Size = UDim2.new(0, 0, 0, 5)
+
+UICorner_26.CornerRadius = UDim.new(1, 0)
+UICorner_26.Parent = LoadingBar
+
+LoadingText.Name = "LoadingText"
+LoadingText.Parent = LoadingFrame
+LoadingText.AnchorPoint = Vector2.new(0, 0.5)
+LoadingText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+LoadingText.BackgroundTransparency = 1.000
+LoadingText.BorderColor3 = Color3.fromRGB(27, 42, 53)
+LoadingText.BorderSizePixel = 0
+LoadingText.Position = UDim2.new(1, 12, 0.5, 0)
+LoadingText.Size = UDim2.new(0, 131, 0, 16)
+LoadingText.Font = Enum.Font.SourceSansItalic
+LoadingText.Text = "Loading"
+LoadingText.TextColor3 = Color3.fromRGB(255, 255, 255)
+LoadingText.TextSize = 14.000
+LoadingText.TextXAlignment = Enum.TextXAlignment.Left
+
+FrommiddleCheck.Name = "FrommiddleCheck"
+FrommiddleCheck.Parent = TextButton
+FrommiddleCheck.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+FrommiddleCheck.Position = UDim2.new(1, -244, 0, 72)
+FrommiddleCheck.Size = UDim2.new(0, 56, 0, 14)
+FrommiddleCheck.ZIndex = 3
+FrommiddleCheck.AutoButtonColor = false
+FrommiddleCheck.Font = Enum.Font.SourceSans
+FrommiddleCheck.Text = ""
+FrommiddleCheck.TextColor3 = Color3.fromRGB(0, 0, 0)
+FrommiddleCheck.TextSize = 14.000
+
+UICorner_27.Parent = FrommiddleCheck
+
+ImageLabel_12.Parent = FrommiddleCheck
+ImageLabel_12.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_12.BackgroundTransparency = 1.000
+ImageLabel_12.BorderSizePixel = 0
+ImageLabel_12.Size = UDim2.new(1, 0, 1, 0)
+ImageLabel_12.Image = "http://www.roblox.com/asset/?id=9731691467"
+ImageLabel_12.ImageColor3 = Color3.fromRGB(12, 12, 12)
+ImageLabel_12.ScaleType = Enum.ScaleType.Slice
+ImageLabel_12.SliceCenter = Rect.new(6, 6, 94, 94)
+
+NameTextLabel_8.Name = "NameTextLabel"
+NameTextLabel_8.Parent = FrommiddleCheck
+NameTextLabel_8.AnchorPoint = Vector2.new(1, 0)
+NameTextLabel_8.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NameTextLabel_8.BackgroundTransparency = 1.000
+NameTextLabel_8.BorderSizePixel = 0
+NameTextLabel_8.Position = UDim2.new(0, -5, 0, 0)
+NameTextLabel_8.Size = UDim2.new(0, 50, 1, 0)
+NameTextLabel_8.Font = Enum.Font.SourceSansBold
+NameTextLabel_8.Text = "FROM MIDDLE"
+NameTextLabel_8.TextColor3 = Color3.fromRGB(156, 156, 156)
+NameTextLabel_8.TextSize = 12.000
+NameTextLabel_8.TextXAlignment = Enum.TextXAlignment.Right
+
+Slider_6.Name = "Slider"
+Slider_6.Parent = FrommiddleCheck
+Slider_6.AnchorPoint = Vector2.new(0, 0.5)
+Slider_6.BackgroundColor3 = Color3.fromRGB(190, 190, 190)
+Slider_6.Position = UDim2.new(0, 0, 0.5, 0)
+Slider_6.Size = UDim2.new(1, -2, 1, 2)
+Slider_6.SizeConstraint = Enum.SizeConstraint.RelativeYY
+Slider_6.ZIndex = 2
+
+UICorner_28.CornerRadius = UDim.new(0, 4)
+UICorner_28.Parent = Slider_6
+
+LoadingText.Text = "Creating UI"
+
+wait(.12)
 
 local userinputservice = game:GetService("UserInputService")
 local runservice = game:GetService("RunService")
@@ -1055,8 +1133,24 @@ local function notify(notificationtext,type)
 	end)
 end
 
+local function clearchildrenwithwhitelist(parent,whitelist)
+	local children = parent:GetChildren()
+	for i = 1,#children do
+		local child = children[i]
+		if (child) and not whitelist[child.ClassName] then
+			child:Destroy()
+		end
+	end
+end
+
+LoadingText.Text = "Fetching API"
+tweenservice:Create(LoadingBar,TweenInfo.new(.12),{Size=udim2(.3,0,0,5)}):Play()
+
 local apitable = _G.a or loadstring(game:HttpGet("https://raw.githubusercontent.com/Wheeleee/AIMWARE/main/ApI"))()
 local api = apitable[game.GameId] or apitable.UNIVERSAL
+LoadingText.Text = "Unpacking API"
+tweenservice:Create(LoadingBar,TweenInfo.new(.12),{Size=udim2(.5,0,0,5)}):Play()
+wait(.34)
 if api.Info.__TYPE  == "UNIVERSAL" then
 	notify("This game is not supported. AIMWARE will do it's best but some things may break. DM me, YouBuggin#6330, with the game link and I'll add support for this game.","WARNING")
 end
@@ -1065,6 +1159,8 @@ api:Init()
 local days = math.ceil((os.time()-api.Info.Created)/86400)
 Createdtext.Text = "CREATED: "..days.." days ago"
 getenemiesMS.Text = "GET_ENEMIES MS: calc"
+LoadingText.Text = "Calculating"
+tweenservice:Create(LoadingBar,TweenInfo.new(.12),{Size=udim2(.65,0,0,5)}):Play()
 spawn(function()
 	local start = os.clock()
 	for i = 1,1000 do
@@ -1075,6 +1171,9 @@ spawn(function()
 end)
 
 local translate = api.Translate
+
+LoadingText.Text = "Setting up AIMWARE"
+tweenservice:Create(LoadingBar,TweenInfo.new(.12),{Size=udim2(.78,0,0,5)}):Play()
 
 local fovcircle = Drawing.new("Circle")
 fovcircle.ZIndex = 100
@@ -1206,12 +1305,12 @@ local function addesp(player)
 						aimpartvisible = false
 					end
 					local color = (visualcheck) and aimpartvisible and color3(108,255,108) or (visualcheck) and color3(255,55,55) or color3(255, 118, 21)
-					
+
 					local aimpartposition2d,aimpartonscreen
 					if lineson or chamson then
 						aimpartposition2d,aimpartonscreen = camera:WorldToViewportPoint(torsoposition)
 					end
-					
+
 					if lineson and aimpartonscreen then
 						line.Visible = true
 						line.From = frommiddleon and middlescreen or bottomscreen
@@ -1275,7 +1374,7 @@ end)
 
 spawn(function()
 	while task.wait(3) do
-	    camera = workspace.CurrentCamera
+		camera = workspace.CurrentCamera
 		local enemies = api:GetEnemies()
 		for index = 1,#enemies do
 			addesp(enemies[index])
@@ -1349,3 +1448,7 @@ runservice.RenderStepped:Connect(function()
 		end
 	end
 end)
+LoadingText.Text = "DONE"
+tweenservice:Create(LoadingBar,TweenInfo.new(.12),{Size=udim2(1,0,0,5)}):Play()
+task.wait(2.5)
+LoadingFrame:Destroy()
