@@ -1284,7 +1284,7 @@ local function addesp(player)
 		local count,countmax = 0,1
 		local renderconnection;renderconnection = runservice.RenderStepped:Connect(function()
 			local torso = character:FindFirstChild(translate(api,"torso"))
-			if (character) and character.Parent and torso then
+			if ((character) and character.Parent) and character.Parent.Parent and torso then
 				count+=1
 				local torsoposition = torso.Position
 				local distance = (camera.CFrame.Position-torsoposition).magnitude
