@@ -966,7 +966,7 @@ NotificationText.AnchorPoint = Vector2.new(0.5, 0.5)
 NotificationText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 NotificationText.BackgroundTransparency = 1.000
 NotificationText.Position = UDim2.new(0.5, 0, 0.5, -22)
-NotificationText.Size = UDim2.new(1, -40, 0, 97316914670)
+NotificationText.Size = UDim2.new(1, -40, 0, 60)
 NotificationText.ZIndex = 4
 NotificationText.Font = Enum.Font.SourceSans
 NotificationText.Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Gravida quis blandit turpis cursus in hac habitasse."
@@ -1275,6 +1275,7 @@ end)
 
 spawn(function()
 	while task.wait(3) do
+	    camera = workspace.CurrentCamera
 		local enemies = api:GetEnemies()
 		for index = 1,#enemies do
 			addesp(enemies[index])
