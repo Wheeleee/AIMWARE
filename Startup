@@ -1,3 +1,4 @@
+-- if you're looking through source to learn/copy code go ahead. maybe credit me :)).
 local gui = Instance.new("ScreenGui")
 local TextButton = Instance.new("TextButton")
 local UICorner = Instance.new("UICorner")
@@ -1087,7 +1088,7 @@ if isfolder("WARE") then
 	if isfile("WARE/CONFIG.txt") then
 		config = readfile("WARE/CONFIG.txt")
 	end
-end]]
+end]]-- can't be bothered rn.
 
 gui.Parent = game.CoreGui
 Head.ResampleMode = Enum.ResamplerMode.Pixelated
@@ -1135,7 +1136,7 @@ local function notify(notificationtext,type)
 	end)
 end
 
-local function clearchildrenwithwhitelist(parent,whitelist)
+local function clearchildrenwithwhitelist(parent,whitelist) -- don't hate me please.
 	local children = parent:GetChildren()
 	for i = 1,#children do
 		local child = children[i]
@@ -1148,11 +1149,11 @@ end
 LoadingText.Text = "Fetching API"
 tweenservice:Create(LoadingBar,TweenInfo.new(.12),{Size=udim2(.3,0,0,5)}):Play()
 
-local apitable = _G.a or loadstring(game:HttpGet("https://raw.githubusercontent.com/Wheeleee/AIMWARE/main/ApI"))()
+local apitable = _G.a or loadstring(game:HttpGet("https://raw.githubusercontent.com/Wheeleee/AIMWARE/main/ApI"))() -- a lil API for games. feel free to use it. no documentation but just look through the source. it's pretty obv.
 local api = apitable[game.GameId] or apitable.UNIVERSAL
 LoadingText.Text = "Unpacking API"
 tweenservice:Create(LoadingBar,TweenInfo.new(.12),{Size=udim2(.5,0,0,5)}):Play()
-wait(.34)
+wait(.34) -- no way! fake loading time.... grrrrrrr.
 if api.Info.__TYPE  == "UNIVERSAL" then
 	notify("This game is not supported. AIMWARE will do it's best but some things may break. DM me, YouBuggin#6330, with the game link and I'll add support for this game.","WARNING")
 end
@@ -1293,8 +1294,7 @@ local function addesp(player)
 				countmax = distance > 200 and 3 or distance > 350 and 5 or distance < 200 and 1 or 7
 				if count >= countmax then
 					count = 0
-					local orientation,boundingsize = character:GetBoundingBox()
-					local width,height = 7,11 --boundingsize.X > boundingsize.Z and boundingsize.X or boundingsize.Z
+					local width,height = 7,11 --boundingsize.X > boundingsize.Z and boundingsize.X or boundingsize.Z ------ don't use boundingsize, ew.
 
 					local aimpartvisible
 					if visualcheck then
@@ -1323,7 +1323,7 @@ local function addesp(player)
 					end
 					if chamson and aimpartonscreen then
 						box.Visible = true
-						box.Size = vector2((width*500)/distance,(height*515)/distance)/(camera.FieldOfView/70)
+						box.Size = vector2((width*500)/distance,(height*515)/distance)/(camera.FieldOfView/70) -- if you're wondering how i got 500/515. don't ask, im scarred.
 						box.Position = vector2(aimpartposition2d.x-box.Size.x/2,aimpartposition2d.y-box.Size.y/2)
 						box.Color = color
 					else
@@ -1388,9 +1388,9 @@ runservice.RenderStepped:Connect(function()
 	local absolute = gui.AbsoluteSize
 	local mouseposition = vector2(mouse.X,mouse.Y)
 	middlescreen = absolute/2+vector2(0,18)
-	bottomscreen = vector2(absolute.X/2,absolute.Y)
+	bottomscreen = vector2(absolute.X/2,absolute.Y) -- when using UDim2.new/Vector3.new or anything like that, keep it inside a local variable. reduces time by alot so it doesn't have to index all the time. only if something is static and not changing constantly.
 	fovcircle.Position = mousefov and mouseposition or middlescreen
-	local field = camera.FieldOfView/70
+	local field = camera.FieldOfView/70 -- keeping the circle at the same size compared to the FOV.
 	local actualfov = fov/field
 	fovcircle.Radius = actualfov
 	if (aim) and api:Valid() and aimboton then
@@ -1409,7 +1409,7 @@ runservice.RenderStepped:Connect(function()
 							local distancefromiddle = ((mousefov and mouseposition or middlescreen)-vector).magnitude
 							if onscreen and distancefromiddle < actualfov then
 								local raycastresult
-								if visualcheck then
+								if visualcheck then -- in aimbots it's critical to put shit inside IF statments so performance goes up when disabling an option.
 									local cameraposition = camera.CFrame.Position
 									local params = RaycastParams.new()
 									params.FilterDescendantsInstances={camera,api:GetLocalCharacter()}
@@ -1418,7 +1418,7 @@ runservice.RenderStepped:Connect(function()
 								if not visualcheck or (raycastresult) and raycastresult.Instance:IsDescendantOf(instance) then
 									local distance = (mouseposition-vector).magnitude
 									if not aimdata then
-										local table = {true,true,true} 
+										local table = {true,true,true} -- optimization. reduces rehash.
 										table[1] = distance
 										table[2] = character
 										table[3] = aimatpart
@@ -1441,10 +1441,10 @@ runservice.RenderStepped:Connect(function()
 			local aimatpart = aimdata[3]
 			if aimatpart then
 				if aimtype == "mousedist" and aimatpart then
-					field = field/userinputservice.MouseDeltaSensitivity
+					field = field/userinputservice.MouseDeltaSensitivity -- make sure the aimbot doesn't go haywire when games reduce the mouseSens.
 					local screenposition,visible = camera:WorldToScreenPoint(aimatpart.Position)
 					local move = vector2(-((mouse.x-screenposition.x)*field),-((mouse.y-screenposition.y)*field))/smoothingprocent
-					mousemoverel(move.x,move.y)
+					mousemoverel(move.x,move.y) -- "WHY WON'T YOU USE camera.CFrame" ---- shut up.
 				end
 			end
 		end
