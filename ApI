@@ -67,6 +67,114 @@ return {
 			__TYPE = "UNIVERSAL",
 		},
 	},
+	    [2132866904] = {
+		BodyParts = {
+			["TORSO"] = "UpperTorso",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+
+		end,
+		SetCFrame = function(self,CFrame)
+			camera.CFrame = CFrame
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return {}
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,character in next, workspace:GetChildren() do
+			    if character.Name=="r15_rig" then
+			       enemies[#enemies+1] = {
+						Instance = character,
+						Parent = character.Parent,
+						Ignore = character,
+					} 
+			    end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return nil
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1655041528,
+			GameName = "Frontlines",
+			GameId = 2132866904,
+			PlaceId = 5938036553,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[1315961587] = {
+		BodyParts = {
+			["TORSO"] = "humanoid_root_part",
+			["HEAD"] = "head",
+		},
+		Init = function(self)
+		    v1=workspace:WaitForChild("characters")
+		end,
+		SetCFrame = function(self,CFrame)
+			camera.CFrame = CFrame
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return {}
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,character in next, v1:GetChildren() do
+			    if character.Name~="StarterCharacter" then
+			        enemies[#enemies+1] = {
+    					Instance = character,
+    					Parent = character.Parent,
+    					Ignore = character,
+    				} 
+			    end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return v1:FindFirstChild("StarterCharacter")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1655042242,
+			GameName = "Deadline",
+			GameId = 1315961587,
+			PlaceId = 3837841034,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
 	[1985370796] = {
 		BodyParts = {
 			["TORSO"] = "HumanoidRootPart",
