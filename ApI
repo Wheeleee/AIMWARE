@@ -90,13 +90,17 @@ return {
 		GetEnemies = function(self)
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
-				if (player.Character and (player.Team ~= localplayer.Team)) and player ~= localplayer then
-					enemies[#enemies+1] = {
-						Instance = player.Character,
-						Parent = player.Character.Parent,
-						Ignore = player.Character,
-					}
-				end
+			    local character = player.Character
+			    if character then
+			        local humanoid = character:FindFirstChildOfClass("Humanoid")
+    				if (player.Team ~= localplayer.Team) and player ~= localplayer and humanoid.Health > 0 then
+    					enemies[#enemies+1] = {
+    						Instance = character,
+    						Parent = character.Parent,
+    						Ignore = character,
+    					}
+    				end
+			    end
 			end
 			return enemies
 		end,
