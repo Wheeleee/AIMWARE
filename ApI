@@ -92,8 +92,7 @@ return {
 			for _,player in next, players:GetPlayers() do
 			    local character = player.Character
 			    if character then
-			        local humanoid = character:FindFirstChildOfClass("Humanoid")
-    				if (player.Team ~= localplayer.Team) and player ~= localplayer and humanoid.Health > 0 then
+    				if (player.Team ~= localplayer.Team) and player ~= localplayer then
     					enemies[#enemies+1] = {
     						Instance = character,
     						Parent = character.Parent,
