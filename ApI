@@ -414,13 +414,13 @@ return {
 			["HEAD"] = "Head",
 		},
 		Init = function(self)
-		return localplayer.PlayerData.TeamValue.Value and true or false
+		
 		end,
 		SetCFrame = function(self,CFrame)
 			camera.CFrame = CFrame
 		end,
 		Valid = function(self)
-			return true
+			return localplayer.PlayerData.TeamValue.Value and true or false
 		end,
 		Translate = function(self,text)
 			return self.BodyParts[text:upper()] or ""
