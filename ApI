@@ -30,7 +30,7 @@ return {
 				if player ~= localplayer then
 					local character = player.Character
 					if character then
-						if (player.Team ~= localplayer.Team or player.Neutral) then
+						if (player.Neutral or player.Team ~= localplayer.Team) then
 							enemies[#enemies+1] = {
 								Instance = character,
 								Parent = character.Parent,
