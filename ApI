@@ -417,7 +417,7 @@ return {
 		GetEnemies = function(self)
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
-				if (player.Character) and player ~= localplayer then
+				if (player.Character) and player ~= localplayer and player.PlayerData.TeamValue.Value ~= localplayer.PlayerData.TeamValue.Value then
 					enemies[#enemies+1] = {
 						Instance = player.Character,
 						Parent = player.Character.Parent,
