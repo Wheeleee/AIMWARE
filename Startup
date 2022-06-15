@@ -1098,6 +1098,7 @@ local color3 = Color3.fromRGB
 local udim2 = UDim2.new
 local vector2 = Vector2.new
 local cframe= CFrame.new
+local raycastparams = RaycastParams.new
 
 local esp = {}
 local aimdata = {}
@@ -1111,6 +1112,7 @@ local smoothingprocent,maxsmoothing = 1,10
 local renderstep = runservice.RenderStepped
 local maxvectoroffset = Vector3.new(4,5,2)
 local currentoffset = Vector3.new(0,0,0)
+local unvischeckcolor,viscolor,notviscolor = color3(255, 118, 21),color3(108,255,108),color3(255,55,55)
 
 local mousefov = false
 local visualcheck = false
@@ -1247,9 +1249,10 @@ SmoothnessSlider.SliderButton.MouseButton1Down:Connect(function()
 		local procent = ((mouse.X-SmoothnessSlider.AbsolutePosition.X)/SmoothnessSlider.AbsoluteSize.X)
 		procent = procent > 1 and 1 or procent < 0 and 0 or procent
 		SmoothnessSlider.SliderButton.Position = udim2(procent,0,.5,0)
-		local calculated = maxsmoothing*procent
-		SmoothnessSlider.CurrentValue.Text = math.ceil(calculated)
-		smoothingprocent = math.ceil(calculated)
+		local calculated = math.ceil(maxsmoothing*procent)
+		calculated = calculated == 0 and 1 or calculated
+		SmoothnessSlider.CurrentValue.Text = calculated
+		smoothingprocent = calculated
 	until not onsmoothnessslider
 end)
 SmoothnessSlider.SliderButton.MouseButton1Up:Connect(function()
@@ -1299,14 +1302,14 @@ local function addesp(player)
 					local aimpartvisible
 					if visualcheck then
 						local cameraposition = camera.CFrame.Position
-						local params = RaycastParams.new()
+						local params = raycastparams()
 						params.FilterDescendantsInstances={camera,api:GetLocalCharacter()}
 						local raycastresult = workspace:Raycast(cameraposition,cframe(cameraposition,torsoposition).LookVector*100000,params)
 						aimpartvisible = (raycastresult) and raycastresult.Instance:IsDescendantOf(character) or false
 					else
 						aimpartvisible = false
 					end
-					local color = (visualcheck) and aimpartvisible and color3(108,255,108) or (visualcheck) and color3(255,55,55) or color3(255, 118, 21)
+					local color = (visualcheck) and aimpartvisible and viscolor or (visualcheck) and notviscolor or unvischeckcolor
 
 					local aimpartposition2d,aimpartonscreen
 					if lineson or chamson then
@@ -1322,9 +1325,10 @@ local function addesp(player)
 						line.Visible = false
 					end
 					if chamson and aimpartonscreen then
+						local boxsize = vector2((width*500)/distance,(height*515)/distance)/(camera.FieldOfView/70) -- if you're wondering how i got 500/515. don't ask, im scarred.
 						box.Visible = true
-						box.Size = vector2((width*500)/distance,(height*515)/distance)/(camera.FieldOfView/70) -- if you're wondering how i got 500/515. don't ask, im scarred.
-						box.Position = vector2(aimpartposition2d.x-box.Size.x/2,aimpartposition2d.y-box.Size.y/2)
+						box.Size = boxsize
+						box.Position = vector2(aimpartposition2d.x-boxsize.x/2,aimpartposition2d.y-boxsize.y/2)
 						box.Color = color
 					else
 						box.Visible = false
@@ -1411,7 +1415,7 @@ runservice.RenderStepped:Connect(function()
 								local raycastresult
 								if visualcheck then -- in aimbots it's critical to put shit inside IF statments so performance goes up when disabling an option.
 									local cameraposition = camera.CFrame.Position
-									local params = RaycastParams.new()
+									local params = raycastparams()
 									params.FilterDescendantsInstances={camera,api:GetLocalCharacter()}
 									raycastresult = workspace:Raycast(cameraposition,cframe(cameraposition,aimatpart.Position).LookVector*100000,params)
 								end
@@ -1443,7 +1447,7 @@ runservice.RenderStepped:Connect(function()
 				if aimtype == "mousedist" and aimatpart then
 					field = field/userinputservice.MouseDeltaSensitivity -- make sure the aimbot doesn't go haywire when games reduce the mouseSens.
 					local screenposition,visible = camera:WorldToScreenPoint(aimatpart.Position)
-					local move = vector2(-((mouse.x-screenposition.x)*field),-((mouse.y-screenposition.y)*field))/smoothingprocent
+					local move = vector2(-((mouse.x-screenposition.x)),-((mouse.y-screenposition.y)))*field/smoothingprocent
 					mousemoverel(move.x,move.y) -- "WHY WON'T YOU USE camera.CFrame" ---- shut up.
 				end
 			end
