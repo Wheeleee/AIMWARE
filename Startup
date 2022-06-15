@@ -1278,7 +1278,7 @@ end
 local function addesp(player)
 	local character = player.Instance
 	local debugid = character:GetDebugId()
-	if not esp[debugid] then
+	if not esp[debugid] and api:Valid() then
 		esp[debugid]=true
 		local line = Drawing.new("Line")
 		line.Thickness = 1
