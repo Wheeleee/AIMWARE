@@ -11,7 +11,6 @@ return {
 			["HEAD"] = "Head",
 		},
 		Init = function(self)
-
 		end,
 		SetCFrame = function(self,CFrame)
 			camera.CFrame = CFrame
@@ -415,7 +414,7 @@ return {
 			["HEAD"] = "Head",
 		},
 		Init = function(self)
-
+		return localplayer.PlayerData.TeamValue.Value and true or false
 		end,
 		SetCFrame = function(self,CFrame)
 			camera.CFrame = CFrame
