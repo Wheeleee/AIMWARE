@@ -1020,7 +1020,7 @@ return {
 			return self.BodyParts[text:upper()] or ""
 		end,
 		GetIgnorables = function(self)
-			return {unpack(workspace.IgnoreThese:GetChildren())}
+			return unpack(workspace.IgnoreThese:GetChildren())
 		end,
 		GetEnemies = function(self)
 			local enemies = {}
@@ -1082,19 +1082,10 @@ return {
 			return self.BodyParts[text:upper()] or ""
 		end,
 		GetIgnorables = function(self)
-			return {unpack(workspace.Ray_Ignore:GetChildren()),unpack(workspace.Debris:GetChildren())}
+			return unpack(workspace.Ray_Ignore:GetChildren()),unpack(workspace.Debris:GetChildren())
 		end,
 		GetEnemies = function(self)
 			local enemies = {}
-			--for _,player in next, players:GetPlayers() do
-			--	if (player~=localplayer and player.Character) and (player.Neutral or player.Team ~= localplayer.Team) then
-			--		enemies[#enemies+1] = {
-			--			Instance = player.Character,
-			--			Parent = player.Character.Parent,
-			--			Ignore = player.Character,
-			--		}
-			--	end
-			--end
 			for _,player in next, players:GetPlayers() do
 				if player ~= localplayer then 
 					local character = player.Character
@@ -1154,22 +1145,10 @@ return {
 			return self.BodyParts[text:upper()] or ""
 		end,
 		GetIgnorables = function(self)
-			return {unpack(workspace.Ray_Ignore:GetChildren()),unpack(workspace.Debris:GetChildren())}
+			return unpack(workspace.Ray_Ignore:GetChildren()),unpack(workspace.Debris:GetChildren())
 		end,
 		GetEnemies = function(self)
 		    local enemies = {}
-			--for i,v in pairs(game.Players:GetPlayers()) do
-   --             if v~=localplayer and (v.Neutral or v.Team ~= localplayer.Team) then
-   --                 local character = workspace.MapFolder.Players:FindFirstChild(v.Name)
-   --                 if character then
-   --                     enemies[#enemies+1] = {
-   --                         Instance = character,
-   --                         Ignore = character,
-   --                         Parent = character.Parent
-   --                     }
-   --                 end
-   --             end
-			--end
 			for i,v in pairs(players:GetPlayers()) do
 				if v~=localplayer then
 					if v.Neutral or v.Team ~= localplayer.Team then
