@@ -1,4 +1,4 @@
-  local players = game:GetService("Players")
+ local players = game:GetService("Players")
 local localplayer = players.LocalPlayer
 local camera = workspace.CurrentCamera
 
@@ -23,19 +23,21 @@ return {
 			return self.BodyParts[text:upper()] or ""
 		end,
 		GetIgnorables = function(self)
-			return {}
+			return nil
 		end,
 		GetEnemies = function(self)
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
-				if player.Character then
-				    local humanoid = player.Character:FindFirstChildOfClass("Humanoid")
-					if (player.Team ~= localplayer.Team or player.Neutral) and player ~= localplayer and ((humanoid) and humanoid.Health>0 or true) then
-						enemies[#enemies+1] = {
-							Instance = player.Character,
-							Parent = player.Character.Parent,
-							Ignore = player.Character,
-						}
+				if player ~= localplayer then
+					local character = player.Character
+					if character then
+						if (player.Team ~= localplayer.Team or player.Neutral) then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Parent = character.Parent,
+								Ignore = character,
+							}
+						end
 					end
 				end
 			end
@@ -85,17 +87,20 @@ return {
 			return self.BodyParts[text:upper()] or ""
 		end,
 		GetIgnorables = function(self)
-			return {}
+			return nil
 		end,
 		GetEnemies = function(self)
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
-				if (player.Character) and player ~= localplayer then
-					enemies[#enemies+1] = {
-						Instance = player.Character,
-						Parent = player.Character.Parent,
-						Ignore = player.Character,
-					}
+				if player ~= localplayer then
+					local character = player.Character
+					if character then
+						enemies[#enemies+1] = {
+							Instance = character,
+							Parent = character.Parent,
+							Ignore = character,
+						}
+					end
 				end
 			end
 			return enemies
@@ -139,7 +144,7 @@ return {
 			return self.BodyParts[text:upper()] or ""
 		end,
 		GetIgnorables = function(self)
-			return {}
+			return nil
 		end,
 		GetEnemies = function(self)
 			local enemies = {}
@@ -193,7 +198,7 @@ return {
 			return self.BodyParts[text:upper()] or ""
 		end,
 		GetIgnorables = function(self)
-			return {}
+			return nil
 		end,
 		GetEnemies = function(self)
 			local enemies = {}
@@ -247,21 +252,23 @@ return {
 			return self.BodyParts[text:upper()] or ""
 		end,
 		GetIgnorables = function(self)
-			return {}
+			return nil
 		end,
 		GetEnemies = function(self)
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
-			    local character = player.Character
-			    if character then
-    				if (player.Team ~= localplayer.Team) and player ~= localplayer then
-    					enemies[#enemies+1] = {
-    						Instance = character,
-    						Parent = character.Parent,
-    						Ignore = character,
-    					}
-    				end
-			    end
+				if player ~= localplayer then
+					local character = player.Character
+					if character then
+						if player.Team ~= localplayer.Team then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Parent = character.Parent,
+								Ignore = character,
+							}
+						end
+					end
+				end
 			end
 			return enemies
 		end,
@@ -304,17 +311,22 @@ return {
 			return self.BodyParts[text:upper()] or ""
 		end,
 		GetIgnorables = function(self)
-			return {}
+			return nil
 		end,
 		GetEnemies = function(self)
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
-				if (player.Character and player.Team ~= localplayer.Team) and player ~= localplayer then
-					enemies[#enemies+1] = {
-						Instance = player.Character,
-						Parent = player.Character.Parent,
-						Ignore = player.Character,
-					}
+				if player ~= localplayer then
+					local character = player.Character
+					if character then
+						if player.Neutral or player.Team ~= localplayer.Team then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Parent = character.Parent,
+								Ignore = character,
+							}
+						end
+					end
 				end
 			end
 			return enemies
@@ -358,17 +370,20 @@ return {
 			return self.BodyParts[text:upper()] or ""
 		end,
 		GetIgnorables = function(self)
-			return {}
+			return nil
 		end,
 		GetEnemies = function(self)
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
-				if (player.Character) and player ~= localplayer then
-					enemies[#enemies+1] = {
-						Instance = player.Character,
-						Parent = player.Character.Parent,
-						Ignore = player.Character,
-					}
+				if player ~= localplayer then
+					local character = player.Character
+					if character then
+						enemies[#enemies+1] = {
+							Instance = character,
+							Parent = character.Parent,
+							Ignore = character,
+						}
+					end
 				end
 			end
 			return enemies
@@ -396,7 +411,7 @@ return {
 	},
 	[261612318] = {
 		BodyParts = {
-			["TORSO"] = "Torso",
+			["TORSO"] = "HumanoidRootPart",
 			["HEAD"] = "Head",
 		},
 		Init = function(self)
@@ -412,17 +427,22 @@ return {
 			return self.BodyParts[text:upper()] or ""
 		end,
 		GetIgnorables = function(self)
-			return {}
+			return nil
 		end,
 		GetEnemies = function(self)
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
-				if (player.Character) and player ~= localplayer and player.PlayerData.TeamValue.Value ~= localplayer.PlayerData.TeamValue.Value then
-					enemies[#enemies+1] = {
-						Instance = player.Character,
-						Parent = player.Character.Parent,
-						Ignore = player.Character,
-					}
+				if player ~= localplayer then
+					local character = player.Character
+					if player.Character then
+						if player.PlayerData.TeamValue.Value ~= localplayer.PlayerData.TeamValue.Value then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Parent = character.Parent,
+								Ignore = character,
+							}
+						end
+					end
 				end
 			end
 			return enemies
@@ -466,17 +486,20 @@ return {
 			return self.BodyParts[text:upper()] or ""
 		end,
 		GetIgnorables = function(self)
-			return {}
+			return nil
 		end,
 		GetEnemies = function(self)
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
-				if (player.Character) and player ~= localplayer then
-					enemies[#enemies+1] = {
-						Instance = player.Character,
-						Parent = player.Character.Parent,
-						Ignore = player.Character,
-					}
+				if player ~= localplayer then
+					local character = player.Character
+					if character then
+						enemies[#enemies+1] = {
+							Instance = character,
+							Parent = character.Parent,
+							Ignore = character,
+						}
+					end
 				end
 			end
 			return enemies
@@ -520,17 +543,22 @@ return {
 			return self.BodyParts[text:upper()] or ""
 		end,
 		GetIgnorables = function(self)
-			return {}
+			return nil
 		end,
 		GetEnemies = function(self)
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
-				if (player.Character and player.Team ~= localplayer) and player ~= localplayer then
-					enemies[#enemies+1] = {
-						Instance = player.Character,
-						Parent = player.Character.Parent,
-						Ignore = player.Character,
-					}
+				if player ~= localplayer then
+					local character = player.Character
+					if character then
+						if player.Neutral or player.Team ~= localplayer.Team then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Parent = character.Parent,
+								Ignore = character,
+							}
+						end
+					end
 				end
 			end
 			return enemies
@@ -558,7 +586,7 @@ return {
 	},
 	[1175300013] = {
     	BodyParts = {
-    		["TORSO"] = "UpperTorso",
+    		["TORSO"] = "HumanoidRootPart",
     		["HEAD"] = "Head",
     	},
     	Init = function(self)
@@ -574,18 +602,21 @@ return {
     		return self.BodyParts[text:upper()] or ""
     	end,
     	GetIgnorables = function(self)
-    		return {}
+    		return nil
     	end,
     	GetEnemies = function(self)
     		local enemies = {}
-    		for _,player in next, players:GetPlayers() do
-    			if (player.Character) and player ~= localplayer then
-    				enemies[#enemies+1] = {
-    					Instance = player.Character,
-    					Parent = player.Character.Parent,
-    					Ignore = player.Character,
-    				}
-    			end
+			for _,player in next, players:GetPlayers() do
+				if player ~= localplayer then
+					local character = player.Character
+	    			if character then
+	    				enemies[#enemies+1] = {
+							Instance = character,
+							Parent = character.Parent,
+							Ignore = character,
+	    				}
+					end
+				end
     		end
     		return enemies
     	end,
@@ -610,7 +641,7 @@ return {
     		__TYPE = "API",
     	},
     },
-[1168263273] = {
+	[1168263273] = {
 		BodyParts = {
 			["TORSO"] = "Chest",
 			["HEAD"] = "Head",
@@ -640,7 +671,7 @@ return {
 			return self.BodyParts[text:upper()] or ""
 		end,
 		GetIgnorables = function(self)
-			return game:GetService("Workspace").Menu.Loadouts:GetChildren()
+			return unpack(workspace.Menu.Loadouts:GetChildren())
 		end,
 		GetEnemies = function(self)
 		    local enemies = {}
@@ -680,7 +711,7 @@ return {
 	},
 	[380704901] = {
 		BodyParts = {
-			["TORSO"] = "UpperTorso",
+			["TORSO"] = "HumanoidRootPart",
 			["HEAD"] = "Head",
 		},
 		Init = function(self)
@@ -696,17 +727,22 @@ return {
 			return self.BodyParts[text:upper()] or ""
 		end,
 		GetIgnorables = function(self)
-			return {}
+			return nil
 		end,
 		GetEnemies = function(self)
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
-				if (player.Character and (player.Neutral or player.Team ~= localplayer)) and player ~= localplayer then
-					enemies[#enemies+1] = {
-						Instance = player.Character,
-						Parent = player.Character.Parent,
-						Ignore = player.Character,
-					}
+				if player ~= localplayer then
+					local character = player.Character
+					if character then
+						if player.Neutral or player.Team ~= localplayer.Team then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Parent = character.Parent,
+								Ignore = character,
+							}
+						end
+					end
 				end
 			end
 			return enemies
@@ -735,7 +771,7 @@ return {
 
 	[2788648141] = {
 		BodyParts = {
-			["TORSO"] = "UpperTorso",
+			["TORSO"] = "HumanoidRootPart",
 			["HEAD"] = "Head",
 		},
 		Init = function(self)
@@ -751,17 +787,22 @@ return {
 			return self.BodyParts[text:upper()] or ""
 		end,
 		GetIgnorables = function(self)
-			return {}
+			return nil
 		end,
 		GetEnemies = function(self)
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
-				if (player.Character and (player.Neutral or player.Team ~= localplayer)) and player ~= localplayer and player.Character:FindFirstChild("Humanoid").Health>0 then
-					enemies[#enemies+1] = {
-						Instance = player.Character,
-						Parent = player.Character.Parent,
-						Ignore = player.Character,
-					}
+				if player ~= localplayer then
+					local character = player.Character
+					if character then
+						if player.Neutral or player.Team ~= localplayer.Team then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Parent = character.Parent,
+								Ignore = character,
+							}
+						end
+					end
 				end
 			end
 			return enemies
@@ -805,17 +846,20 @@ return {
 			return self.BodyParts[text:upper()] or ""
 		end,
 		GetIgnorables = function(self)
-			return {}
+			return nil
 		end,
 		GetEnemies = function(self)
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
-				if (player) and player.Character and player ~= localplayer then
-					enemies[#enemies+1] = {
-						Instance = player.Character,
-						Parent = player.Character.Parent,
-						Ignore = player.Character,
-					}
+				if player ~= localplayer then
+					local character = player.Character
+					if character then
+						enemies[#enemies+1] = {
+							Instance = character,
+							Parent = character.Parent,
+							Ignore = character,
+						}
+					end
 				end
 			end
 			return enemies
@@ -864,12 +908,15 @@ return {
 		GetEnemies = function(self)
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
-				if (player~=localplayer and player.Character) and (player.Neutral or player.Team ~= localplayer.Team) then
-					enemies[#enemies+1] = {
-						Instance = player.Character,
-						Parent = player.Character.Parent,
-						Ignore = player.Character,
-					}
+				if player ~= localplayer then 
+					local character = player.Character
+					if player.Character and (player.Neutral or player.Team ~= localplayer.Team) then
+						enemies[#enemies+1] = {
+							Instance = character,
+							Parent = character.Parent,
+							Ignore = character,
+						}
+					end
 				end
 			end
 			return enemies
@@ -922,13 +969,25 @@ return {
 		end,
 		GetEnemies = function(self)
 			local enemies = {}
+			--for _,player in next, players:GetPlayers() do
+			--	if (player~=localplayer and player.Character) and (player.Neutral or player.Team ~= localplayer.Team) then
+			--		enemies[#enemies+1] = {
+			--			Instance = player.Character,
+			--			Parent = player.Character.Parent,
+			--			Ignore = player.Character,
+			--		}
+			--	end
+			--end
 			for _,player in next, players:GetPlayers() do
-				if (player~=localplayer and player.Character) and (player.Neutral or player.Team ~= localplayer.Team) then
-					enemies[#enemies+1] = {
-						Instance = player.Character,
-						Parent = player.Character.Parent,
-						Ignore = player.Character,
-					}
+				if player ~= localplayer then 
+					local character = player.Character
+					if character and (player.Neutral or player.Team ~= localplayer.Team) then
+						enemies[#enemies+1] = {
+							Instance = character,
+							Parent = character.Parent,
+							Ignore = character,
+						}
+					end
 				end
 			end
 			return enemies
@@ -966,7 +1025,7 @@ return {
 			["HEAD"] = "Head",
 		},
 		Init = function(self)
-
+			v1 = workspace:WaitForChild("MapFolder"):WaitForChild("Players")
 		end,
 		SetCFrame = function(self,CFrame)
 			camera.CFrame = CFrame
@@ -982,19 +1041,33 @@ return {
 		end,
 		GetEnemies = function(self)
 		    local enemies = {}
-			for i,v in pairs(game.Players:GetPlayers()) do
-                if v~=localplayer and (v.Neutral or v.Team ~= localplayer.Team) then
-                    local character = workspace.MapFolder.Players:FindFirstChild(v.Name)
-                    if character then
-                        enemies[#enemies+1] = {
-                            Instance = character,
-                            Ignore = character,
-                            Parent = character.Parent
-                        }
-                    end
-                end
+			--for i,v in pairs(game.Players:GetPlayers()) do
+   --             if v~=localplayer and (v.Neutral or v.Team ~= localplayer.Team) then
+   --                 local character = workspace.MapFolder.Players:FindFirstChild(v.Name)
+   --                 if character then
+   --                     enemies[#enemies+1] = {
+   --                         Instance = character,
+   --                         Ignore = character,
+   --                         Parent = character.Parent
+   --                     }
+   --                 end
+   --             end
+			--end
+			for i,v in pairs(players:GetPlayers()) do
+				if v~=localplayer then
+					if v.Neutral or v.Team ~= localplayer.Team then
+						local character = v1:FindFirstChild(v.Name)
+						if character then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Ignore = character,
+								Parent = character.Parent
+							}
+						end
+					end
+				end
 			end
-        return enemies
+        	return enemies
 		end,
 		GetLocalCharacter = function(self)
 			return localplayer.Character
@@ -1022,4 +1095,4 @@ return {
 			__TYPE = "API",
 		},
 	},
-}
+}	
