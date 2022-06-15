@@ -1,4 +1,20 @@
 -- if you're looking through source to learn/copy code go ahead. maybe credit me :)).
+local http = game:GetService("HttpService")
+local preloadprovider = game:GetService("ContentProvider")
+local new = false
+
+if not isfolder("Ware") then
+	makefolder("Ware")
+end
+if not isfolder("Ware/AIMWARE") then
+    new=true
+	makefolder("Ware/AIMWARE")
+end
+local aimwareconfig = isfile("Ware/AIMWARE/CONFIG.txt") and readfile("Ware/AIMWARE/CONFIG.txt") or not writefile("Ware/AIMWARE/CONFIG.txt","{\"SilentLaunch\":false} ") and "{\"SilentLaunch\":false} "
+aimwareconfig = http:JSONDecode(aimwareconfig)
+
+-- config is not done yet so PLEASE don't fuuuken use it! :).
+
 local gui = Instance.new("ScreenGui")
 local TextButton = Instance.new("TextButton")
 local UICorner = Instance.new("UICorner")
@@ -94,7 +110,7 @@ local UICorner_22 = Instance.new("UICorner")
 local Dismiss = Instance.new("TextButton")
 local UICorner_23 = Instance.new("UICorner")
 local ImageLabel_10 = Instance.new("ImageLabel")
-local NotificationText = Instance.new("TextLabel")
+local NotificationText = Instance.new("TextBox")
 local NotificationType = Instance.new("TextLabel")
 local UIPadding_5 = Instance.new("UIPadding")
 local LoadingFrame = Instance.new("Frame")
@@ -113,10 +129,11 @@ local NameTextLabel_8 = Instance.new("TextLabel")
 local Slider_6 = Instance.new("Frame")
 local UICorner_28 = Instance.new("UICorner")
 
+
+
 --Properties:
 
 gui.Name = "gui"
-gui.Parent = game.CoreGui
 gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 TextButton.Parent = gui
@@ -692,7 +709,7 @@ VersionText.BorderSizePixel = 0
 VersionText.Position = UDim2.new(0, 0, 1, 2)
 VersionText.Size = UDim2.new(0, 10, 0, 10)
 VersionText.Font = Enum.Font.SourceSansItalic
-VersionText.Text = "v0.1.210A"
+VersionText.Text = "gettingvers"
 VersionText.TextColor3 = Color3.fromRGB(59, 59, 59)
 VersionText.TextSize = 14.000
 VersionText.TextXAlignment = Enum.TextXAlignment.Left
@@ -933,6 +950,8 @@ NotificationText.Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit
 NotificationText.TextColor3 = Color3.fromRGB(255, 255, 255)
 NotificationText.TextSize = 15.000
 NotificationText.TextWrapped = true
+NotificationText.TextEditable = false
+NotificationText.ClearTextOnFocus = false
 
 NotificationType.Name = "NotificationType"
 NotificationType.Parent = Notif
@@ -1072,6 +1091,12 @@ UICorner_28.Parent = Slider_6
 
 LoadingText.Text = "Creating UI"
 
+preloadprovider:PreloadAsync({gui})
+if not aimwareconfig.SilentLaunch then
+	syn.protect_gui(gui)
+	gui.Parent = game.CoreGui
+end
+
 wait(.12)
 
 local userinputservice = game:GetService("UserInputService")
@@ -1082,15 +1107,6 @@ local camera = workspace.CurrentCamera
 local localplayer = game:GetService("Players").LocalPlayer
 local mouse = localplayer:GetMouse()
 
---[[local config
-
-if isfolder("WARE") then
-	if isfile("WARE/CONFIG.txt") then
-		config = readfile("WARE/CONFIG.txt")
-	end
-end]]-- can't be bothered rn.
-
-gui.Parent = game.CoreGui
 Head.ResampleMode = Enum.ResamplerMode.Pixelated
 Torso.ResampleMode = Enum.ResamplerMode.Pixelated
 
@@ -1113,6 +1129,7 @@ local renderstep = runservice.RenderStepped
 local maxvectoroffset = Vector3.new(4,5,2)
 local currentoffset = Vector3.new(0,0,0)
 local unvischeckcolor,viscolor,notviscolor = color3(255, 118, 21),color3(108,255,108),color3(255,55,55)
+local currentversion = "v0.1.210A"
 
 local mousefov = false
 local visualcheck = false
@@ -1121,21 +1138,24 @@ local chamson = false
 local lineson = false
 local frommiddleon = false
 
-syn.protect_gui(gui)
-
-local function notify(notificationtext,type)
-	while true do
-		if not Notif.Visible then
-			break
-		end
-		task.wait(2)
-	end
-	Notif.Visible = true
-	NotificationText.Text = notificationtext or "no text supplied"
-	NotificationType.Text = type or "NOTIFICATION"
-	Dismiss.MouseButton1Click:Connect(function()
-		Notif.Visible = false
-	end)
+local function notify(notificationtext,type,waittime)
+    spawn(function()
+        while true do
+    		if not Notif.Visible then
+    			break
+    		end
+    		renderstep:Wait()
+    	end
+    	Notif.Visible = true
+    	NotificationText.Text = notificationtext or "no text supplied"
+    	NotificationType.Text = type or "NOTIFICATION"
+    	Dismiss.BackgroundColor3 = Color3.fromRGB(13, 13, 13)
+    	wait(waittime)
+    	Dismiss.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+    	Dismiss.MouseButton1Click:Connect(function()
+    		Notif.Visible = false
+    	end)
+    end)
 end
 
 local function clearchildrenwithwhitelist(parent,whitelist) -- don't hate me please.
@@ -1150,15 +1170,17 @@ end
 
 LoadingText.Text = "Fetching API"
 tweenservice:Create(LoadingBar,TweenInfo.new(.12),{Size=udim2(.3,0,0,5)}):Play()
-
 local apitable = _G.a or loadstring(game:HttpGet("https://raw.githubusercontent.com/Wheeleee/AIMWARE/main/ApI"))() -- a lil API for games. feel free to use it. no documentation but just look through the source. it's pretty obv.
+assert(apitable,"API Not found.")
 local api = apitable[game.GameId] or apitable.UNIVERSAL
 LoadingText.Text = "Unpacking API"
 tweenservice:Create(LoadingBar,TweenInfo.new(.12),{Size=udim2(.5,0,0,5)}):Play()
 wait(.34) -- no way! fake loading time.... grrrrrrr.
+VersionText.Text = currentversion
 if api.Info.__TYPE  == "UNIVERSAL" then
-	notify("This game is not supported. AIMWARE will do it's best but some things may break. DM me, YouBuggin#6330, with the game link and I'll add support for this game.","WARNING")
+	notify("This game is not supported. AIMWARE will do it's best but some things may break. DM me, YouBuggin#6330, with the game link and I'll add support for this game.","WARNING",2)
 end
+notify("AIMWARE Welcomes you! Hope you find the script good.\nYou can find us at: https://discord.gg/Q2zYM8u6KR","MESSAGE")
 local periodic = api.PeriodicChecking
 api:Init()
 local days = math.ceil((os.time()-api.Info.Created)/86400)
@@ -1288,57 +1310,57 @@ local function addesp(player)
 		box.Thickness = 1
 		box.Color = color3(255, 118, 21)
 		local count,countmax = 0,1
+		local torso = character:FindFirstChild(translate(api,"torso"))
 		local renderconnection;renderconnection = runservice.RenderStepped:Connect(function()
-			local torso = character:FindFirstChild(translate(api,"torso"))
-			if ((character) and character.Parent) and character.Parent.Parent and torso then
-				count+=1
-				local torsoposition = torso.Position
-				local distance = (camera.CFrame.Position-torsoposition).magnitude
-				countmax = distance > 200 and 3 or distance > 350 and 5 or distance < 200 and 1 or 7
-				if count >= countmax then
-					count = 0
-					local width,height = 7,11 --boundingsize.X > boundingsize.Z and boundingsize.X or boundingsize.Z ------ don't use boundingsize, ew.
+			if character and torso then
+				if (character.Parent) and character.Parent.Parent then
+					count+=1
+					local torsoposition = torso.Position
+					local distance = (camera.CFrame.Position-torsoposition).magnitude
+					countmax = distance > 200 and 3 or distance > 350 and 5 or distance < 200 and 1 or 7
+					if count >= countmax then
+						count = 0
+						local width,height = 7,11 --boundingsize.X > boundingsize.Z and boundingsize.X or boundingsize.Z ------ don't use boundingsize, ew.
 
-					local aimpartvisible
-					if visualcheck then
-						local cameraposition = camera.CFrame.Position
-						local params = raycastparams()
-						params.FilterDescendantsInstances={camera,api:GetLocalCharacter()}
-						local raycastresult = workspace:Raycast(cameraposition,cframe(cameraposition,torsoposition).LookVector*100000,params)
-						aimpartvisible = (raycastresult) and raycastresult.Instance:IsDescendantOf(character) or false
-					else
-						aimpartvisible = false
-					end
-					local color = (visualcheck) and aimpartvisible and viscolor or (visualcheck) and notviscolor or unvischeckcolor
+						local aimpartvisible
+						if visualcheck then
+							local cameraposition = camera.CFrame.Position
+							local params = raycastparams()
+							params.FilterDescendantsInstances={camera,api:GetLocalCharacter()}
+							local raycastresult = workspace:Raycast(cameraposition,cframe(cameraposition,torsoposition).LookVector*100000,params)
+							aimpartvisible = (raycastresult) and raycastresult.Instance:IsDescendantOf(character) or false
+						end
+						local color = (visualcheck) and aimpartvisible and viscolor or (visualcheck) and notviscolor or unvischeckcolor
 
-					local aimpartposition2d,aimpartonscreen
-					if lineson or chamson then
-						aimpartposition2d,aimpartonscreen = camera:WorldToViewportPoint(torsoposition)
-					end
+						local aimpartposition2d,aimpartonscreen
+						if lineson or chamson then
+							aimpartposition2d,aimpartonscreen = camera:WorldToViewportPoint(torsoposition)
+						end
 
-					if lineson and aimpartonscreen then
-						line.Visible = true
-						line.From = frommiddleon and middlescreen or bottomscreen
-						line.To = vector2(aimpartposition2d.x,aimpartposition2d.y)
-						line.Color = color
-					else
-						line.Visible = false
+						if lineson and aimpartonscreen then
+							line.Visible = true
+							line.From = frommiddleon and middlescreen or bottomscreen
+							line.To = vector2(aimpartposition2d.x,aimpartposition2d.y)
+							line.Color = color
+						else
+							line.Visible = false
+						end
+						if chamson and aimpartonscreen then
+							local boxsize = vector2((width*500)/distance,(height*515)/distance)/(camera.FieldOfView/70) -- if you're wondering how i got 500/515. don't ask, im scarred.
+							box.Visible = true
+							box.Size = boxsize
+							box.Position = vector2(aimpartposition2d.x-boxsize.x/2,aimpartposition2d.y-boxsize.y/2)
+							box.Color = color
+						else
+							box.Visible = false
+						end
 					end
-					if chamson and aimpartonscreen then
-						local boxsize = vector2((width*500)/distance,(height*515)/distance)/(camera.FieldOfView/70) -- if you're wondering how i got 500/515. don't ask, im scarred.
-						box.Visible = true
-						box.Size = boxsize
-						box.Position = vector2(aimpartposition2d.x-boxsize.x/2,aimpartposition2d.y-boxsize.y/2)
-						box.Color = color
-					else
-						box.Visible = false
-					end
+				else
+					renderconnection:Disconnect()
+					box:Remove()
+					line:Remove()
+					esp[debugid]=false
 				end
-			else
-				renderconnection:Disconnect()
-				box:Remove()
-				line:Remove()
-				esp[debugid]=false
 			end
 		end)
 	end
@@ -1362,10 +1384,6 @@ end)
 userinputservice.InputBegan:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.MouseButton2 then
 		aim = true
-	elseif input.KeyCode == Enum.KeyCode.F then
-		local mousepositiononui = vector2(mouse.x,mouse.y)-BodypartSelect.AbsolutePosition
-		local offsetfrommiddleui = mousepositiononui-(BodypartSelect.AbsoluteSize/2-vector2(0,16))
-		local y,x = -(offsetfrommiddleui.y/80),offsetfrommiddleui.x/62
 	end
 end)
 userinputservice.InputEnded:Connect(function(input)
@@ -1397,7 +1415,7 @@ runservice.RenderStepped:Connect(function()
 	local field = camera.FieldOfView/70 -- keeping the circle at the same size compared to the FOV.
 	local actualfov = fov/field
 	fovcircle.Radius = actualfov
-	if (aim) and api:Valid() and aimboton then
+	if ((aim) and aimboton) and api:Valid() then
 		if periodic or not aimdata then
 			aimdata = nil
 			local enemies = api:GetEnemies()
@@ -1416,7 +1434,7 @@ runservice.RenderStepped:Connect(function()
 								if visualcheck then -- in aimbots it's critical to put shit inside IF statments so performance goes up when disabling an option.
 									local cameraposition = camera.CFrame.Position
 									local params = raycastparams()
-									params.FilterDescendantsInstances={camera,api:GetLocalCharacter()}
+									params.FilterDescendantsInstances={camera,api:GetLocalCharacter(),api:GetIgnorables()}
 									raycastresult = workspace:Raycast(cameraposition,cframe(cameraposition,aimatpart.Position).LookVector*100000,params)
 								end
 								if not visualcheck or (raycastresult) and raycastresult.Instance:IsDescendantOf(instance) then
@@ -1445,7 +1463,7 @@ runservice.RenderStepped:Connect(function()
 			local aimatpart = aimdata[3]
 			if aimatpart then
 				if aimtype == "mousedist" and aimatpart then
-					field = field/userinputservice.MouseDeltaSensitivity -- make sure the aimbot doesn't go haywire when games reduce the mouseSens.
+					field = field/userinputservice.MouseDeltaSensitivity -- make sure the aimbot doesn't go haywire when games reduce/increases the mouseSens.
 					local screenposition,visible = camera:WorldToScreenPoint(aimatpart.Position)
 					local move = vector2(-((mouse.x-screenposition.x)),-((mouse.y-screenposition.y)))*field/smoothingprocent
 					mousemoverel(move.x,move.y) -- "WHY WON'T YOU USE camera.CFrame" ---- shut up.
@@ -1458,3 +1476,6 @@ LoadingText.Text = "DONE"
 tweenservice:Create(LoadingBar,TweenInfo.new(.12),{Size=udim2(1,0,0,5)}):Play()
 task.wait(2.5)
 LoadingFrame:Destroy()
+if aimwareconfig.SilentLaunch then
+	gui:Destroy()
+end
