@@ -420,7 +420,7 @@ return {
 			camera.CFrame = CFrame
 		end,
 		Valid = function(self)
-			return localplayer.PlayerData.TeamValue.Value and true or false
+			return localplayer.PlayerData.TeamValue.Value ~= 0 and true or false
 		end,
 		Translate = function(self,text)
 			return self.BodyParts[text:upper()] or ""
