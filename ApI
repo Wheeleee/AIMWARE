@@ -1,8 +1,9 @@
- local players = game:GetService("Players")
+local players = game:GetService("Players")
 local localplayer = players.LocalPlayer
 local camera = workspace.CurrentCamera
 
 local indexfunc = getrawmetatable(game).__index
+local newindexfunc = getrawmetatable(game).__newindex
 local v1,v2,v3,v4,v5
 
 return {
@@ -14,7 +15,7 @@ return {
 		Init = function(self)
 		end,
 		SetCFrame = function(self,CFrame)
-			camera.CFrame = CFrame
+			newindexfunc(camera,"CFrame",CFrame)
 		end,
 		Valid = function(self)
 			return true
@@ -73,7 +74,7 @@ return {
 
 		end,
 		SetCFrame = function(self,CFrame)
-			camera.CFrame = CFrame
+			newindexfunc(camera,"CFrame",CFrame)
 		end,
 		Valid = function(self)
 			return true
@@ -88,20 +89,20 @@ return {
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
 				if player ~= localplayer then
-				    local character = player.Character
-				    if character then
-			            enemies[#enemies+1] = {
-				        	Instance = character,
-    						Parent = character.Parent,
-    						Ignore = character,
-    					}
-				    end
+					local character = indexfunc(player,"Character")
+					if character then
+						enemies[#enemies+1] = {
+							Instance = character,
+							Parent = indexfunc(character,"Parent"),
+							Ignore = character,
+						}
+					end
 				end
 			end
 			return enemies
 		end,
 		GetLocalCharacter = function(self)
-			return localplayer.Character
+			return indexfunc(localplayer,"Character")
 		end,
 		GetLocalPosition = function(self)
 			local character = self:GetLocalCharacter()
@@ -130,7 +131,7 @@ return {
 
 		end,
 		SetCFrame = function(self,CFrame)
-			camera.CFrame = CFrame
+			newindexfunc(camera,"CFrame",CFrame)
 		end,
 		Valid = function(self)
 			return true
@@ -145,22 +146,22 @@ return {
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
 				if player ~= localplayer then
-				    local character = player.Character
-				    if character then
-				        if player.Team ~= localplayer.Team then
-				            enemies[#enemies+1] = {
-					        	Instance = character,
-        						Parent = character.Parent,
-        						Ignore = character,
-        					}
-				        end
-				    end
+					local character = indexfunc(player,"Character")
+					if character then
+						if indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Parent = indexfunc(character,"Parent"),
+								Ignore = character,
+							}
+						end
+					end
 				end
 			end
 			return enemies
 		end,
 		GetLocalCharacter = function(self)
-			return localplayer.Character
+			return indexfunc(localplayer,"Character")
 		end,
 		GetLocalPosition = function(self)
 			local character = self:GetLocalCharacter()
@@ -189,7 +190,7 @@ return {
 
 		end,
 		SetCFrame = function(self,CFrame)
-			camera.CFrame = CFrame
+			newindexfunc(camera,"CFrame",CFrame)
 		end,
 		Valid = function(self)
 			return true
@@ -204,22 +205,22 @@ return {
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
 				if player ~= localplayer then
-				    local character = player.Character
-				    if character then
-				        if player.Team ~= localplayer.Team then
-				            enemies[#enemies+1] = {
-					        	Instance = character,
-        						Parent = character.Parent,
-        						Ignore = character,
-        					}
-				        end
-				    end
+					local character = indexfunc(player,"Character")
+					if character then
+						if indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Parent = indexfunc(character,"Parent"),
+								Ignore = character,
+							}
+						end
+					end
 				end
 			end
 			return enemies
 		end,
 		GetLocalCharacter = function(self)
-			return localplayer.Character
+			return indexfunc(localplayer,"Character")
 		end,
 		GetLocalPosition = function(self)
 			local character = self:GetLocalCharacter()
@@ -248,7 +249,7 @@ return {
 
 		end,
 		SetCFrame = function(self,CFrame)
-			camera.CFrame = CFrame
+			newindexfunc(camera,"CFrame",CFrame)
 		end,
 		Valid = function(self)
 			return true
@@ -263,11 +264,11 @@ return {
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
 				if player ~= localplayer then
-					local character = player.Character
+					local character = indexfunc(player,"Character")
 					if character then
 						enemies[#enemies+1] = {
 							Instance = character,
-							Parent = character.Parent,
+							Parent = indexfunc(character,"Parent"),
 							Ignore = character,
 						}
 					end
@@ -276,7 +277,7 @@ return {
 			return enemies
 		end,
 		GetLocalCharacter = function(self)
-			return localplayer.Character
+			return indexfunc(localplayer,"Character")
 		end,
 		GetLocalPosition = function(self)
 			local character = self:GetLocalCharacter()
@@ -305,7 +306,7 @@ return {
 
 		end,
 		SetCFrame = function(self,CFrame)
-			camera.CFrame = CFrame
+			newindexfunc(camera,"CFrame",CFrame)
 		end,
 		Valid = function(self)
 			return true
@@ -319,13 +320,13 @@ return {
 		GetEnemies = function(self)
 			local enemies = {}
 			for _,character in next, workspace:GetChildren() do
-			    if character.Name=="r15_rig" then
-			       enemies[#enemies+1] = {
+				if indexfunc(character,"Name")=="r15_rig" then
+					enemies[#enemies+1] = {
 						Instance = character,
-						Parent = character.Parent,
+						Parent = indexfunc(character,"Parent"),
 						Ignore = character,
 					} 
-			    end
+				end
 			end
 			return enemies
 		end,
@@ -356,10 +357,10 @@ return {
 			["HEAD"] = "head",
 		},
 		Init = function(self)
-		    v1=workspace:WaitForChild("characters")
+			v1=workspace:WaitForChild("characters")
 		end,
 		SetCFrame = function(self,CFrame)
-			camera.CFrame = CFrame
+			newindexfunc(camera,"CFrame",CFrame)
 		end,
 		Valid = function(self)
 			return true
@@ -373,13 +374,13 @@ return {
 		GetEnemies = function(self)
 			local enemies = {}
 			for _,character in next, v1:GetChildren() do
-			    if character.Name~="StarterCharacter" then
-			        enemies[#enemies+1] = {
-    					Instance = character,
-    					Parent = character.Parent,
-    					Ignore = character,
-    				} 
-			    end
+				if indexfunc(character,"Name")~="StarterCharacter" then
+					enemies[#enemies+1] = {
+						Instance = character,
+						Parent = indexfunc(character,"Parent"),
+						Ignore = character,
+					} 
+				end
 			end
 			return enemies
 		end,
@@ -413,7 +414,7 @@ return {
 
 		end,
 		SetCFrame = function(self,CFrame)
-			camera.CFrame = CFrame
+			newindexfunc(camera,"CFrame",CFrame)
 		end,
 		Valid = function(self)
 			return true
@@ -428,12 +429,12 @@ return {
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
 				if player ~= localplayer then
-					local character = player.Character
+					local character = indexfunc(player,"Character")
 					if character then
-						if player.Team ~= localplayer.Team then
+						if indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") then
 							enemies[#enemies+1] = {
 								Instance = character,
-								Parent = character.Parent,
+								Parent = indexfunc(character,"Parent"),
 								Ignore = character,
 							}
 						end
@@ -443,7 +444,7 @@ return {
 			return enemies
 		end,
 		GetLocalCharacter = function(self)
-			return localplayer.Character
+			return indexfunc(localplayer,"Character")
 		end,
 		GetLocalPosition = function(self)
 			local character = self:GetLocalCharacter()
@@ -472,7 +473,7 @@ return {
 
 		end,
 		SetCFrame = function(self,CFrame)
-			camera.CFrame = CFrame
+			newindexfunc(camera,"CFrame",CFrame)
 		end,
 		Valid = function(self)
 			return true
@@ -487,12 +488,12 @@ return {
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
 				if player ~= localplayer then
-					local character = player.Character
+					local character = indexfunc(player,"Character")
 					if character then
-						if player.Neutral or player.Team ~= localplayer.Team then
+						if indexfunc(player,"Neutral") or indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") then
 							enemies[#enemies+1] = {
 								Instance = character,
-								Parent = character.Parent,
+								Parent = indexfunc(character,"Parent"),
 								Ignore = character,
 							}
 						end
@@ -502,7 +503,7 @@ return {
 			return enemies
 		end,
 		GetLocalCharacter = function(self)
-			return localplayer.Character
+			return indexfunc(localplayer,"Character")
 		end,
 		GetLocalPosition = function(self)
 			local character = self:GetLocalCharacter()
@@ -531,7 +532,7 @@ return {
 
 		end,
 		SetCFrame = function(self,CFrame)
-			camera.CFrame = CFrame
+			newindexfunc(camera,"CFrame",CFrame)
 		end,
 		Valid = function(self)
 			return true
@@ -546,11 +547,11 @@ return {
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
 				if player ~= localplayer then
-					local character = player.Character
+					local character = indexfunc(player,"Character")
 					if character then
 						enemies[#enemies+1] = {
 							Instance = character,
-							Parent = character.Parent,
+							Parent = indexfunc(character,"Parent"),
 							Ignore = character,
 						}
 					end
@@ -559,7 +560,7 @@ return {
 			return enemies
 		end,
 		GetLocalCharacter = function(self)
-			return localplayer.Character
+			return indexfunc(localplayer,"Character")
 		end,
 		GetLocalPosition = function(self)
 			local character = self:GetLocalCharacter()
@@ -585,13 +586,13 @@ return {
 			["HEAD"] = "Head",
 		},
 		Init = function(self)
-		
+			v1 = localplayer:WaitForChild("PlayerData"):WaitForChild("TeamValue")
 		end,
 		SetCFrame = function(self,CFrame)
-			camera.CFrame = CFrame
+			newindexfunc(camera,"CFrame",CFrame)
 		end,
 		Valid = function(self)
-			return localplayer.PlayerData.TeamValue.Value ~= 0 and true or false
+			return indexfunc(v1,"Value") ~= 0 and true or false
 		end,
 		Translate = function(self,text)
 			return self.BodyParts[text:upper()] or ""
@@ -603,12 +604,12 @@ return {
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
 				if player ~= localplayer then
-					local character = player.Character
+					local character = indexfunc(player,"Character")
 					if player.Character then
-						if player.PlayerData.TeamValue.Value ~= localplayer.PlayerData.TeamValue.Value then
+						if indexfunc(indexfunc(indexfunc(player,"PlayerData"),"TeamValue"),"Value") ~= indexfunc(v1,"Value") then
 							enemies[#enemies+1] = {
 								Instance = character,
-								Parent = character.Parent,
+								Parent = indexfunc(character,"Parent"),
 								Ignore = character,
 							}
 						end
@@ -618,7 +619,7 @@ return {
 			return enemies
 		end,
 		GetLocalCharacter = function(self)
-			return localplayer.Character
+			return indexfunc(localplayer,"Character")
 		end,
 		GetLocalPosition = function(self)
 			local character = self:GetLocalCharacter()
@@ -647,7 +648,7 @@ return {
 
 		end,
 		SetCFrame = function(self,CFrame)
-			camera.CFrame = CFrame
+			newindexfunc(camera,"CFrame",CFrame)
 		end,
 		Valid = function(self)
 			return true
@@ -662,11 +663,11 @@ return {
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
 				if player ~= localplayer then
-					local character = player.Character
+					local character = indexfunc(player,"Character")
 					if character then
 						enemies[#enemies+1] = {
 							Instance = character,
-							Parent = character.Parent,
+							Parent = indexfunc(character,"Parent"),
 							Ignore = character,
 						}
 					end
@@ -675,7 +676,7 @@ return {
 			return enemies
 		end,
 		GetLocalCharacter = function(self)
-			return localplayer.Character
+			return indexfunc(localplayer,"Character")
 		end,
 		GetLocalPosition = function(self)
 			local character = self:GetLocalCharacter()
@@ -704,7 +705,7 @@ return {
 
 		end,
 		SetCFrame = function(self,CFrame)
-			camera.CFrame = CFrame
+			newindexfunc(camera,"CFrame",CFrame)
 		end,
 		Valid = function(self)
 			return true
@@ -719,12 +720,12 @@ return {
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
 				if player ~= localplayer then
-					local character = player.Character
+					local character = indexfunc(player,"Character")
 					if character then
-						if player.Neutral or player.Team ~= localplayer.Team then
+						if indexfunc(player,"Neutral") or indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") then
 							enemies[#enemies+1] = {
 								Instance = character,
-								Parent = character.Parent,
+								Parent = indexfunc(character,"Parent"),
 								Ignore = character,
 							}
 						end
@@ -734,7 +735,7 @@ return {
 			return enemies
 		end,
 		GetLocalCharacter = function(self)
-			return localplayer.Character
+			return indexfunc(localplayer,"Character")
 		end,
 		GetLocalPosition = function(self)
 			local character = self:GetLocalCharacter()
@@ -755,84 +756,15 @@ return {
 		},
 	},
 	[1175300013] = {
-    	BodyParts = {
-    		["TORSO"] = "HumanoidRootPart",
-    		["HEAD"] = "Head",
-    	},
-    	Init = function(self)
-    
-    	end,
-    	SetCFrame = function(self,CFrame)
-    		camera.CFrame = CFrame
-    	end,
-    	Valid = function(self)
-    		return true
-    	end,
-    	Translate = function(self,text)
-    		return self.BodyParts[text:upper()] or ""
-    	end,
-    	GetIgnorables = function(self)
-    		return nil
-    	end,
-    	GetEnemies = function(self)
-    		local enemies = {}
-			for _,player in next, players:GetPlayers() do
-				if player ~= localplayer then
-					local character = player.Character
-	    			if character then
-	    				enemies[#enemies+1] = {
-							Instance = character,
-							Parent = character.Parent,
-							Ignore = character,
-	    				}
-					end
-				end
-    		end
-    		return enemies
-    	end,
-    	GetLocalCharacter = function(self)
-    		return localplayer.Character
-    	end,
-    	GetLocalPosition = function(self)
-    		local character = self:GetLocalCharacter()
-    		if character then
-    			return character[self:Translate("HEAD")].Position
-    		end
-    	end,
-    	Info = {
-    		Created = 1654452304,
-    		GameName = "Blacklands",
-    		GameId = 1175300013,
-    		PlaceId = 3254838662,
-    		AntiCheatHash = "N/A",
-    		ClientHash = "N/A",
-    		GetClientHash = function() return "N/A" end,
-    		GetAntiCheatHash = function() return "N/A" end,
-    		__TYPE = "API",
-    	},
-    },
-	[1168263273] = {
 		BodyParts = {
-			["TORSO"] = "Chest",
+			["TORSO"] = "HumanoidRootPart",
 			["HEAD"] = "Head",
 		},
 		Init = function(self)
-		    hookfunction(getgenv().PluginManager,function()return;end)
-            for _,table in pairs(getgc(true)) do
-                if (typeof(table)=="table") and rawget(table,"SetTeamColor") then
-                    v1=table
-                    break
-                end
-            end
-            for i,v in pairs(getgc()) do
-                if (typeof(v)=="function") and debug.getinfo(v).name=="GetCharacter" then
-                    v2=v
-                    break
-                end
-            end
+
 		end,
 		SetCFrame = function(self,CFrame)
-			camera.CFrame = CFrame
+			newindexfunc(camera,"CFrame",CFrame)
 		end,
 		Valid = function(self)
 			return true
@@ -841,21 +773,90 @@ return {
 			return self.BodyParts[text:upper()] or ""
 		end,
 		GetIgnorables = function(self)
-			return unpack(workspace.Menu.Loadouts:GetChildren())
+			return nil
 		end,
 		GetEnemies = function(self)
-		    local enemies = {}
-            local playerlist = debug.getupvalue(v2,1)
-            for i,character in pairs(playerlist) do
-                local isfriendly = v1:ArePlayersFriendly(i,game.Players.LocalPlayer)
-                if not isfriendly then
-                    enemies[#enemies+1] = {
-						Instance = character.Body,
+			local enemies = {}
+			for _,player in next, players:GetPlayers() do
+				if player ~= localplayer then
+					local character = indexfunc(player,"Character")
+					if character then
+						enemies[#enemies+1] = {
+							Instance = character,
+							Parent = indexfunc(character,"Parent"),
+							Ignore = character,
+						}
+					end
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1654452304,
+			GameName = "Blacklands",
+			GameId = 1175300013,
+			PlaceId = 3254838662,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[1168263273] = {
+		BodyParts = {
+			["TORSO"] = "Chest",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+			hookfunction(getgenv().PluginManager,function()return;end)
+			for _,table in pairs(getgc(true)) do
+				if (typeof(table)=="table") and rawget(table,"SetTeamColor") then
+					v1=table
+					break
+				end
+			end
+			for i,v in pairs(getgc()) do
+				if (typeof(v)=="function") and debug.getinfo(v).name=="GetCharacter" then
+					v2=v
+					break
+				end
+			end
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return unpack(indexfunc(indexfunc(workspace,"Menu"),"Loadouts"):GetChildren())
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			local playerlist = debug.getupvalue(v2,1)
+			for i,character in pairs(playerlist) do
+				local isfriendly = v1:ArePlayersFriendly(i,localplayer)
+				if not isfriendly then
+					enemies[#enemies+1] = {
+						Instance = indexfunc(character,"Body"),
 						Parent = character,
 						Ignore = character,
 					}
-                end
-            end
+				end
+			end
 			return enemies
 		end,
 		GetLocalCharacter = function(self)
@@ -888,7 +889,7 @@ return {
 
 		end,
 		SetCFrame = function(self,CFrame)
-			camera.CFrame = CFrame
+			newindexfunc(camera,"CFrame",CFrame)
 		end,
 		Valid = function(self)
 			return true
@@ -903,12 +904,12 @@ return {
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
 				if player ~= localplayer then
-					local character = player.Character
+					local character = indexfunc(player,"Character")
 					if character then
-						if player.Neutral or player.Team ~= localplayer.Team then
+						if indexfunc(player,"Neutral") or indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") then
 							enemies[#enemies+1] = {
 								Instance = character,
-								Parent = character.Parent,
+								Parent = indexfunc(character,"Parent"),
 								Ignore = character,
 							}
 						end
@@ -918,7 +919,7 @@ return {
 			return enemies
 		end,
 		GetLocalCharacter = function(self)
-			return localplayer.Character
+			return indexfunc(localplayer,"Character")
 		end,
 		GetLocalPosition = function(self)
 			local character = self:GetLocalCharacter()
@@ -948,7 +949,7 @@ return {
 
 		end,
 		SetCFrame = function(self,CFrame)
-			camera.CFrame = CFrame
+			newindexfunc(camera,"CFrame",CFrame)
 		end,
 		Valid = function(self)
 			return true
@@ -963,12 +964,12 @@ return {
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
 				if player ~= localplayer then
-					local character = player.Character
+					local character = indexfunc(player,"Character")
 					if character then
-						if player.Neutral or player.Team ~= localplayer.Team then
+						if indexfunc(player,"Neutral") or indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") then
 							enemies[#enemies+1] = {
 								Instance = character,
-								Parent = character.Parent,
+								Parent = indexfunc(character,"Parent"),
 								Ignore = character,
 							}
 						end
@@ -978,7 +979,7 @@ return {
 			return enemies
 		end,
 		GetLocalCharacter = function(self)
-			return localplayer.Character
+			return indexfunc(localplayer,"Character")
 		end,
 		GetLocalPosition = function(self)
 			local character = self:GetLocalCharacter()
@@ -998,7 +999,7 @@ return {
 			__TYPE = "API",
 		},
 	},
-    [1390601379] = {
+	[1390601379] = {
 		BodyParts = {
 			["TORSO"] = "Torso",
 			["HEAD"] = "Head",
@@ -1007,7 +1008,7 @@ return {
 
 		end,
 		SetCFrame = function(self,CFrame)
-			camera.CFrame = CFrame
+			newindexfunc(camera,"CFrame",CFrame)
 		end,
 		Valid = function(self)
 			return true
@@ -1022,11 +1023,11 @@ return {
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
 				if player ~= localplayer then
-					local character = player.Character
+					local character = indexfunc(player,"Character")
 					if character then
 						enemies[#enemies+1] = {
 							Instance = character,
-							Parent = character.Parent,
+							Parent = indexfunc(character,"Parent"),
 							Ignore = character,
 						}
 					end
@@ -1035,7 +1036,7 @@ return {
 			return enemies
 		end,
 		GetLocalCharacter = function(self)
-			return localplayer.Character
+			return indexfunc(localplayer,"Character")
 		end,
 		GetLocalPosition = function(self)
 			local character = self:GetLocalCharacter()
@@ -1064,7 +1065,7 @@ return {
 
 		end,
 		SetCFrame = function(self,CFrame)
-			camera.CFrame = CFrame
+			newindexfunc(camera,"CFrame",CFrame)
 		end,
 		Valid = function(self)
 			return self:GetLocalCharacter() and true or false
@@ -1073,26 +1074,28 @@ return {
 			return self.BodyParts[text:upper()] or ""
 		end,
 		GetIgnorables = function(self)
-			return unpack(workspace.IgnoreThese:GetChildren())
+			return unpack(indexfunc(workspace,"IgnoreThese"):GetChildren())
 		end,
 		GetEnemies = function(self)
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
-				if player ~= localplayer then 
-					local character = player.Character
-					if player.Character and (player.Neutral or player.Team ~= localplayer.Team) then
-						enemies[#enemies+1] = {
-							Instance = character,
-							Parent = character.Parent,
-							Ignore = character,
-						}
+				if player ~= localplayer then
+					local character = indexfunc(player,"Character")
+					if character then
+						if indexfunc(player,"Neutral") or indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Parent = indexfunc(character,"Parent"),
+								Ignore = character,
+							}
+						end
 					end
 				end
 			end
 			return enemies
 		end,
 		GetLocalCharacter = function(self)
-			return localplayer.Character
+			return indexfunc(localplayer,"Character")
 		end,
 		GetLocalPosition = function(self)
 			local character = self:GetLocalCharacter()
@@ -1100,11 +1103,6 @@ return {
 				return character[self:Translate("HEAD")].Position
 			end
 		end,
-		Tabs = {
-			Silent = false,
-			WeaponModding = false,
-			Visuals = true,
-		},
 		Info = {
 			Created = 1635960653,
 			GameName = "Strucid",
@@ -1126,7 +1124,7 @@ return {
 
 		end,
 		SetCFrame = function(self,CFrame)
-			camera.CFrame = CFrame
+			newindexfunc(camera,"CFrame",CFrame)
 		end,
 		Valid = function(self)
 			return (self:GetLocalCharacter()) and self:GetLocalCharacter():FindFirstChild("Gun") and true or false
@@ -1135,26 +1133,28 @@ return {
 			return self.BodyParts[text:upper()] or ""
 		end,
 		GetIgnorables = function(self)
-			return unpack(workspace.Ray_Ignore:GetChildren()),unpack(workspace.Debris:GetChildren())
+			return unpack(indexfunc(workspace,"Ray_Ignore"):GetChildren()),unpack(indexfunc(workspace,"Debris"):GetChildren())
 		end,
 		GetEnemies = function(self)
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
-				if player ~= localplayer then 
-					local character = player.Character
-					if character and (player.Neutral or player.Team ~= localplayer.Team) then
-						enemies[#enemies+1] = {
-							Instance = character,
-							Parent = character.Parent,
-							Ignore = character,
-						}
+				if player ~= localplayer then
+					local character = indexfunc(player,"Character")
+					if character then
+						if indexfunc(player,"Neutral") or indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Parent = indexfunc(character,"Parent"),
+								Ignore = character,
+							}
+						end
 					end
 				end
 			end
 			return enemies
 		end,
 		GetLocalCharacter = function(self)
-			return localplayer.Character
+			return indexfunc(localplayer,"Character")
 		end,
 		GetLocalPosition = function(self)
 			local character = self:GetLocalCharacter()
@@ -1162,11 +1162,6 @@ return {
 				return character[self:Translate("HEAD")].Position
 			end
 		end,
-		Tabs = {
-			Silent = false,
-			WeaponModding = false,
-			Visuals = true,
-		},
 		Info = {
 			Created = 1636009701,
 			GameName = "Arsenal",
@@ -1189,7 +1184,7 @@ return {
 			v1 = workspace:WaitForChild("MapFolder"):WaitForChild("Players")
 		end,
 		SetCFrame = function(self,CFrame)
-			camera.CFrame = CFrame
+			newindexfunc(camera,"CFrame",CFrame)
 		end,
 		Valid = function(self)
 			return true
@@ -1201,25 +1196,25 @@ return {
 			return nil -- :) stop trying so much!
 		end,
 		GetEnemies = function(self)
-		    local enemies = {}
-			for i,v in pairs(players:GetPlayers()) do
-				if v~=localplayer then
-					if v.Neutral or v.Team ~= localplayer.Team then
-						local character = v1:FindFirstChild(v.Name)
+			local enemies = {}
+			for _,player in pairs(players:GetPlayers()) do
+				if player~=localplayer then
+					if indexfunc(player,"Neutral") or indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") then
+						local character = v1:FindFirstChild(indexfunc(player,"Name"))
 						if character then
 							enemies[#enemies+1] = {
 								Instance = character,
 								Ignore = character,
-								Parent = character.Parent
+								Parent = indexfunc(character,"Parent")
 							}
 						end
 					end
 				end
 			end
-        	return enemies
+			return enemies
 		end,
 		GetLocalCharacter = function(self)
-			return localplayer.Character
+			return indexfunc(localplayer,"Character")
 		end,
 		GetLocalPosition = function(self)
 			local character = self:GetLocalCharacter()
@@ -1227,11 +1222,6 @@ return {
 				return character[self:Translate("HEAD")].Position
 			end
 		end,
-		Tabs = {
-			Silent = false,
-			WeaponModding = false,
-			Visuals = true,
-		},
 		Info = {
 			Created = 1654363142,
 			GameName = "Rush Point",
