@@ -1,5 +1,6 @@
 -- if you're looking through source to learn/copy code go ahead. maybe credit me :)).
-local base = [[{"shortcuts":{"419":["CTRL+Q","chams"],"407":["CTRL+E","lines"],"409":["CTRL+G","aimbot"]},"startup":{"silentlaunch":false}}]]
+local base = [[{"shortcuts":{"LeftControlAWQAW":["CTRL+Q","chams"],"LeftControlAWEAW":["CTRL+E","lines"],"LeftControlAWGAW":["CTRL+G","aimbot"]},"startup":{"silentlaunch":false}}]]
+--{shortcuts={LEFTCONTROLAWQAW={"CTRL+Q","chams"},LEFTCONTROLAWEAW={"CTRL+E","chams"},LEFTCONTROLAWGAW={"CTRL+G","aimbot"}},startup={silentlaunch=false}}
 local http = game:GetService("HttpService")
 local preloadprovider = game:GetService("ContentProvider")
 local new = false
@@ -1252,10 +1253,11 @@ Torso.ResampleMode = Enum.ResamplerMode.Pixelated
 local color3 = Color3.fromRGB
 local udim2 = UDim2.new
 local vector2 = Vector2.new
+local gsub = string.gsub
 local cframe= CFrame.new
 local raycastparams = RaycastParams.new
 
-local shortcutslist = {} -- use Input.Keycode.Value for the shortcut. if it is multiple keys then add all the values togheter and put it into here.
+local shortcutslist = aimwareconfig.shortcuts
 local esp = {}
 local aimtype = "mousedist"
 local aimpart = "head"
@@ -1269,8 +1271,8 @@ local maxvectoroffset = Vector3.new(4,5,2)
 local currentoffset = Vector3.new(0,0,0)
 local mousefovoffset = Vector2.new(0,36) -- took me so long to figure out that the gui inset needs to be accounted for asw. fuck me man.
 local unvischeckcolor,viscolor,notviscolor = color3(255, 118, 21),color3(108,255,108),color3(255,55,55)
-local currentversion = "v0.1.415A"
-local currentshortcut = 0
+local currentversion = "v0.1.416A"
+local currentshortcut = ""
 
 local shortcutopen = false
 
@@ -1363,12 +1365,11 @@ ShortcutsButton.MouseButton1Click:Connect(function()
 	tweenservice:Create(ShortcutsFrame,TweenInfo.new(.12),{Position = shortcutopen and udim2(0,1,0,1) or udim2(0,1,1,1)}):Play()
 end)
 
-for number,shortcut in pairs(aimwareconfig.shortcuts) do
+for number,shortcut in pairs(shortcutslist) do
 	local ui = shortcutui:Clone()
 	ui.Parent = ShortcutsScrollingFrame
 	ui.Text = shortcut[1]
 	ui.ShortcutText.Text = shortcut[2]:upper()
-	shortcutslist[number] = shortcut[2]
 end
 
 local aimbotcheckfunction = function()
@@ -1548,7 +1549,7 @@ userinputservice.InputBegan:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.MouseButton2 then
 		aim = true
 	elseif input.UserInputType == Enum.UserInputType.Keyboard then
-		currentshortcut+=input.KeyCode.Value
+		currentshortcut=currentshortcut..input.KeyCode.Name.."AW"
 	end
 end)
 userinputservice.InputEnded:Connect(function(input)
@@ -1561,7 +1562,8 @@ userinputservice.InputEnded:Connect(function(input)
 		onfovslider = false
 		onsmoothnessslider = false
 	elseif input.UserInputType == Enum.UserInputType.Keyboard then
-		local shortcutname = shortcutslist[tostring(currentshortcut)]
+		local shortcutname = shortcutslist[currentshortcut]
+		shortcutname = shortcutname and shortcutname[2] or nil
 		if shortcutname == "aimbot" then 
 			aimbotcheckfunction()
 		elseif shortcutname == "chams" then
@@ -1569,7 +1571,7 @@ userinputservice.InputEnded:Connect(function(input)
 		elseif shortcutname == "lines" then
 			linescheckfunction()
 		end
-		currentshortcut-=input.KeyCode.Value
+		currentshortcut=gsub(currentshortcut,input.KeyCode.Name.."AW","")
 	end
 end)
 
