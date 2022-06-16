@@ -2,6 +2,7 @@
 local localplayer = players.LocalPlayer
 local camera = workspace.CurrentCamera
 
+local indexfunc = getrawmetatable(game).__index
 local v1,v2,v3,v4,v5
 
 return {
@@ -28,12 +29,12 @@ return {
 			local enemies = {}
 			for _,player in next, players:GetPlayers() do
 				if player ~= localplayer then
-					local character = player.Character
+					local character = indexfunc(player,"Character")
 					if character then
-						if (player.Team ~= localplayer.Team or player.Neutral) then
+						if (indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") or indexfunc(player,"Neutral")) then
 							enemies[#enemies+1] = {
 								Instance = character,
-								Parent = character.Parent,
+								Parent = indexfunc(character,"Parent"),
 								Ignore = character,
 							}
 						end
@@ -43,7 +44,7 @@ return {
 			return enemies
 		end,
 		GetLocalCharacter = function(self)
-			return localplayer.Character
+			return indexfunc(localplayer,"Character")
 		end,
 		GetLocalPosition = function(self)
 			local character = self:GetLocalCharacter()
@@ -51,11 +52,6 @@ return {
 				return character[self:Translate("HEAD")].Position
 			end
 		end,
-		Tabs = {
-			Silent = false,
-			WeaponModding = false,
-			Visuals = true,
-		},
 		Info = {
 			Created = 1654459251,
 			GameName = game.Name,
