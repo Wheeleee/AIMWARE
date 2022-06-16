@@ -1202,7 +1202,7 @@ return {
 			return self.BodyParts[text:upper()] or ""
 		end,
 		GetIgnorables = function(self)
-			return unpack(workspace.Ray_Ignore:GetChildren()),unpack(workspace.Debris:GetChildren())
+			return nil -- :) stop trying so much!
 		end,
 		GetEnemies = function(self)
 		    local enemies = {}
