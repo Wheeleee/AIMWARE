@@ -1255,6 +1255,7 @@ local color3 = Color3.fromRGB
 local udim2 = UDim2.new
 local vector2 = Vector2.new
 local gsub = string.gsub
+local ceil = math.ceil
 local cframe= CFrame.new
 local raycastparams = RaycastParams.new
 
@@ -1272,7 +1273,7 @@ local maxvectoroffset = Vector3.new(4,5,2)
 local currentoffset = Vector3.new(0,0,0)
 local mousefovoffset = Vector2.new(0,36) -- took me so long to figure out that the gui inset needs to be accounted for asw. fuck me man.
 local unvischeckcolor,viscolor,notviscolor = color3(255, 118, 21),color3(108,255,108),color3(255,55,55)
-local currentversion = "v0.1.516A"
+local currentversion = "v0.1.576A"
 local currentshortcut = ""
 
 local shortcutopen = false
@@ -1469,6 +1470,11 @@ local function addesp(player)
 	local debugid = character:GetDebugId()
 	if not esp[debugid] and api:Valid() then
 		esp[debugid]=true
+		local distancetext = Drawing.new("Text")
+		distancetext.Size = 12
+		distancetext.Visible = true
+		distancetext.Text = "Fuck"
+		distancetext.Outline = true
 		local line = Drawing.new("Line")
 		line.Thickness = 1
 		line.Color = color3(255, 118, 21)
@@ -1486,6 +1492,7 @@ local function addesp(player)
 					local torsoposition = indexfunc(torso,"Position")
 					local cameraposition = indexfunc(camera,"CFrame").Position
 					local distance = (cameraposition-torsoposition).magnitude
+					local field = indexfunc(camera,"FieldOfView")/70
 					countmax = distance > 200 and 3 or distance > 350 and 5 or distance < 200 and 1 or 7
 					if count >= countmax then
 						count = 0
@@ -1514,18 +1521,28 @@ local function addesp(player)
 							line.Visible = false
 						end
 						if chamson and aimpartonscreen then
-							local boxsize = vector2((width*500)/distance,(height*515)/distance)/(indexfunc(camera,"FieldOfView")/70) -- if you're wondering how i got 500/515. don't ask, im scarred.
+							local boxsize = vector2((width*500)/distance,(height*515)/distance)/field -- if you're wondering how i got 500/515. don't ask, im scarred.
 							box.Visible = true
 							box.Size = boxsize
 							box.Position = vector2(aimpartposition2d.x-boxsize.x/2,aimpartposition2d.y-boxsize.y/2)
 							box.Color = color
+							distancetext.Visible = true
+							distancetext.ZIndex = ceil(distance)
+							distancetext.Position = box.Position+vector2(0,boxsize.Y)
+							distancetext.Text = "DIST: "..ceil(distance)
+							local textsize = 868/distance/field
+							textsize = textsize>11 and textsize or 11
+							distancetext.Size = textsize
+							distancetext.Color = color
 						else
+						    distancetext.Visible = false
 							box.Visible = false
 						end
 					end
 				else
 					renderconnection:Disconnect()
 					box:Remove()
+					distancetext:Remove()
 					line:Remove()
 					esp[debugid]=false
 				end
