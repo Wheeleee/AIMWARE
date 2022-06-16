@@ -1595,6 +1595,7 @@ runservice.RenderStepped:Connect(function()
 	if ((aim) and aimboton) and api:Valid() then
 		if periodic or not vaimatpart then
 			vaimatpart = nil
+			vdistance = nil
 			local enemies = api:GetEnemies()
 			if aimtype == "mousedist" then
 				for index = 1,#enemies do
