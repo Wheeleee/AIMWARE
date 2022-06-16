@@ -1,3 +1,4 @@
+local print = function(text) rconsoleprint(text.."\n") end
 -- if you're looking through source to learn/copy code go ahead. maybe credit me :)).
 local base = [[{"shortcuts":{"LeftControlAWQAW":["CTRL+Q","chams"],"LeftControlAWEAW":["CTRL+E","lines"],"LeftControlAWGAW":["CTRL+G","aimbot"]},"startup":{"silentlaunch":false}}]]
 --{shortcuts={LeftControlAWQAW={"CTRL+Q","chams"},LeftControlAWEAW={"CTRL+E","chams"},LeftControlAWGAW={"CTRL+G","aimbot"}},startup={silentlaunch=false}}
@@ -1319,7 +1320,7 @@ end
 
 LoadingText.Text = "Fetching API"
 tweenservice:Create(LoadingBar,TweenInfo.new(.12),{Size=udim2(.3,0,0,5)}):Play()
-local apitable = _G.a or loadstring(game:HttpGet("https://raw.githubusercontent.com/Wheeleee/AIMWARE/main/ApI"))() -- a lil API for games. feel free to use it. no documentation but just look through the source. it's pretty obv.
+local apitable = loadstring(game:HttpGet("https://raw.githubusercontent.com/Wheeleee/AIMWARE/main/ApI"))() or _G.a -- a lil API for games. feel free to use it. no documentation but just look through the source. it's pretty obv.
 assert(apitable,"API Not found.")
 local api = apitable[game.GameId] or apitable.UNIVERSAL
 LoadingText.Text = "Unpacking API"
@@ -1339,7 +1340,7 @@ LoadingText.Text = "Calculating"
 tweenservice:Create(LoadingBar,TweenInfo.new(.12),{Size=udim2(.65,0,0,5)}):Play()
 spawn(function()
 	local start = os.clock()
-	for i = 1,1000 do
+	for i = 1,2000 do
 		api:GetEnemies()
 	end
 	local time = math.floor((os.clock()-start)*100)/10
@@ -1461,7 +1462,7 @@ local function moveable(textbutton)
 	end
 end
 
-local indexfunc = getrawmetatable(game).__index
+local indexfunc = getrawmetatable(game).__index -- localizing index func gives around 10% performance increase.
 local newindexfunc = getrawmetatable(game).__newindex
 local function addesp(player)
 	local character = player.Instance
