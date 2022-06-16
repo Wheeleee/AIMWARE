@@ -1,5 +1,5 @@
 -- if you're looking through source to learn/copy code go ahead. maybe credit me :)).
-local base = [[{"shortcuts":{"419":["CTRL+Q","chams"],"407":["CTRL+E","lines"],"408":["CTRL+F","aimbot"]},"startup":{"silentlaunch":false}}]]
+local base = [[{"shortcuts":{"419":["CTRL+Q","chams"],"407":["CTRL+E","lines"],"409":["CTRL+G","aimbot"]},"startup":{"silentlaunch":false}}]]
 local http = game:GetService("HttpService")
 local preloadprovider = game:GetService("ContentProvider")
 local new = false
@@ -1257,7 +1257,6 @@ local raycastparams = RaycastParams.new
 
 local shortcutslist = {} -- use Input.Keycode.Value for the shortcut. if it is multiple keys then add all the values togheter and put it into here.
 local esp = {}
-local aimdata = {}
 local aimtype = "mousedist"
 local aimpart = "head"
 local aim = false
@@ -1270,7 +1269,7 @@ local maxvectoroffset = Vector3.new(4,5,2)
 local currentoffset = Vector3.new(0,0,0)
 local mousefovoffset = Vector2.new(0,36) -- took me so long to figure out that the gui inset needs to be accounted for asw. fuck me man.
 local unvischeckcolor,viscolor,notviscolor = color3(255, 118, 21),color3(108,255,108),color3(255,55,55)
-local currentversion = "v0.1.410A"
+local currentversion = "v0.1.415A"
 local currentshortcut = 0
 
 local shortcutopen = false
@@ -1281,6 +1280,10 @@ local aimboton = false
 local chamson = false
 local lineson = false
 local frommiddleon = false
+
+local vdistance
+local vcharacter
+local vaimatpart
 
 local function notify(notificationtext,type,waittime)
 	spawn(function()
@@ -1363,8 +1366,8 @@ end)
 for number,shortcut in pairs(aimwareconfig.shortcuts) do
 	local ui = shortcutui:Clone()
 	ui.Parent = ShortcutsScrollingFrame
-	ui.Text = shortcut[1]:upper()
-	ui.ShortcutText.Text = shortcut[2]
+	ui.Text = shortcut[1]
+	ui.ShortcutText.Text = shortcut[2]:upper()
 	shortcutslist[number] = shortcut[2]
 end
 
@@ -1476,7 +1479,8 @@ local function addesp(player)
 				if (character.Parent) and character.Parent.Parent then
 					count+=1
 					local torsoposition = torso.Position
-					local distance = (camera.CFrame.Position-torsoposition).magnitude
+					local cameraposition = camera.CFrame.Position
+					local distance = (cameraposition-torsoposition).magnitude
 					countmax = distance > 200 and 3 or distance > 350 and 5 or distance < 200 and 1 or 7
 					if count >= countmax then
 						count = 0
@@ -1484,7 +1488,6 @@ local function addesp(player)
 
 						local aimpartvisible
 						if visualcheck then
-							local cameraposition = camera.CFrame.Position
 							local params = raycastparams()
 							params.FilterDescendantsInstances={camera,api:GetLocalCharacter()}
 							local raycastresult = workspace:Raycast(cameraposition,cframe(cameraposition,torsoposition).LookVector*100000,params)
@@ -1551,7 +1554,9 @@ end)
 userinputservice.InputEnded:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.MouseButton2 then
 		aim = false
-		aimdata = nil
+		vdistance = nil
+		vcharacter = nil
+		vaimatpart = nil
 	elseif input.UserInputType == Enum.UserInputType.MouseButton1 then 
 		onfovslider = false
 		onsmoothnessslider = false
@@ -1588,8 +1593,8 @@ runservice.RenderStepped:Connect(function()
 	local actualfov = fov/field
 	fovcircle.Radius = actualfov
 	if ((aim) and aimboton) and api:Valid() then
-		if periodic or not aimdata then
-			aimdata = nil
+		if periodic or not vaimatpart then
+			vaimatpart = nil
 			local enemies = api:GetEnemies()
 			if aimtype == "mousedist" then
 				for index = 1,#enemies do
@@ -1598,7 +1603,8 @@ runservice.RenderStepped:Connect(function()
 					if instance then
 						local aimatpart = instance:FindFirstChild(translate(api,aimpart))
 						if aimatpart then
-							local vector,onscreen = camera:WorldToScreenPoint(aimatpart.Position)
+							local aimatpartposition = aimatpart.Position
+							local vector,onscreen = camera:WorldToScreenPoint(aimatpartposition)
 							vector = vector2(vector.x,vector.y)
 							local distancefromiddle = ((mousefov and mouseposition or middlescreen)-vector).magnitude
 							if onscreen and distancefromiddle < actualfov then
@@ -1607,22 +1613,16 @@ runservice.RenderStepped:Connect(function()
 									local cameraposition = camera.CFrame.Position
 									local params = raycastparams()
 									params.FilterDescendantsInstances={camera,api:GetLocalCharacter(),api:GetIgnorables()}
-									raycastresult = workspace:Raycast(cameraposition,cframe(cameraposition,aimatpart.Position).LookVector*100000,params)
+									raycastresult = workspace:Raycast(cameraposition,cframe(cameraposition,aimatpartposition).LookVector*100000,params)
 								end
 								if not visualcheck or (raycastresult) and raycastresult.Instance:IsDescendantOf(instance) then
 									local distance = (mouseposition-vector).magnitude
-									if not aimdata then
-										local table = {true,true,true} -- optimization. reduces rehash.
-										table[1] = distance
-										table[2] = character
-										table[3] = aimatpart
-										aimdata = table
-									elseif aimdata[1] > distance then
-										local table = {true,true,true}
-										table[1] = distance
-										table[2] = character
-										table[3] = aimatpart
-										aimdata = table
+									if not vdistance then
+										vdistance = distance
+										vaimatpart = aimatpart
+									elseif vdistance > distance then
+										vdistance = distance
+										vaimatpart = aimatpart
 									end
 								end
 							end
@@ -1631,15 +1631,12 @@ runservice.RenderStepped:Connect(function()
 				end
 			end
 		end
-		if (aimdata) then
-			local aimatpart = aimdata[3]
-			if aimatpart then
-				if aimtype == "mousedist" and aimatpart then
-					field = field/userinputservice.MouseDeltaSensitivity -- make sure the aimbot doesn't go haywire when games reduce/increases the mouseSens.
-					local screenposition,visible = camera:WorldToScreenPoint(aimatpart.Position)
-					local move = vector2(-((mouse.x-screenposition.x)),-((mouse.y-screenposition.y)))*field/smoothingprocent
-					mousemoverel(move.x,move.y) -- "WHY WON'T YOU USE camera.CFrame" ---- shut up.
-				end
+		if vaimatpart then
+			if aimtype == "mousedist" then
+				field = field/userinputservice.MouseDeltaSensitivity -- make sure the aimbot doesn't go haywire when games reduce/increases the mouseSens.
+				local screenposition,visible = camera:WorldToScreenPoint(vaimatpart.Position)
+				local move = vector2(-((mouse.X-screenposition.x)),-((mouse.Y-screenposition.y)))*field/smoothingprocent
+				mousemoverel(move.x,move.y) -- "WHY WON'T YOU USE camera.CFrame" ---- shut up.
 			end
 		end
 	end
