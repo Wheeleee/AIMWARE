@@ -1,6 +1,6 @@
 -- if you're looking through source to learn/copy code go ahead. maybe credit me :)).
 local base = [[{"shortcuts":{"LeftControlAWQAW":["CTRL+Q","chams"],"LeftControlAWEAW":["CTRL+E","lines"],"LeftControlAWGAW":["CTRL+G","aimbot"]},"startup":{"silentlaunch":false}}]]
---{shortcuts={LEFTCONTROLAWQAW={"CTRL+Q","chams"},LEFTCONTROLAWEAW={"CTRL+E","chams"},LEFTCONTROLAWGAW={"CTRL+G","aimbot"}},startup={silentlaunch=false}}
+--{shortcuts={LeftControlAWQAW={"CTRL+Q","chams"},LeftControlAWEAW={"CTRL+E","chams"},LeftControlAWGAW={"CTRL+G","aimbot"}},startup={silentlaunch=false}}
 local http = game:GetService("HttpService")
 local preloadprovider = game:GetService("ContentProvider")
 local new = false
@@ -1271,7 +1271,7 @@ local maxvectoroffset = Vector3.new(4,5,2)
 local currentoffset = Vector3.new(0,0,0)
 local mousefovoffset = Vector2.new(0,36) -- took me so long to figure out that the gui inset needs to be accounted for asw. fuck me man.
 local unvischeckcolor,viscolor,notviscolor = color3(255, 118, 21),color3(108,255,108),color3(255,55,55)
-local currentversion = "v0.1.416A"
+local currentversion = "v0.1.516A"
 local currentshortcut = ""
 
 local shortcutopen = false
@@ -1461,6 +1461,8 @@ local function moveable(textbutton)
 	end
 end
 
+local indexfunc = getrawmetatable(game).__index
+local newindexfunc = getrawmetatable(game).__newindex
 local function addesp(player)
 	local character = player.Instance
 	local debugid = character:GetDebugId()
@@ -1477,10 +1479,11 @@ local function addesp(player)
 		local torso = character:FindFirstChild(translate(api,"torso"))
 		local renderconnection;renderconnection = runservice.RenderStepped:Connect(function()
 			if character and torso then
-				if (character.Parent) and character.Parent.Parent then
+				local firstparent = indexfunc(character,"Parent")
+				if (firstparent) and indexfunc(firstparent,"Parent") then
 					count+=1
-					local torsoposition = torso.Position
-					local cameraposition = camera.CFrame.Position
+					local torsoposition = indexfunc(torso,"Position")
+					local cameraposition = indexfunc(camera,"CFrame").Position
 					local distance = (cameraposition-torsoposition).magnitude
 					countmax = distance > 200 and 3 or distance > 350 and 5 or distance < 200 and 1 or 7
 					if count >= countmax then
@@ -1510,7 +1513,7 @@ local function addesp(player)
 							line.Visible = false
 						end
 						if chamson and aimpartonscreen then
-							local boxsize = vector2((width*500)/distance,(height*515)/distance)/(camera.FieldOfView/70) -- if you're wondering how i got 500/515. don't ask, im scarred.
+							local boxsize = vector2((width*500)/distance,(height*515)/distance)/(indexfunc(camera,"FieldOfView")/70) -- if you're wondering how i got 500/515. don't ask, im scarred.
 							box.Visible = true
 							box.Size = boxsize
 							box.Position = vector2(aimpartposition2d.x-boxsize.x/2,aimpartposition2d.y-boxsize.y/2)
@@ -1577,7 +1580,7 @@ end)
 
 spawn(function()
 	while task.wait(3) do
-		camera = workspace.CurrentCamera
+		camera = indexfunc(workspace,"CurrentCamera")
 		local enemies = api:GetEnemies()
 		for index = 1,#enemies do
 			addesp(enemies[index])
@@ -1586,12 +1589,12 @@ spawn(function()
 end)
 
 runservice.RenderStepped:Connect(function()
-	local absolute = gui.AbsoluteSize
-	local mouseposition = vector2(mouse.X,mouse.Y)
+	local absolute = indexfunc(gui,"AbsoluteSize")
+	local mouseposition = vector2(indexfunc(mouse,"X"),indexfunc(mouse,"Y"))
 	middlescreen = absolute/2+vector2(0,18)
 	bottomscreen = vector2(absolute.X/2,absolute.Y) -- when using UDim2.new/Vector3.new or anything like that, keep it inside a local variable. reduces time by alot so it doesn't have to index all the time. only if something is static and not changing constantly.
 	fovcircle.Position = mousefov and mouseposition+mousefovoffset or middlescreen
-	local field = camera.FieldOfView/70 -- keeping the circle at the same size compared to the FOV.
+	local field = indexfunc(camera,"FieldOfView")/70 -- keeping the circle at the same size compared to the FOV.
 	local actualfov = fov/field
 	fovcircle.Radius = actualfov
 	if ((aim) and aimboton) and api:Valid() then
@@ -1606,14 +1609,14 @@ runservice.RenderStepped:Connect(function()
 					if instance then
 						local aimatpart = instance:FindFirstChild(translate(api,aimpart))
 						if aimatpart then
-							local aimatpartposition = aimatpart.Position
+							local aimatpartposition = indexfunc(aimatpart,"Position")
 							local vector,onscreen = camera:WorldToScreenPoint(aimatpartposition)
 							vector = vector2(vector.x,vector.y)
 							local distancefromiddle = ((mousefov and mouseposition or middlescreen)-vector).magnitude
 							if onscreen and distancefromiddle < actualfov then
 								local raycastresult
 								if visualcheck then -- in aimbots it's critical to put shit inside IF statments so performance goes up when disabling an option.
-									local cameraposition = camera.CFrame.Position
+									local cameraposition = indexfunc(camera,"CFrame").Position
 									local params = raycastparams()
 									params.FilterDescendantsInstances={camera,api:GetLocalCharacter(),api:GetIgnorables()}
 									raycastresult = workspace:Raycast(cameraposition,cframe(cameraposition,aimatpartposition).LookVector*100000,params)
@@ -1636,9 +1639,9 @@ runservice.RenderStepped:Connect(function()
 		end
 		if vaimatpart then
 			if aimtype == "mousedist" then
-				field = field/userinputservice.MouseDeltaSensitivity -- make sure the aimbot doesn't go haywire when games reduce/increases the mouseSens.
-				local screenposition,visible = camera:WorldToScreenPoint(vaimatpart.Position)
-				local move = vector2(-((mouse.X-screenposition.x)),-((mouse.Y-screenposition.y)))*field/smoothingprocent
+				field = field/indexfunc(userinputservice,"MouseDeltaSensitivity") -- make sure the aimbot doesn't go haywire when games reduce/increases the mouseSens.
+				local screenposition,visible = camera:WorldToScreenPoint(indexfunc(vaimatpart,"Position"))
+				local move = vector2(-((indexfunc(mouse,"X")-screenposition.x)),-((indexfunc(mouse,"Y")-screenposition.y)))*field/smoothingprocent
 				mousemoverel(move.x,move.y) -- "WHY WON'T YOU USE camera.CFrame" ---- shut up.
 			end
 		end
