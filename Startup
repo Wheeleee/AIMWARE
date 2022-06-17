@@ -1,7 +1,7 @@
 local print = function(text) rconsoleprint(text.."\n") end
 -- if you're looking through source to learn/copy code go ahead. maybe credit me :)).
-local base = [[{"shortcuts":{"LeftControlAWQAW":["CTRL+Q","chams"],"LeftControlAWEAW":["CTRL+E","lines"],"LeftControlAWGAW":["CTRL+G","aimbot"]},"startup":{"silentlaunch":false}}]]
---{shortcuts={LeftControlAWQAW={"CTRL+Q","chams"},LeftControlAWEAW={"CTRL+E","chams"},LeftControlAWGAW={"CTRL+G","aimbot"}},startup={silentlaunch=false}}
+local base = [[{"shortcuts":{"LeftControlAWYAW":["CTRL+Y","close/open"],"LeftControlAWQAW":["CTRL+Q","chams"],"LeftControlAWEAW":["CTRL+E","lines"],"LeftControlAWGAW":["CTRL+G","aimbot"]},"startup":{"silentlaunch":false}}]]
+--{shortcuts={LeftControlAWQAW={"CTRL+Q","chams"},LeftControlAWEAW={"CTRL+E","lines"},LeftControlAWYAW={"CTRL+Y","close/open"},LeftControlAWGAW={"CTRL+G","aimbot"}},startup={silentlaunch=false}}
 local http = game:GetService("HttpService")
 local preloadprovider = game:GetService("ContentProvider")
 local new = false
@@ -127,33 +127,33 @@ local UIPadding_5 = Instance.new("UIPadding")
 local NotificationText = Instance.new("TextBox")
 local LoadingFrame = Instance.new("Frame")
 local UICorner_24 = Instance.new("UICorner")
-local UIPadding_6 = Instance.new("UIPadding")
-local ImageLabel_11 = Instance.new("ImageLabel")
-local UICorner_25 = Instance.new("UICorner")
-local Outline_3 = Instance.new("ImageLabel")
-local LoadingBar = Instance.new("Frame")
-local UICorner_26 = Instance.new("UICorner")
-local LoadingText = Instance.new("TextLabel")
-local FrommiddleCheck = Instance.new("TextButton")
-local UICorner_27 = Instance.new("UICorner")
-local ImageLabel_12 = Instance.new("ImageLabel")
-local NameTextLabel_8 = Instance.new("TextLabel")
-local Slider_6 = Instance.new("Frame")
-local UICorner_28 = Instance.new("UICorner")
-local ShortcutsButton = Instance.new("TextButton")
-local UICorner_29 = Instance.new("UICorner")
-local ImageLabel_13 = Instance.new("ImageLabel")
-local ShortcutsClip = Instance.new("Frame")
-local ShortcutsFrame = Instance.new("Frame")
-local ImageLabel_14 = Instance.new("ImageLabel")
-local UICorner_30 = Instance.new("UICorner")
-local Outline_4 = Instance.new("ImageLabel")
-local UICorner_31 = Instance.new("UICorner")
-local ShortcutsScrollingFrame = Instance.new("ScrollingFrame")
-local UIListLayout = Instance.new("UIListLayout")
-local ShortcutSetting = Instance.new("TextButton")
-local ShortcutText = Instance.new("TextLabel")
-local UIPadding_7 = Instance.new("UIPadding")
+ UIPadding_6 = Instance.new("UIPadding")
+ ImageLabel_11 = Instance.new("ImageLabel")
+ UICorner_25 = Instance.new("UICorner")
+ Outline_3 = Instance.new("ImageLabel")
+ LoadingBar = Instance.new("Frame")
+ UICorner_26 = Instance.new("UICorner")
+ LoadingText = Instance.new("TextLabel")
+ FrommiddleCheck = Instance.new("TextButton")
+ UICorner_27 = Instance.new("UICorner")
+ ImageLabel_12 = Instance.new("ImageLabel")
+ NameTextLabel_8 = Instance.new("TextLabel")
+ Slider_6 = Instance.new("Frame")
+ UICorner_28 = Instance.new("UICorner")
+ ShortcutsButton = Instance.new("TextButton")
+ UICorner_29 = Instance.new("UICorner")
+ ImageLabel_13 = Instance.new("ImageLabel")
+ ShortcutsClip = Instance.new("Frame")
+ ShortcutsFrame = Instance.new("Frame")
+ ImageLabel_14 = Instance.new("ImageLabel")
+ UICorner_30 = Instance.new("UICorner")
+ Outline_4 = Instance.new("ImageLabel")
+ UICorner_31 = Instance.new("UICorner")
+ ShortcutsScrollingFrame = Instance.new("ScrollingFrame")
+ UIListLayout = Instance.new("UIListLayout")
+ ShortcutSetting = Instance.new("TextButton")
+ ShortcutText = Instance.new("TextLabel")
+ UIPadding_7 = Instance.new("UIPadding")
 
 --Properties:
 
@@ -1258,12 +1258,14 @@ local gsub = string.gsub
 local ceil = math.ceil
 local cframe= CFrame.new
 local raycastparams = RaycastParams.new
+local taskwait = task.wait
 
 local shortcutslist = aimwareconfig.shortcuts
 local esp = {}
 local aimtype = "mousedist"
 local aimpart = "head"
 local aim = false
+local closed = false
 local fov,maxfov = 100,1000
 local bottomscreen = vector2(1,1)
 local middlescreen = gui.AbsoluteSize/2
@@ -1288,6 +1290,47 @@ local frommiddleon = false
 local vdistance
 local vcharacter
 local vaimatpart
+
+local function getvalues(guiobject)
+	local values = {}
+	local foreach;foreach = function(child)
+		if (child:IsA("GuiBase")) and child.Visible then
+			for i,v in pairs(child:GetChildren()) do
+				local properties = {}
+				if v:IsA("ImageLabel") or v:IsA("ImageButton") then
+					properties.ImageTransparency = 1
+					values[v]=v.ImageTransparency
+				elseif v:IsA("TextButton") or v:IsA("TextLabel") then
+					properties.TextTransparency = 1
+					values[v]=v.TextTransparency
+				elseif v:IsA("Frame") then
+					values[v]=v.BackgroundTransparency
+					properties.BackgroundTransparency = 1
+				end
+				foreach(v)
+			end
+		end
+	end
+	foreach(guiobject)
+	return values
+end
+
+local function openclose(guiobject,action,values)
+	if action then guiobject.Visible = action end
+	for child,value in pairs(values) do
+		if child:IsA("ImageLabel") or child:IsA("ImageButton") then
+			tweenservice:Create(child,TweenInfo.new(.12),{ImageTransparency=action and value or 1}):Play()
+		elseif child:IsA("TextButton") or child:IsA("TextLabel") then
+			tweenservice:Create(child,TweenInfo.new(.12),{TextTransparency=action and value or 1}):Play()
+		elseif child:IsA("Frame") then
+			tweenservice:Create(child,TweenInfo.new(.12),{BackgroundTransparency=action and value or 1}):Play()
+		end
+	end
+	taskwait(.035)
+	guiobject.Visible = action
+end
+
+local AIMWAREvalues = getvalues(TextButton)
 
 local function notify(notificationtext,type,waittime)
 	spawn(function()
@@ -1327,13 +1370,24 @@ local api = apitable[game.GameId] or apitable.UNIVERSAL
 LoadingText.Text = "Unpacking API"
 tweenservice:Create(LoadingBar,TweenInfo.new(.12),{Size=udim2(.5,0,0,5)}):Play()
 wait(.34) -- no way! fake loading time.... grrrrrrr.
+local initsuccess,errormessage = pcall(api.Init) -- detecting if gamedevs try to break API.
+if not initsuccess then
+	notify("\""..errormessage.."\"\nCONTACT DEV!","ERROR",math.huge)
+	return
+end
+local cangetignorables,errormessage = pcall(api.GetIgnorables) -- also detecting if gamedevs try to break API.
+if not cangetignorables then
+	notify("Please notify a dev about this issue!\nERROR:\n\""..errormessage.."\"","API ISSUE",math.huge)
+	api.GetIgnorables = function()
+		return nil
+	end
+end
 VersionText.Text = currentversion
 if api.Info.__TYPE  == "UNIVERSAL" then
 	notify("This game is not supported. AIMWARE will do it's best but some things may break. DM me, YouBuggin#6330, with the game link and I'll add support for this game.","WARNING",2)
 end
 notify("AIMWARE Welcomes you! Hope you find the script good.\nYou can find us at: https://discord.gg/Q2zYM8u6KR\nChangelogs can also be found here.\nShortcuts not completed.","MESSAGE")
 local periodic = api.PeriodicChecking
-api:Init()
 local days = math.ceil((os.time()-api.Info.Created)/86400)
 Createdtext.Text = "CREATED: "..days.." days ago"
 getenemiesMS.Text = "GET_ENEMIES MS: calc"
@@ -1535,7 +1589,7 @@ local function addesp(player)
 							distancetext.Size = textsize
 							distancetext.Color = color
 						else
-						    distancetext.Visible = false
+							distancetext.Visible = false
 							box.Visible = false
 						end
 					end
@@ -1591,6 +1645,9 @@ userinputservice.InputEnded:Connect(function(input)
 			chamscheckfunction()
 		elseif shortcutname == "lines" then
 			linescheckfunction()
+		elseif shortcutname == "close/open" then
+			openclose(TextButton,closed,AIMWAREvalues)
+			closed = not closed
 		end
 		currentshortcut=gsub(currentshortcut,input.KeyCode.Name.."AW","")
 	end
