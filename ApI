@@ -65,6 +65,59 @@ return {
 			__TYPE = "UNIVERSAL",
 		},
 	},
+	[2619619496] = {
+		BodyParts = {
+			["TORSO"] = "HumanoidRootPart",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,character in next, workspace:GetChildren() do
+				if indexfunc(character,"Name")=="r15_rig" then
+					enemies[#enemies+1] = {
+						Instance = character,
+						Parent = indexfunc(character,"Parent"),
+						Ignore = character,
+					} 
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1655464216,
+			GameName = "BedWars",
+			GameId = 2619619496,
+			PlaceId = 9903116309,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
 	[1567102816] = {
 		BodyParts = {
 			["TORSO"] = "HumanoidRootPart",
