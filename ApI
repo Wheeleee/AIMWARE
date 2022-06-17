@@ -87,7 +87,7 @@ return {
 		GetEnemies = function(self)
 			local enemies = {}
 			for _,character in next, workspace:GetChildren() do
-				if indexfunc(character,"Name")=="R15Rig" then
+				if indexfunc(character,"Name")=="R15Rig" and character ~= indexfunc(localplayer,"Character") then
 					enemies[#enemies+1] = {
 						Instance = character,
 						Parent = indexfunc(character,"Parent"),
