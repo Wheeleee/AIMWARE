@@ -1,7 +1,7 @@
 local print = function(text) rconsoleprint(text.."\n") end
 -- if you're looking through source to learn/copy code go ahead. maybe credit me :)).
-local base = [[{"shortcuts":{"LeftControlAWYAW":["CTRL+Y","close/open"],"LeftControlAWQAW":["CTRL+Q","chams"],"LeftControlAWEAW":["CTRL+E","lines"],"LeftControlAWGAW":["CTRL+G","aimbot"]},"startup":{"silentlaunch":false}}]]
---{shortcuts={LeftControlAWQAW={"CTRL+Q","chams"},LeftControlAWEAW={"CTRL+E","lines"},LeftControlAWYAW={"CTRL+Y","close/open"},LeftControlAWGAW={"CTRL+G","aimbot"}},startup={silentlaunch=false}}
+local base = [[{"shortcuts":{"LeftControlAWYAW":["CTRL+Y","close/open"],"LeftControlAWQAW":["CTRL+Q","chams"],"LeftControlAWEAW":["CTRL+E","lines"],"LeftControlAWTAW":["CTRL+T","visualcheck"],"LeftControlAWGAW":["CTRL+G","aimbot"]},"startup":{"silentlaunch":false}}]]
+--{shortcuts={LeftControlAWQAW={"CTRL+Q","chams"},LeftControlAWEAW={"CTRL+E","lines"},LeftControlAWYAW={"CTRL+Y","close/open"},LeftControlAWGAW={"CTRL+G","aimbot"},LeftControlAWTAW={"CTRL+T","visualcheck"}},startup={silentlaunch=false}}
 local http = game:GetService("HttpService")
 local preloadprovider = game:GetService("ContentProvider")
 local new = false
@@ -1266,6 +1266,11 @@ local aimtype = "mousedist"
 local aimpart = "head"
 local aim = false
 local closed = false
+local changingkeybind = false
+
+local firstnewkeybind,secondnewkeybind
+local newkeybindforui = ""
+
 local fov,maxfov = 100,1000
 local bottomscreen = vector2(1,1)
 local middlescreen = gui.AbsoluteSize/2
@@ -1275,7 +1280,7 @@ local maxvectoroffset = Vector3.new(4,5,2)
 local currentoffset = Vector3.new(0,0,0)
 local mousefovoffset = Vector2.new(0,36) -- took me so long to figure out that the gui inset needs to be accounted for asw. fuck me man.
 local unvischeckcolor,viscolor,notviscolor = color3(255, 118, 21),color3(108,255,108),color3(255,55,55)
-local currentversion = "v0.1.587A"
+local currentversion = "v0.1.600A"
 
 local shortcutopen = false
 
@@ -1434,6 +1439,28 @@ for number,shortcut in pairs(shortcutslist) do
 	ui.Parent = ShortcutsScrollingFrame
 	ui.Text = shortcut[1]
 	ui.ShortcutText.Text = shortcut[2]:upper()
+	ui.MouseButton1Click:Connect(function()
+		if not changingkeybind then
+			changingkeybind = true
+			local old = ui.Text
+			while changingkeybind do
+				ui.Text = newkeybindforui
+				renderstep:Wait()
+			end
+			local concatinated = firstnewkeybind..secondnewkeybind
+			ui.Text = newkeybindforui
+			if not shortcutslist[concatinated] then
+				shortcutslist[number] = nil
+				shortcutslist[concatinated] = shortcut
+				number = concatinated
+			else
+				ui.Text = old
+			end
+			firstnewkeybind = nil
+			secondnewkeybind = nil
+			newkeybindforui = ""
+		end
+	end)
 end
 
 local aimbotcheckfunction = function()
@@ -1441,7 +1468,7 @@ local aimbotcheckfunction = function()
 	aimboton = not aimboton	
 end
 AimbotCheck.MouseButton1Down:Connect(aimbotcheckfunction)
-VisualCheck.MouseButton1Down:Connect(function()
+local visualcheckfunction =	function()
 	local color = visualcheck and color3(255, 118, 21) or color3(108,255,108)
 	Lines.BackgroundColor3 = color
 	LinesH.BackgroundColor3 = color
@@ -1451,7 +1478,8 @@ VisualCheck.MouseButton1Down:Connect(function()
 	tweenservice:Create(VisualCheck.Slider,TweenInfo.new(.12),{BackgroundColor3 = visualcheck and color3(190, 190, 190) or color3(42, 180, 51),Position = visualcheck and udim2(0,0,0.5,0) or udim2(1,-12,0.5,0)}):Play()
 	fovcircle.Color = color
 	visualcheck = not visualcheck	
-end)
+end
+VisualCheck.MouseButton1Down:Connect(visualcheckfunction)
 local chamscheckfunction = function()
 	tweenservice:Create(ChamsCheck.Slider,TweenInfo.new(.12),{BackgroundColor3 = chamson and color3(190, 190, 190) or color3(42, 180, 51),Position = chamson and udim2(0,0,0.5,0) or udim2(1,-12,0.5,0)}):Play()
 	chamson = not chamson
@@ -1554,53 +1582,49 @@ local function addesp(player)
 			if character and torso then
 				local firstparent = indexfunc(character,"Parent")
 				if (firstparent) and indexfunc(firstparent,"Parent") then
-					count+=1
 					local torsoposition = indexfunc(torso,"Position")
 					local cameraposition = indexfunc(camera,"CFrame").Position
 					local distance = (cameraposition-torsoposition).magnitude
 					local field = indexfunc(camera,"FieldOfView")/70
 					countmax = distance > 200 and 3 or distance > 350 and 5 or distance < 200 and 1 or 7
-					if count >= countmax then
-						count = 0
-						local aimpartvisible
-						if visualcheck then
-							params.FilterDescendantsInstances={camera,api:GetLocalCharacter(),api:GetIgnorables()}
-							local raycastresult = workspace:Raycast(cameraposition,cframe(cameraposition,torsoposition).LookVector*100000,params)
-							aimpartvisible = (raycastresult) and raycastresult.Instance:IsDescendantOf(character) or false
-						end
-						local color = (visualcheck) and aimpartvisible and viscolor or (visualcheck) and notviscolor or unvischeckcolor
+					local aimpartvisible
+					if visualcheck then
+						params.FilterDescendantsInstances={camera,api:GetLocalCharacter(),api:GetIgnorables()}
+						local raycastresult = workspace:Raycast(cameraposition,cframe(cameraposition,torsoposition).LookVector*100000,params)
+						aimpartvisible = (raycastresult) and raycastresult.Instance:IsDescendantOf(character) or false
+					end
+					local color = (visualcheck) and aimpartvisible and viscolor or (visualcheck) and notviscolor or unvischeckcolor
 
-						local aimpartposition2d,aimpartonscreen
-						if lineson or chamson then
-							aimpartposition2d,aimpartonscreen = camera:WorldToViewportPoint(torsoposition)
-						end
+					local aimpartposition2d,aimpartonscreen
+					if lineson or chamson then
+						aimpartposition2d,aimpartonscreen = camera:WorldToViewportPoint(torsoposition)
+					end
 
-						if lineson and aimpartonscreen then
-							line.Visible = true
-							line.From = frommiddleon and middlescreen or bottomscreen
-							line.To = vector2(aimpartposition2d.x,aimpartposition2d.y)
-							line.Color = color
-						else
-							line.Visible = false
-						end
-						if chamson and aimpartonscreen then
-							local boxsize = basevector/distance/field
-							box.Visible = true
-							box.Size = boxsize
-							box.Position = vector2(aimpartposition2d.x-boxsize.x/2,aimpartposition2d.y-boxsize.y/2)
-							box.Color = color
-							distancetext.Visible = true
-							distancetext.ZIndex = ceil(distance)
-							distancetext.Position = box.Position+vector2(0,boxsize.Y)
-							distancetext.Text = "DIST: "..ceil(distance)
-							local textsize = 868/distance/field
-							textsize = textsize>11 and textsize or 11
-							distancetext.Size = textsize
-							distancetext.Color = color
-						else
-							distancetext.Visible = false
-							box.Visible = false
-						end
+					if lineson and aimpartonscreen then
+						line.Visible = true
+						line.From = frommiddleon and middlescreen or bottomscreen
+						line.To = vector2(aimpartposition2d.x,aimpartposition2d.y)
+						line.Color = color
+					else
+						line.Visible = false
+					end
+					if chamson and aimpartonscreen then
+						local boxsize = basevector/distance/field
+						box.Visible = true
+						box.Size = boxsize
+						box.Position = vector2(aimpartposition2d.x-boxsize.x/2,aimpartposition2d.y-boxsize.y/2)
+						box.Color = color
+						distancetext.Visible = true
+						distancetext.ZIndex = ceil(distance)
+						distancetext.Position = box.Position+vector2(0,boxsize.Y)
+						distancetext.Text = "DIST: "..ceil(distance)
+						local textsize = 868/distance/field
+						textsize = textsize>11 and textsize or 11
+						distancetext.Size = textsize
+						distancetext.Color = color
+					else
+						distancetext.Visible = false
+						box.Visible = false
 					end
 				else
 					renderconnection:Disconnect()
@@ -1635,12 +1659,24 @@ userinputservice.InputBegan:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.MouseButton2 then
 		aim = true
 	elseif input.UserInputType == Enum.UserInputType.Keyboard then
-		if not firstshrt then
-			firstshrt = input.KeyCode.Name.."AW"
+		local inputname = input.KeyCode.Name
+		if not changingkeybind then
+			if not firstshrt then
+				firstshrt = inputname.."AW"
+			else
+				secondshrt = inputname.."AW"
+			end
 		else
-			secondshrt = input.KeyCode.Name.."AW"
+			local name = ((inputname=="LeftControl" or inputname=="RightControl") and "CTRL" or inputname):upper()
+			newkeybindforui = newkeybindforui..name
+			if not firstnewkeybind then
+				firstnewkeybind = inputname.."AW"
+				newkeybindforui = newkeybindforui.."+"
+			else
+				secondnewkeybind = inputname.."AW"
+				changingkeybind = false
+			end
 		end
-		--currentshortcut=currentshortcut..input.KeyCode.Name.."AW"
 	end
 end)
 userinputservice.InputEnded:Connect(function(input)
@@ -1653,22 +1689,26 @@ userinputservice.InputEnded:Connect(function(input)
 		onfovslider = false
 		onsmoothnessslider = false
 	elseif input.UserInputType == Enum.UserInputType.Keyboard then
-		local shortcutname = shortcutslist[(firstshrt or "")..(secondshrt or "")]
-		shortcutname = shortcutname and shortcutname[2] or nil
-		if shortcutname == "aimbot" then 
-			aimbotcheckfunction()
-		elseif shortcutname == "chams" then
-			chamscheckfunction()
-		elseif shortcutname == "lines" then
-			linescheckfunction()
-		elseif shortcutname == "close/open" then
-			openclose(TextButton,closed,AIMWAREvalues)
-			closed = not closed
-		end
-		if secondshrt then
-			secondshrt = nil
-		else
-			firstshrt = nil
+		if not changingkeybind then
+			local shortcutname = shortcutslist[(firstshrt or "")..(secondshrt or "")]
+			shortcutname = shortcutname and shortcutname[2] or nil
+			if shortcutname == "aimbot" then 
+				aimbotcheckfunction()
+			elseif shortcutname == "chams" then
+				chamscheckfunction()
+			elseif shortcutname == "lines" then
+				linescheckfunction()
+			elseif shortcutname == "visualcheck" then
+				visualcheckfunction()
+			elseif shortcutname == "close/open" then
+				openclose(TextButton,closed,AIMWAREvalues)
+				closed = not closed
+			end
+			if secondshrt then
+				secondshrt = nil
+			else
+				firstshrt = nil
+			end
 		end
 	end
 end)
