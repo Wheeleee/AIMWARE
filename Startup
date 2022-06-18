@@ -127,33 +127,33 @@ local UIPadding_5 = Instance.new("UIPadding")
 local NotificationText = Instance.new("TextBox")
 local LoadingFrame = Instance.new("Frame")
 local UICorner_24 = Instance.new("UICorner")
- UIPadding_6 = Instance.new("UIPadding")
- ImageLabel_11 = Instance.new("ImageLabel")
- UICorner_25 = Instance.new("UICorner")
- Outline_3 = Instance.new("ImageLabel")
- LoadingBar = Instance.new("Frame")
- UICorner_26 = Instance.new("UICorner")
- LoadingText = Instance.new("TextLabel")
- FrommiddleCheck = Instance.new("TextButton")
- UICorner_27 = Instance.new("UICorner")
- ImageLabel_12 = Instance.new("ImageLabel")
- NameTextLabel_8 = Instance.new("TextLabel")
- Slider_6 = Instance.new("Frame")
- UICorner_28 = Instance.new("UICorner")
- ShortcutsButton = Instance.new("TextButton")
- UICorner_29 = Instance.new("UICorner")
- ImageLabel_13 = Instance.new("ImageLabel")
- ShortcutsClip = Instance.new("Frame")
- ShortcutsFrame = Instance.new("Frame")
- ImageLabel_14 = Instance.new("ImageLabel")
- UICorner_30 = Instance.new("UICorner")
- Outline_4 = Instance.new("ImageLabel")
- UICorner_31 = Instance.new("UICorner")
- ShortcutsScrollingFrame = Instance.new("ScrollingFrame")
- UIListLayout = Instance.new("UIListLayout")
- ShortcutSetting = Instance.new("TextButton")
- ShortcutText = Instance.new("TextLabel")
- UIPadding_7 = Instance.new("UIPadding")
+UIPadding_6 = Instance.new("UIPadding")
+ImageLabel_11 = Instance.new("ImageLabel")
+UICorner_25 = Instance.new("UICorner")
+Outline_3 = Instance.new("ImageLabel")
+LoadingBar = Instance.new("Frame")
+UICorner_26 = Instance.new("UICorner")
+LoadingText = Instance.new("TextLabel")
+FrommiddleCheck = Instance.new("TextButton")
+UICorner_27 = Instance.new("UICorner")
+ImageLabel_12 = Instance.new("ImageLabel")
+NameTextLabel_8 = Instance.new("TextLabel")
+Slider_6 = Instance.new("Frame")
+UICorner_28 = Instance.new("UICorner")
+ShortcutsButton = Instance.new("TextButton")
+UICorner_29 = Instance.new("UICorner")
+ImageLabel_13 = Instance.new("ImageLabel")
+ShortcutsClip = Instance.new("Frame")
+ShortcutsFrame = Instance.new("Frame")
+ImageLabel_14 = Instance.new("ImageLabel")
+UICorner_30 = Instance.new("UICorner")
+Outline_4 = Instance.new("ImageLabel")
+UICorner_31 = Instance.new("UICorner")
+ShortcutsScrollingFrame = Instance.new("ScrollingFrame")
+UIListLayout = Instance.new("UIListLayout")
+ShortcutSetting = Instance.new("TextButton")
+ShortcutText = Instance.new("TextLabel")
+UIPadding_7 = Instance.new("UIPadding")
 
 --Properties:
 
@@ -1275,7 +1275,7 @@ local maxvectoroffset = Vector3.new(4,5,2)
 local currentoffset = Vector3.new(0,0,0)
 local mousefovoffset = Vector2.new(0,36) -- took me so long to figure out that the gui inset needs to be accounted for asw. fuck me man.
 local unvischeckcolor,viscolor,notviscolor = color3(255, 118, 21),color3(108,255,108),color3(255,55,55)
-local currentversion = "v0.1.576A"
+local currentversion = "v0.1.586A"
 local currentshortcut = ""
 
 local shortcutopen = false
@@ -1538,6 +1538,10 @@ local function addesp(player)
 		box.Color = color3(255, 118, 21)
 		local count,countmax = 0,1
 		local torso = character:FindFirstChild(translate(api,"torso"))
+		local width,height = 7,11
+		local constantwidth,constantheight = width*500,height*515
+		local basevector = vector2(constantwidth,constantheight)
+		local params = raycastparams()
 		local renderconnection;renderconnection = runservice.RenderStepped:Connect(function()
 			if character and torso then
 				local firstparent = indexfunc(character,"Parent")
@@ -1550,12 +1554,9 @@ local function addesp(player)
 					countmax = distance > 200 and 3 or distance > 350 and 5 or distance < 200 and 1 or 7
 					if count >= countmax then
 						count = 0
-						local width,height = 7,11 --boundingsize.X > boundingsize.Z and boundingsize.X or boundingsize.Z ------ don't use boundingsize, ew.
-
 						local aimpartvisible
 						if visualcheck then
-							local params = raycastparams()
-							params.FilterDescendantsInstances={camera,api:GetLocalCharacter()}
+							params.FilterDescendantsInstances={camera,api:GetLocalCharacter(),api:GetIgnorables()}
 							local raycastresult = workspace:Raycast(cameraposition,cframe(cameraposition,torsoposition).LookVector*100000,params)
 							aimpartvisible = (raycastresult) and raycastresult.Instance:IsDescendantOf(character) or false
 						end
@@ -1575,7 +1576,7 @@ local function addesp(player)
 							line.Visible = false
 						end
 						if chamson and aimpartonscreen then
-							local boxsize = vector2((width*500)/distance,(height*515)/distance)/field -- if you're wondering how i got 500/515. don't ask, im scarred.
+							local boxsize = basevector/distance/field
 							box.Visible = true
 							box.Size = boxsize
 							box.Position = vector2(aimpartposition2d.x-boxsize.x/2,aimpartposition2d.y-boxsize.y/2)
@@ -1712,7 +1713,7 @@ runservice.RenderStepped:Connect(function()
 				end
 			end
 		end
-		if vaimatpart then
+		if vaimatpart then 
 			if aimtype == "mousedist" then
 				field = field/indexfunc(userinputservice,"MouseDeltaSensitivity") -- make sure the aimbot doesn't go haywire when games reduce/increases the mouseSens.
 				local screenposition,visible = camera:WorldToScreenPoint(indexfunc(vaimatpart,"Position"))
