@@ -1275,8 +1275,7 @@ local maxvectoroffset = Vector3.new(4,5,2)
 local currentoffset = Vector3.new(0,0,0)
 local mousefovoffset = Vector2.new(0,36) -- took me so long to figure out that the gui inset needs to be accounted for asw. fuck me man.
 local unvischeckcolor,viscolor,notviscolor = color3(255, 118, 21),color3(108,255,108),color3(255,55,55)
-local currentversion = "v0.1.586A"
-local currentshortcut = ""
+local currentversion = "v0.1.597A"
 
 local shortcutopen = false
 
@@ -1368,6 +1367,15 @@ local apitable = loadstring(game:HttpGet("https://raw.githubusercontent.com/Whee
 assert(apitable,"API Not found.")
 local api = apitable[game.GameId] or apitable.UNIVERSAL
 LoadingText.Text = "Unpacking API"
+local getenemies,valid -- PERFORMANCE :cool:
+local successunpacking,errormessage = pcall(function()
+	getenemies=api.GetEnemies
+	valid=api.Valid
+end)
+if not successunpacking then
+	notify("\""..errormessage.."\"\nCONTACT DEV!","ERROR",math.huge)
+	return
+end
 tweenservice:Create(LoadingBar,TweenInfo.new(.12),{Size=udim2(.5,0,0,5)}):Play()
 wait(.34) -- no way! fake loading time.... grrrrrrr.
 local initsuccess,errormessage = pcall(api.Init) -- detecting if gamedevs try to break API.
@@ -1386,7 +1394,7 @@ VersionText.Text = currentversion
 if api.Info.__TYPE  == "UNIVERSAL" then
 	notify("This game is not supported. AIMWARE will do it's best but some things may break. DM me, YouBuggin#6330, with the game link and I'll add support for this game.","WARNING",2)
 end
-notify("AIMWARE Welcomes you! Hope you find the script good.\nYou can find us at: https://discord.gg/Q2zYM8u6KR\nChangelogs can also be found here.\nShortcuts not completed.","MESSAGE")
+notify("AIMWARE Welcomes you! Hope you find the script good.\nYou can find us at: https://discord.gg/Q2zYM8u6KR\nChangelogs can also be found here.\n","MESSAGE")
 local periodic = api.PeriodicChecking
 local days = math.ceil((os.time()-api.Info.Created)/86400)
 Createdtext.Text = "CREATED: "..days.." days ago"
@@ -1396,7 +1404,7 @@ tweenservice:Create(LoadingBar,TweenInfo.new(.12),{Size=udim2(.65,0,0,5)}):Play(
 spawn(function()
 	local start = os.clock()
 	for i = 1,2000 do
-		api:GetEnemies()
+		getenemies()
 	end
 	local time = math.floor((os.clock()-start)*100)/10
 	getenemiesMS.Text = "GET_ENEMIES MS: "..time
@@ -1522,7 +1530,7 @@ local newindexfunc = getrawmetatable(game).__newindex
 local function addesp(player)
 	local character = player.Instance
 	local debugid = character:GetDebugId()
-	if not esp[debugid] and api:Valid() then
+	if not esp[debugid] and valid() then
 		esp[debugid]=true
 		local distancetext = Drawing.new("Text")
 		distancetext.Size = 12
@@ -1621,11 +1629,18 @@ Torso.MouseButton1Click:Connect(function()
 	tweenservice:Create(Head,TweenInfo.new(.12),{ImageColor3=color3(255,255,255)}):Play()
 end)
 
+local firstshrt,secondshrt
+
 userinputservice.InputBegan:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.MouseButton2 then
 		aim = true
 	elseif input.UserInputType == Enum.UserInputType.Keyboard then
-		currentshortcut=currentshortcut..input.KeyCode.Name.."AW"
+		if not firstshrt then
+			firstshrt = input.KeyCode.Name.."AW"
+		else
+			secondshrt = input.KeyCode.Name.."AW"
+		end
+		--currentshortcut=currentshortcut..input.KeyCode.Name.."AW"
 	end
 end)
 userinputservice.InputEnded:Connect(function(input)
@@ -1638,7 +1653,7 @@ userinputservice.InputEnded:Connect(function(input)
 		onfovslider = false
 		onsmoothnessslider = false
 	elseif input.UserInputType == Enum.UserInputType.Keyboard then
-		local shortcutname = shortcutslist[currentshortcut]
+		local shortcutname = shortcutslist[(firstshrt or "")..(secondshrt or "")]
 		shortcutname = shortcutname and shortcutname[2] or nil
 		if shortcutname == "aimbot" then 
 			aimbotcheckfunction()
@@ -1650,14 +1665,18 @@ userinputservice.InputEnded:Connect(function(input)
 			openclose(TextButton,closed,AIMWAREvalues)
 			closed = not closed
 		end
-		currentshortcut=gsub(currentshortcut,input.KeyCode.Name.."AW","")
+		if secondshrt then
+			secondshrt = nil
+		else
+			firstshrt = nil
+		end
 	end
 end)
 
 spawn(function()
 	while task.wait(3) do
 		camera = indexfunc(workspace,"CurrentCamera")
-		local enemies = api:GetEnemies()
+		local enemies = getenemies()
 		for index = 1,#enemies do
 			addesp(enemies[index])
 		end
@@ -1673,11 +1692,11 @@ runservice.RenderStepped:Connect(function()
 	local field = indexfunc(camera,"FieldOfView")/70 -- keeping the circle at the same size compared to the FOV.
 	local actualfov = fov/field
 	fovcircle.Radius = actualfov
-	if ((aim) and aimboton) and api:Valid() then
+	if ((aim) and aimboton) and valid() then
 		if periodic or not vaimatpart then
 			vaimatpart = nil
 			vdistance = nil
-			local enemies = api:GetEnemies()
+			local enemies = getenemies()
 			if aimtype == "mousedist" then
 				for index = 1,#enemies do
 					local character = enemies[index]
