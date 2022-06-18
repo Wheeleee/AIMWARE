@@ -1530,7 +1530,7 @@ local newindexfunc = getrawmetatable(game).__newindex
 local function addesp(player)
 	local character = player.Instance
 	local debugid = character:GetDebugId()
-	if not esp[debugid] and valid() then
+	if not esp[debugid] and valid(api) then
 		esp[debugid]=true
 		local distancetext = Drawing.new("Text")
 		distancetext.Size = 12
