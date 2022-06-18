@@ -1295,7 +1295,7 @@ return {
 			newindexfunc(camera,"CFrame",CFrame)
 		end,
 		Valid = function(self)
-			return self:GetLocalCharacter() and (localplayer.Neutral or localplayer.Team) true or false
+			return self:GetLocalCharacter() and (localplayer.Neutral or localplayer.Team) and true or false
 		end,
 		Translate = function(self,text)
 			return self.BodyParts[text:upper()] or ""
