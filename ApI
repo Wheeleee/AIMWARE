@@ -1,1 +1,1518 @@
+local players = game:GetService("Players")
+local localplayer = players.LocalPlayer
+local camera = workspace.CurrentCamera
 
+local indexfunc = getrawmetatable(game).__index
+local newindexfunc = getrawmetatable(game).__newindex
+local v1,v2,v3,v4,v5
+
+return {
+	UNIVERSAL={
+		BodyParts = {
+			["TORSO"] = "HumanoidRootPart",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,player in next, players:GetPlayers() do
+				if player ~= localplayer then
+					local character = indexfunc(player,"Character")
+					if character then
+						if (indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") or indexfunc(player,"Neutral")) then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Parent = indexfunc(character,"Parent"),
+								Ignore = character,
+							}
+						end
+					end
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1654459251,
+			GameName = game.Name,
+			GameId = game.GameId,
+			PlaceId = game.GameId,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "UNIVERSAL",
+		},
+	},
+	[113491250] = {
+		BodyParts = {
+			["TORSO"] = "Torso",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+		    v1 = workspace:WaitForChild("Players")
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies
+			local opp = v1:FindFirstChild(indexfunc(localplayer,"TeamColor").Name=="Bright orange" and "Bright blue" or "Bright orange")
+			if opp then
+			    enemies = {}
+    			for _,character in next, opp:GetChildren() do
+    				enemies[#enemies+1] = {
+						Instance = character,
+						Parent = indexfunc(character,"Parent"),
+						Ignore = character,
+					}
+    			end
+    		end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1655640040,
+			GameName = "Phantom Forces",
+			GameId = 113491250,
+			PlaceId = 292439477,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[1801716281] = {
+		BodyParts = {
+			["TORSO"] = "HumanoidRootPart",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,player in next, players:GetPlayers() do
+				if player ~= localplayer then
+					local character = indexfunc(player,"Character")
+					if character then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Parent = indexfunc(character,"Parent"),
+								Ignore = character,
+							}
+					end
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1655580732,
+			GameName = "Futuretops",
+			GameId = 1801716281,
+			PlaceId = 5411969757,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[1054526971] = {
+		BodyParts = {
+			["TORSO"] = "HumanoidRootPart",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,player in next, players:GetPlayers() do
+				if player ~= localplayer then
+					local character = indexfunc(player,"Character")
+					if character then
+						if indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Parent = indexfunc(character,"Parent"),
+								Ignore = character,
+							}
+						end
+					end
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1655578346,
+			GameName = "BlackHawk Rescue Mission 5",
+			GameId = 1054526971,
+			PlaceId = 2916899287,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[2619619496] = {
+		BodyParts = {
+			["TORSO"] = "HumanoidRootPart",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,character in next, workspace:GetChildren() do
+				if indexfunc(character,"Name")=="R15Rig" and character ~= indexfunc(localplayer,"Character") then
+					enemies[#enemies+1] = {
+						Instance = character,
+						Parent = indexfunc(character,"Parent"),
+						Ignore = character,
+					} 
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1655464216,
+			GameName = "BedWars",
+			GameId = 2619619496,
+			PlaceId = 9903116309,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[1567102816] = {
+		BodyParts = {
+			["TORSO"] = "HumanoidRootPart",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,player in next, players:GetPlayers() do
+				if player ~= localplayer then
+					local character = indexfunc(player,"Character")
+					if character then
+						if (indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") or indexfunc(player,"Neutral")) then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Parent = indexfunc(character,"Parent"),
+								Ignore = character,
+							}
+						end
+					end
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1655461213,
+			GameName = "Polybattle",
+			GameId = 1567102816,
+			PlaceId = 4716045691,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[2516044547] = {
+		BodyParts = {
+			["TORSO"] = "HumanoidRootPart",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,player in next, players:GetPlayers() do
+				if player ~= localplayer then
+					local character = indexfunc(player,"Character")
+					if character then
+						enemies[#enemies+1] = {
+							Instance = character,
+							Parent = indexfunc(character,"Parent"),
+							Ignore = character,
+						}
+					end
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1655364362,
+			GameName = "ZO ぞ SAMURAI",
+			GameId = 2516044547,
+			PlaceId = 6678877691,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[3149890272] = {
+		BodyParts = {
+			["TORSO"] = "HumanoidRootPart",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,player in next, players:GetPlayers() do
+				if player ~= localplayer then
+					local character = indexfunc(player,"Character")
+					if character then
+						if indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Parent = indexfunc(character,"Parent"),
+								Ignore = character,
+							}
+						end
+					end
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1655311871,
+			GameName = "Syrian Shenanigans",
+			GameId = 3149890272,
+			PlaceId = 8203181639,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[3591297424] = {
+		BodyParts = {
+			["TORSO"] = "HumanoidRootPart",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,player in next, players:GetPlayers() do
+				if player ~= localplayer then
+					local character = indexfunc(player,"Character")
+					if character then
+						if indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Parent = indexfunc(character,"Parent"),
+								Ignore = character,
+							}
+						end
+					end
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1655311792,
+			GameName = "Eastern Front War Simulation",
+			GameId = 3591297424,
+			PlaceId = 9668940935,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[1607099925] = {
+		BodyParts = {
+			["TORSO"] = "HumanoidRootPart",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,player in next, players:GetPlayers() do
+				if player ~= localplayer then
+					local character = indexfunc(player,"Character")
+					if character then
+						enemies[#enemies+1] = {
+							Instance = character,
+							Parent = indexfunc(character,"Parent"),
+							Ignore = character,
+						}
+					end
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1655051265,
+			GameName = "South London 2",
+			GameId = 1607099925,
+			PlaceId = 4779613061,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[2132866904] = {
+		BodyParts = {
+			["TORSO"] = "UpperTorso",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,character in next, workspace:GetChildren() do
+				if indexfunc(character,"Name")=="r15_rig" then
+					enemies[#enemies+1] = {
+						Instance = character,
+						Parent = indexfunc(character,"Parent"),
+						Ignore = character,
+					} 
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return nil
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1655041528,
+			GameName = "Frontlines",
+			GameId = 2132866904,
+			PlaceId = 5938036553,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[1315961587] = {
+		BodyParts = {
+			["TORSO"] = "humanoid_root_part",
+			["HEAD"] = "head",
+		},
+		Init = function(self)
+			v1=workspace:WaitForChild("characters")
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,character in next, v1:GetChildren() do
+				if indexfunc(character,"Name")~="StarterCharacter" then
+					enemies[#enemies+1] = {
+						Instance = character,
+						Parent = indexfunc(character,"Parent"),
+						Ignore = character,
+					} 
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return v1:FindFirstChild("StarterCharacter")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1655042242,
+			GameName = "Deadline",
+			GameId = 1315961587,
+			PlaceId = 3837841034,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[1985370796] = {
+		BodyParts = {
+			["TORSO"] = "HumanoidRootPart",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,player in next, players:GetPlayers() do
+				if player ~= localplayer then
+					local character = indexfunc(player,"Character")
+					if character then
+						if indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Parent = indexfunc(character,"Parent"),
+								Ignore = character,
+							}
+						end
+					end
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1655037215,
+			GameName = "Trenches",
+			GameId = 1985370796,
+			PlaceId = 5648523896,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[108629575] = {
+		BodyParts = {
+			["TORSO"] = "Torso",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,player in next, players:GetPlayers() do
+				if player ~= localplayer then
+					local character = indexfunc(player,"Character")
+					if character then
+						if indexfunc(player,"Neutral") or indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Parent = indexfunc(character,"Parent"),
+								Ignore = character,
+							}
+						end
+					end
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1654712456,
+			GameName = "British Military Academy",
+			GameId = 108629575,
+			PlaceId = 270499015,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[595270616] = {
+		BodyParts = {
+			["TORSO"] = "HumanoidRootPart",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,player in next, players:GetPlayers() do
+				if player ~= localplayer then
+					local character = indexfunc(player,"Character")
+					if character then
+						enemies[#enemies+1] = {
+							Instance = character,
+							Parent = indexfunc(character,"Parent"),
+							Ignore = character,
+						}
+					end
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1655036911,
+			GameName = "State of Anarchy",
+			GameId = 595270616,
+			PlaceId = 2000062521,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[261612318] = {
+		BodyParts = {
+			["TORSO"] = "HumanoidRootPart",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+			v1 = localplayer:WaitForChild("PlayerData"):WaitForChild("TeamValue")
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return indexfunc(v1,"Value") ~= 0 and true or false
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,player in next, players:GetPlayers() do
+				if player ~= localplayer then
+					local character = indexfunc(player,"Character")
+					if player.Character then
+						if indexfunc(indexfunc(indexfunc(player,"PlayerData"),"TeamValue"),"Value") ~= indexfunc(v1,"Value") then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Parent = indexfunc(character,"Parent"),
+								Ignore = character,
+							}
+						end
+					end
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1654622060,
+			GameName = "Fireteam",
+			GameId = 261612318,
+			PlaceId = 633284182,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[2596968656] = {
+		BodyParts = {
+			["TORSO"] = "Torso",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,player in next, players:GetPlayers() do
+				if player ~= localplayer then
+					local character = indexfunc(player,"Character")
+					if character then
+						enemies[#enemies+1] = {
+							Instance = character,
+							Parent = indexfunc(character,"Parent"),
+							Ignore = character,
+						}
+					end
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1654615560,
+			GameName = "Sandy Shores",
+			GameId = 2596968656,
+			PlaceId = 6830111083,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[580765040] = {
+		BodyParts = {
+			["TORSO"] = "Torso",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,player in next, players:GetPlayers() do
+				if player ~= localplayer then
+					local character = indexfunc(player,"Character")
+					if character then
+						if indexfunc(player,"Neutral") or indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Parent = indexfunc(character,"Parent"),
+								Ignore = character,
+							}
+						end
+					end
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1654598380,
+			GameName = "Ragdoll Universe",
+			GameId = 580765040,
+			PlaceId = 1466995005,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[1175300013] = {
+		BodyParts = {
+			["TORSO"] = "HumanoidRootPart",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,player in next, players:GetPlayers() do
+				if player ~= localplayer then
+					local character = indexfunc(player,"Character")
+					if character then
+						enemies[#enemies+1] = {
+							Instance = character,
+							Parent = indexfunc(character,"Parent"),
+							Ignore = character,
+						}
+					end
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1654452304,
+			GameName = "Blacklands",
+			GameId = 1175300013,
+			PlaceId = 3254838662,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[1168263273] = {
+		BodyParts = {
+			["TORSO"] = "Chest",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+			hookfunction(getgenv().PluginManager,function()return;end)
+			for _,table in pairs(getgc(true)) do
+				if (typeof(table)=="table") and rawget(table,"SetTeamColor") then
+					v1=table
+					break
+				end
+			end
+			for i,v in pairs(getgc()) do
+				if (typeof(v)=="function") and debug.getinfo(v).name=="GetCharacter" then
+					v2=v
+					break
+				end
+			end
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return unpack(indexfunc(indexfunc(workspace,"Menu"),"Loadouts"):GetChildren())
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			local playerlist = debug.getupvalue(v2,1)
+			for i,character in pairs(playerlist) do
+				local isfriendly = v1:ArePlayersFriendly(i,localplayer)
+				if not isfriendly then
+					enemies[#enemies+1] = {
+						Instance = indexfunc(character,"Body"),
+						Parent = character,
+						Ignore = character,
+					}
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return debug.getupvalue(v2,1)[localplayer]
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1654449815,
+			GameName = "BadBuisness",
+			GameId = 1168263273,
+			PlaceId = 3233893879,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[380704901] = {
+		BodyParts = {
+			["TORSO"] = "HumanoidRootPart",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,player in next, players:GetPlayers() do
+				if player ~= localplayer then
+					local character = indexfunc(player,"Character")
+					if character then
+						if indexfunc(player,"Neutral") or indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Parent = indexfunc(character,"Parent"),
+								Ignore = character,
+							}
+						end
+					end
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1654447033,
+			GameName = "RO-GHOUL",
+			GameId = 380704901,
+			PlaceId = 914010731,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+
+	[2788648141] = {
+		BodyParts = {
+			["TORSO"] = "HumanoidRootPart",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,player in next, players:GetPlayers() do
+				if player ~= localplayer then
+					local character = indexfunc(player,"Character")
+					if character then
+						if indexfunc(player,"Neutral") or indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Parent = indexfunc(character,"Parent"),
+								Ignore = character,
+							}
+						end
+					end
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1654446617,
+			GameName = "Military Tycoon",
+			GameId = 2788648141,
+			PlaceId = 7180042682,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[1390601379] = {
+		BodyParts = {
+			["TORSO"] = "Torso",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,player in next, players:GetPlayers() do
+				if player ~= localplayer then
+					local character = indexfunc(player,"Character")
+					if character then
+						enemies[#enemies+1] = {
+							Instance = character,
+							Parent = indexfunc(character,"Parent"),
+							Ignore = character,
+						}
+					end
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1654609948,
+			GameName = "Combat Warriors",
+			GameId = 1390601379,
+			PlaceId = 4282985734,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[833423526] = {
+		BodyParts = {
+			["TORSO"] = "UpperTorso",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return self:GetLocalCharacter() and (localplayer.Neutral or localplayer.Team) and true or false
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return unpack(indexfunc(workspace,"IgnoreThese"):GetChildren())
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,player in next, players:GetPlayers() do
+				if player ~= localplayer then
+					local character = indexfunc(player,"Character")
+					if character then
+						if indexfunc(player,"Neutral") or indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Parent = indexfunc(character,"Parent"),
+								Ignore = character,
+							}
+						end
+					end
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1635960653,
+			GameName = "Strucid",
+			GameId = 833423526,
+			PlaceId = 2377868063,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+	[111958650] = {
+		BodyParts = {
+			["TORSO"] = "UpperTorso",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return (self:GetLocalCharacter()) and self:GetLocalCharacter():FindFirstChild("Gun") and true or false
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return unpack(indexfunc(workspace,"Ray_Ignore"):GetChildren()),unpack(indexfunc(workspace,"Debris"):GetChildren())
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,player in next, players:GetPlayers() do
+				if player ~= localplayer then
+					local character = indexfunc(player,"Character")
+					if character then
+						if indexfunc(player,"Neutral") or indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Parent = indexfunc(character,"Parent"),
+								Ignore = character,
+							}
+						end
+					end
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1636009701,
+			GameName = "Arsenal",
+			GameId = 111958650,
+			PlaceId = 286090429,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+		PeriodicChecking = true,
+	},
+	[2162282815] = {
+		BodyParts = {
+			["TORSO"] = "UpperTorso",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+			v1 = workspace:WaitForChild("MapFolder"):WaitForChild("Players")
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil -- :) stop trying so much!
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,player in pairs(players:GetPlayers()) do
+				if player~=localplayer then
+					if indexfunc(player,"Neutral") or indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") then
+						local character = v1:FindFirstChild(indexfunc(player,"Name"))
+						if character then
+							enemies[#enemies+1] = {
+								Instance = character,
+								Ignore = character,
+								Parent = indexfunc(character,"Parent")
+							}
+						end
+					end
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1654363142,
+			GameName = "Rush Point",
+			GameId = 2162282815,
+			PlaceId = 5993942214,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
+}	
