@@ -65,6 +65,62 @@ return {
 			__TYPE = "UNIVERSAL",
 		},
 	},
+	[113491250] = {
+		BodyParts = {
+			["TORSO"] = "Torso",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+		    v1 = workspace:WaitForChild("Players")
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies
+			local opp = v1:FindFirstChild(indexfunc(localplayer,"TeamColor").Name=="Bright orange" and "Bright blue" or "Bright orange")
+			if opp then
+			    enemies = {}
+    			for _,character in next, opp:GetChildren() do
+    				enemies[#enemies+1] = {
+						Instance = character,
+						Parent = indexfunc(character,"Parent"),
+						Ignore = character,
+					}
+    			end
+    		end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1655640040,
+			GameName = "Phantom Forces",
+			GameId = 113491250,
+			PlaceId = 292439477,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
 	[1801716281] = {
 		BodyParts = {
 			["TORSO"] = "HumanoidRootPart",
