@@ -755,7 +755,7 @@ Outline.Size = UDim2.new(1, 16, 1, 16)
 Outline.ZIndex = -1
 Outline.Image = "http://www.roblox.com/asset/?id=9731691467"
 Outline.ImageColor3 = Color3.fromRGB(26, 26, 26)
-Outline.ImageTransparency = 1.000
+Outline.ImageTransparency = 0
 Outline.ScaleType = Enum.ScaleType.Slice
 Outline.SliceCenter = Rect.new(6, 6, 94, 94)
 
