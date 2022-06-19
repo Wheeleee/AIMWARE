@@ -106,16 +106,13 @@ local ImageLabel_8 = Instance.new("ImageLabel")
 local NameTextLabel_7 = Instance.new("TextLabel")
 local Slider_5 = Instance.new("Frame")
 local UICorner_19 = Instance.new("UICorner")
-local StatusFrame = Instance.new("Frame")
+local InfoFrame = Instance.new("Frame")
 local UICorner_20 = Instance.new("UICorner")
 local UIPadding_3 = Instance.new("UIPadding")
 local Outline_2 = Instance.new("ImageLabel")
 local ImageLabel_9 = Instance.new("ImageLabel")
 local UICorner_21 = Instance.new("UICorner")
-local Createdtext = Instance.new("TextLabel")
-local Anticheatcheck = Instance.new("TextLabel")
-local getenemiesMS = Instance.new("TextLabel")
-local Anticheatcheck_2 = Instance.new("TextLabel")
+local TextLabel = Instance.new("TextLabel")
 local UIPadding_4 = Instance.new("UIPadding")
 local Notif = Instance.new("Frame")
 local UICorner_22 = Instance.new("UICorner")
@@ -127,16 +124,16 @@ local UIPadding_5 = Instance.new("UIPadding")
 local NotificationText = Instance.new("TextBox")
 local LoadingFrame = Instance.new("Frame")
 local UICorner_24 = Instance.new("UICorner")
-UIPadding_6 = Instance.new("UIPadding")
-ImageLabel_11 = Instance.new("ImageLabel")
-UICorner_25 = Instance.new("UICorner")
-Outline_3 = Instance.new("ImageLabel")
-LoadingBar = Instance.new("Frame")
-UICorner_26 = Instance.new("UICorner")
-LoadingText = Instance.new("TextLabel")
-FrommiddleCheck = Instance.new("TextButton")
-UICorner_27 = Instance.new("UICorner")
-ImageLabel_12 = Instance.new("ImageLabel")
+local UIPadding_6 = Instance.new("UIPadding")
+local ImageLabel_11 = Instance.new("ImageLabel")
+local UICorner_25 = Instance.new("UICorner")
+local Outline_3 = Instance.new("ImageLabel")
+local LoadingBar = Instance.new("Frame")
+local UICorner_26 = Instance.new("UICorner")
+local LoadingText = Instance.new("TextLabel")
+local FrommiddleCheck = Instance.new("TextButton")
+local UICorner_27 = Instance.new("UICorner")
+local ImageLabel_12 = Instance.new("ImageLabel")
 NameTextLabel_8 = Instance.new("TextLabel")
 Slider_6 = Instance.new("Frame")
 UICorner_28 = Instance.new("UICorner")
@@ -154,11 +151,16 @@ UIListLayout = Instance.new("UIListLayout")
 ShortcutSetting = Instance.new("TextButton")
 ShortcutText = Instance.new("TextLabel")
 UIPadding_7 = Instance.new("UIPadding")
+PeriodicCheck = Instance.new("TextButton")
+UICorner_32 = Instance.new("UICorner")
+ImageLabel_15 = Instance.new("ImageLabel")
+NameTextLabel_9 = Instance.new("TextLabel")
+Slider_7 = Instance.new("Frame")
+UICorner_33 = Instance.new("UICorner")
 
 --Properties:
 
 gui.Name = "gui"
-gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 TextButton.Parent = gui
@@ -422,7 +424,7 @@ Latitude.Size = UDim2.new(0, 1000, 0, 1)
 AimbotCheck.Name = "AimbotCheck"
 AimbotCheck.Parent = TextButton
 AimbotCheck.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
-AimbotCheck.Size = UDim2.new(0, 56, 0, 14)
+AimbotCheck.Size = UDim2.new(0, 36, 0, 14)
 AimbotCheck.ZIndex = 3
 AimbotCheck.AutoButtonColor = false
 AimbotCheck.Font = Enum.Font.SourceSans
@@ -470,8 +472,8 @@ UICorner_6.Parent = Slider
 VisualCheck.Name = "VisualCheck"
 VisualCheck.Parent = TextButton
 VisualCheck.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
-VisualCheck.Position = UDim2.new(1, -244, 0, 18)
-VisualCheck.Size = UDim2.new(0, 56, 0, 14)
+VisualCheck.Position = UDim2.new(1, -227, 0, 18)
+VisualCheck.Size = UDim2.new(0, 36, 0, 14)
 VisualCheck.ZIndex = 3
 VisualCheck.AutoButtonColor = false
 VisualCheck.Font = Enum.Font.SourceSans
@@ -520,8 +522,8 @@ UICorner_8.Parent = Slider_2
 ChamsCheck.Name = "ChamsCheck"
 ChamsCheck.Parent = TextButton
 ChamsCheck.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
-ChamsCheck.Position = UDim2.new(1, -244, 0, 36)
-ChamsCheck.Size = UDim2.new(0, 56, 0, 14)
+ChamsCheck.Position = UDim2.new(1, -227, 0, 36)
+ChamsCheck.Size = UDim2.new(0, 36, 0, 14)
 ChamsCheck.ZIndex = 3
 ChamsCheck.AutoButtonColor = false
 ChamsCheck.Font = Enum.Font.SourceSans
@@ -570,8 +572,8 @@ UICorner_10.Parent = Slider_3
 LinesCheck.Name = "LinesCheck"
 LinesCheck.Parent = TextButton
 LinesCheck.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
-LinesCheck.Position = UDim2.new(1, -244, 0, 54)
-LinesCheck.Size = UDim2.new(0, 56, 0, 14)
+LinesCheck.Position = UDim2.new(1, -227, 0, 54)
+LinesCheck.Size = UDim2.new(0, 36, 0, 14)
 LinesCheck.ZIndex = 3
 LinesCheck.AutoButtonColor = false
 LinesCheck.Font = Enum.Font.SourceSans
@@ -621,7 +623,7 @@ SmoothnessSlider.Name = "SmoothnessSlider"
 SmoothnessSlider.Parent = TextButton
 SmoothnessSlider.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
 SmoothnessSlider.BorderSizePixel = 0
-SmoothnessSlider.Position = UDim2.new(1, -301, 0, 116)
+SmoothnessSlider.Position = UDim2.new(1, -301, 0, 134)
 SmoothnessSlider.Size = UDim2.new(0, 111, 0, 7)
 
 UICorner_13.CornerRadius = UDim.new(1, 0)
@@ -675,7 +677,7 @@ FovSlider.Name = "FovSlider"
 FovSlider.Parent = TextButton
 FovSlider.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
 FovSlider.BorderSizePixel = 0
-FovSlider.Position = UDim2.new(1, -301, 0, 145)
+FovSlider.Position = UDim2.new(1, -301, 0, 163)
 FovSlider.Size = UDim2.new(0, 111, 0, 7)
 
 UICorner_15.CornerRadius = UDim.new(1, 0)
@@ -734,7 +736,7 @@ VersionText.BorderSizePixel = 0
 VersionText.Position = UDim2.new(0, 0, 1, 2)
 VersionText.Size = UDim2.new(0, 10, 0, 10)
 VersionText.Font = Enum.Font.SourceSansItalic
-VersionText.Text = "v0.1.410A"
+VersionText.Text = "v0.1.415A"
 VersionText.TextColor3 = Color3.fromRGB(59, 59, 59)
 VersionText.TextSize = 14.000
 VersionText.TextXAlignment = Enum.TextXAlignment.Left
@@ -753,6 +755,7 @@ Outline.Size = UDim2.new(1, 16, 1, 16)
 Outline.ZIndex = -1
 Outline.Image = "http://www.roblox.com/asset/?id=9731691467"
 Outline.ImageColor3 = Color3.fromRGB(26, 26, 26)
+Outline.ImageTransparency = 1.000
 Outline.ScaleType = Enum.ScaleType.Slice
 Outline.SliceCenter = Rect.new(6, 6, 94, 94)
 
@@ -772,8 +775,8 @@ UICorner_17.Parent = ImageLabel_7
 MousefovCheck.Name = "MousefovCheck"
 MousefovCheck.Parent = TextButton
 MousefovCheck.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
-MousefovCheck.Position = UDim2.new(1, -244, 0, 90)
-MousefovCheck.Size = UDim2.new(0, 56, 0, 14)
+MousefovCheck.Position = UDim2.new(1, -227, 0, 90)
+MousefovCheck.Size = UDim2.new(0, 36, 0, 14)
 MousefovCheck.ZIndex = 3
 MousefovCheck.AutoButtonColor = false
 MousefovCheck.Font = Enum.Font.SourceSans
@@ -819,23 +822,24 @@ Slider_5.ZIndex = 2
 UICorner_19.CornerRadius = UDim.new(0, 4)
 UICorner_19.Parent = Slider_5
 
-StatusFrame.Name = "StatusFrame"
-StatusFrame.Parent = TextButton
-StatusFrame.AnchorPoint = Vector2.new(0.5, 0)
-StatusFrame.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
-StatusFrame.Position = UDim2.new(0.5, 0, 1, 10)
-StatusFrame.Size = UDim2.new(1, -71, 0, 41)
+InfoFrame.Name = "InfoFrame"
+InfoFrame.Parent = gui
+InfoFrame.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+InfoFrame.Position = UDim2.new(0, 0, 0, 0)
+InfoFrame.Size = UDim2.new(0, 194, 0, 108)
+InfoFrame.Visible = false
+InfoFrame.ZIndex = 10
 
-UICorner_20.Parent = StatusFrame
+UICorner_20.Parent = InfoFrame
 
-UIPadding_3.Parent = StatusFrame
+UIPadding_3.Parent = InfoFrame
 UIPadding_3.PaddingBottom = UDim.new(0, 8)
 UIPadding_3.PaddingLeft = UDim.new(0, 8)
 UIPadding_3.PaddingRight = UDim.new(0, 8)
 UIPadding_3.PaddingTop = UDim.new(0, 8)
 
 Outline_2.Name = "Outline"
-Outline_2.Parent = StatusFrame
+Outline_2.Parent = InfoFrame
 Outline_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Outline_2.BackgroundTransparency = 1.000
 Outline_2.BorderSizePixel = 0
@@ -843,11 +847,11 @@ Outline_2.Position = UDim2.new(0, -8, 0, -8)
 Outline_2.Size = UDim2.new(1, 16, 1, 16)
 Outline_2.ZIndex = -1
 Outline_2.Image = "http://www.roblox.com/asset/?id=9731691467"
-Outline_2.ImageColor3 = Color3.fromRGB(26, 26, 26)
+Outline_2.ImageColor3 = Color3.fromRGB(59, 98, 125)
 Outline_2.ScaleType = Enum.ScaleType.Slice
 Outline_2.SliceCenter = Rect.new(6, 6, 94, 94)
 
-ImageLabel_9.Parent = StatusFrame
+ImageLabel_9.Parent = InfoFrame
 ImageLabel_9.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 ImageLabel_9.BackgroundTransparency = 1.000
 ImageLabel_9.Position = UDim2.new(0, -8, 0, -8)
@@ -860,63 +864,18 @@ ImageLabel_9.TileSize = UDim2.new(0, 256, 0, 256)
 
 UICorner_21.Parent = ImageLabel_9
 
-Createdtext.Name = "Createdtext"
-Createdtext.Parent = StatusFrame
-Createdtext.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Createdtext.BackgroundTransparency = 1.000
-Createdtext.BorderSizePixel = 0
-Createdtext.Size = UDim2.new(0, 117, 0, 12)
-Createdtext.Font = Enum.Font.SourceSansBold
-Createdtext.Text = "CREATED: 0 days ago"
-Createdtext.TextColor3 = Color3.fromRGB(190, 190, 190)
-Createdtext.TextSize = 14.000
-Createdtext.TextWrapped = true
-Createdtext.TextXAlignment = Enum.TextXAlignment.Left
-
-Anticheatcheck.Name = "Anticheatcheck"
-Anticheatcheck.Parent = StatusFrame
-Anticheatcheck.AnchorPoint = Vector2.new(0, 1)
-Anticheatcheck.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Anticheatcheck.BackgroundTransparency = 1.000
-Anticheatcheck.BorderSizePixel = 0
-Anticheatcheck.Position = UDim2.new(0, 0, 1, 0)
-Anticheatcheck.Size = UDim2.new(0, 117, 0, 12)
-Anticheatcheck.Font = Enum.Font.SourceSansBold
-Anticheatcheck.Text = "ANTI-CHEAT: SAME"
-Anticheatcheck.TextColor3 = Color3.fromRGB(190, 190, 190)
-Anticheatcheck.TextSize = 14.000
-Anticheatcheck.TextWrapped = true
-Anticheatcheck.TextXAlignment = Enum.TextXAlignment.Left
-
-getenemiesMS.Name = "getenemiesMS"
-getenemiesMS.Parent = StatusFrame
-getenemiesMS.AnchorPoint = Vector2.new(1, 0)
-getenemiesMS.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-getenemiesMS.BackgroundTransparency = 1.000
-getenemiesMS.BorderSizePixel = 0
-getenemiesMS.Position = UDim2.new(1, 0, 0, 0)
-getenemiesMS.Size = UDim2.new(1, 0, 0, 12)
-getenemiesMS.Font = Enum.Font.SourceSansBold
-getenemiesMS.Text = "GET_ENEMIES MS: 0"
-getenemiesMS.TextColor3 = Color3.fromRGB(190, 190, 190)
-getenemiesMS.TextSize = 14.000
-getenemiesMS.TextWrapped = true
-getenemiesMS.TextXAlignment = Enum.TextXAlignment.Right
-
-Anticheatcheck_2.Name = "Anticheatcheck"
-Anticheatcheck_2.Parent = StatusFrame
-Anticheatcheck_2.AnchorPoint = Vector2.new(1, 1)
-Anticheatcheck_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Anticheatcheck_2.BackgroundTransparency = 1.000
-Anticheatcheck_2.BorderSizePixel = 0
-Anticheatcheck_2.Position = UDim2.new(1, 0, 1, 0)
-Anticheatcheck_2.Size = UDim2.new(0, 117, 0, 12)
-Anticheatcheck_2.Font = Enum.Font.SourceSansBold
-Anticheatcheck_2.Text = "CLIENT: SAME"
-Anticheatcheck_2.TextColor3 = Color3.fromRGB(190, 190, 190)
-Anticheatcheck_2.TextSize = 14.000
-Anticheatcheck_2.TextWrapped = true
-Anticheatcheck_2.TextXAlignment = Enum.TextXAlignment.Right
+TextLabel.Parent = InfoFrame
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.BorderSizePixel = 0
+TextLabel.Size = UDim2.new(0, 1000, 0, 1000)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Gravida quis blandit turpis cursus in hac habitasse."
+TextLabel.TextColor3 = Color3.fromRGB(173, 173, 173)
+TextLabel.TextSize = 15.000
+TextLabel.TextWrapped = true
+TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+TextLabel.TextYAlignment = Enum.TextYAlignment.Top
 
 UIPadding_4.Parent = TextButton
 UIPadding_4.PaddingBottom = UDim.new(0, 8)
@@ -1067,8 +1026,8 @@ LoadingText.TextXAlignment = Enum.TextXAlignment.Left
 FrommiddleCheck.Name = "FrommiddleCheck"
 FrommiddleCheck.Parent = TextButton
 FrommiddleCheck.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
-FrommiddleCheck.Position = UDim2.new(1, -244, 0, 72)
-FrommiddleCheck.Size = UDim2.new(0, 56, 0, 14)
+FrommiddleCheck.Position = UDim2.new(1, -227, 0, 72)
+FrommiddleCheck.Size = UDim2.new(0, 36, 0, 14)
 FrommiddleCheck.ZIndex = 3
 FrommiddleCheck.AutoButtonColor = false
 FrommiddleCheck.Font = Enum.Font.SourceSans
@@ -1228,6 +1187,56 @@ UIPadding_7.PaddingLeft = UDim.new(0, 1)
 UIPadding_7.PaddingRight = UDim.new(0, 1)
 UIPadding_7.PaddingTop = UDim.new(0, 1)
 
+PeriodicCheck.Name = "PeriodicCheck"
+PeriodicCheck.Parent = TextButton
+PeriodicCheck.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+PeriodicCheck.Position = UDim2.new(1, -227, 0, 108)
+PeriodicCheck.Size = UDim2.new(0, 36, 0, 14)
+PeriodicCheck.ZIndex = 3
+PeriodicCheck.AutoButtonColor = false
+PeriodicCheck.Font = Enum.Font.SourceSans
+PeriodicCheck.Text = ""
+PeriodicCheck.TextColor3 = Color3.fromRGB(0, 0, 0)
+PeriodicCheck.TextSize = 14.000
+
+UICorner_32.Parent = PeriodicCheck
+
+ImageLabel_15.Parent = PeriodicCheck
+ImageLabel_15.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_15.BackgroundTransparency = 1.000
+ImageLabel_15.BorderSizePixel = 0
+ImageLabel_15.Size = UDim2.new(1, 0, 1, 0)
+ImageLabel_15.Image = "http://www.roblox.com/asset/?id=9731691467"
+ImageLabel_15.ImageColor3 = Color3.fromRGB(12, 12, 12)
+ImageLabel_15.ScaleType = Enum.ScaleType.Slice
+ImageLabel_15.SliceCenter = Rect.new(6, 6, 94, 94)
+
+NameTextLabel_9.Name = "NameTextLabel"
+NameTextLabel_9.Parent = PeriodicCheck
+NameTextLabel_9.AnchorPoint = Vector2.new(1, 0)
+NameTextLabel_9.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NameTextLabel_9.BackgroundTransparency = 1.000
+NameTextLabel_9.BorderSizePixel = 0
+NameTextLabel_9.Position = UDim2.new(0, -5, 0, 0)
+NameTextLabel_9.Size = UDim2.new(0, 50, 1, 0)
+NameTextLabel_9.Font = Enum.Font.SourceSansBold
+NameTextLabel_9.Text = "PERIODIC CHECK"
+NameTextLabel_9.TextColor3 = Color3.fromRGB(156, 156, 156)
+NameTextLabel_9.TextSize = 12.000
+NameTextLabel_9.TextXAlignment = Enum.TextXAlignment.Right
+
+Slider_7.Name = "Slider"
+Slider_7.Parent = PeriodicCheck
+Slider_7.AnchorPoint = Vector2.new(0, 0.5)
+Slider_7.BackgroundColor3 = Color3.fromRGB(190, 190, 190)
+Slider_7.Position = UDim2.new(0, 0, 0.5, 0)
+Slider_7.Size = UDim2.new(1, -2, 1, 2)
+Slider_7.SizeConstraint = Enum.SizeConstraint.RelativeYY
+Slider_7.ZIndex = 2
+
+UICorner_33.CornerRadius = UDim.new(0, 4)
+UICorner_33.Parent = Slider_7
+
 LoadingText.Text = "Creating UI"
 
 preloadprovider:PreloadAsync({gui})
@@ -1280,7 +1289,7 @@ local maxvectoroffset = Vector3.new(4,5,2)
 local currentoffset = Vector3.new(0,0,0)
 local mousefovoffset = Vector2.new(0,36) -- took me so long to figure out that the gui inset needs to be accounted for asw. fuck me man.
 local unvischeckcolor,viscolor,notviscolor = color3(255, 118, 21),color3(108,255,108),color3(255,55,55)
-local currentversion = "v0.1.600A"
+local currentversion = "v0.1.605A"
 
 local shortcutopen = false
 
@@ -1401,20 +1410,6 @@ if api.Info.__TYPE  == "UNIVERSAL" then
 end
 notify("AIMWARE Welcomes you! Hope you find the script good.\nYou can find us at: https://discord.gg/Q2zYM8u6KR\nChangelogs can also be found here.\n","MESSAGE")
 local periodic = api.PeriodicChecking
-local days = math.ceil((os.time()-api.Info.Created)/86400)
-Createdtext.Text = "CREATED: "..days.." days ago"
-getenemiesMS.Text = "GET_ENEMIES MS: calc"
-LoadingText.Text = "Calculating"
-tweenservice:Create(LoadingBar,TweenInfo.new(.12),{Size=udim2(.65,0,0,5)}):Play()
-spawn(function()
-	local start = os.clock()
-	for i = 1,2000 do
-		getenemies()
-	end
-	local time = math.floor((os.clock()-start)*100)/10
-	getenemiesMS.Text = "GET_ENEMIES MS: "..time
-end)
-
 local translate = api.Translate
 
 LoadingText.Text = "Setting up AIMWARE"
@@ -1503,6 +1498,14 @@ MousefovCheck.MouseButton1Down:Connect(function()
 	tweenservice:Create(MousefovCheck.Slider,TweenInfo.new(.12),{BackgroundColor3 = mousefov and color3(190, 190, 190) or color3(42, 180, 51),Position = mousefov and udim2(0,0,0.5,0) or udim2(1,-12,0.5,0)}):Play()
 	mousefov = not mousefov	
 end)
+if not periodic then
+	PeriodicCheck.MouseButton1Down:Connect(function()
+		tweenservice:Create(PeriodicCheck.Slider,TweenInfo.new(.12),{BackgroundColor3 = periodic and color3(190, 190, 190) or color3(42, 180, 51),Position = periodic and udim2(0,0,0.5,0) or udim2(1,-12,0.5,0)}):Play()
+		periodic = not periodic	
+	end)
+else
+	PeriodicCheck.NameTextLabel.TextColor3 = color3(120,120,120)
+end
 
 local onfovslider = false
 FovSlider.SliderButton.MouseButton1Down:Connect(function()
@@ -1546,7 +1549,7 @@ local function moveable(textbutton)
 			repeat runservice.RenderStepped:Wait()
 				textbutton.Position = UDim2.new(0,mouse.X+offset.X,0,mouse.Y+offset.Y)
 			until not moving
-		end)
+		end) 
 		textbutton.MouseButton1Up:Connect(function()
 			moving = false
 		end)
@@ -1555,6 +1558,35 @@ end
 
 local indexfunc = getrawmetatable(game).__index -- localizing index func gives around 10% performance increase.
 local newindexfunc = getrawmetatable(game).__newindex
+
+local function infotext(onentergui,text)
+	local entered = false
+	onentergui.MouseEnter:Connect(function()
+		entered = true
+		InfoFrame.TextLabel.Text = text or " NOTHING SUPPLIED."
+		InfoFrame.TextLabel.RichText = true
+		tweenservice:Create(InfoFrame,TweenInfo.new(.12),{Size=udim2(0,InfoFrame.TextLabel.TextBounds.X+18,0,InfoFrame.TextLabel.TextBounds.Y+18)}):Play()
+		while entered and not closed do
+			InfoFrame.Visible = true
+			InfoFrame.Position = udim2(0,indexfunc(mouse,"X"),0,indexfunc(mouse,"Y"))
+			renderstep:Wait()
+		end
+		InfoFrame.Visible = false
+	end)
+	onentergui.MouseLeave:Connect(function()
+		entered = false
+	end)
+end
+
+infotext(ChamsCheck.NameTextLabel," If <font color=\"rgb(255,108,0)\">chams</font> should be drawn at all.")
+infotext(FrommiddleCheck.NameTextLabel," If the <font color=\"rgb(255,108,0)\">lines</font> that are drawn should be coming\nfrom the middle or bottom of the screen.")
+infotext(LinesCheck.NameTextLabel," If <font color=\"rgb(255,108,0)\">lines</font> should be drawn at all.")
+infotext(MousefovCheck.NameTextLabel," Where the <font color=\"rgb(108,108,255)\">aimbot</font> checks the FOV from.")
+infotext(PeriodicCheck.NameTextLabel,periodic and " Permanently on for this game." or " Periodically re-checks if the player aimed\nat is visible or not. <i>May</i> lag low end computers.")
+infotext(VisualCheck.NameTextLabel," Checks if the character is visible on screen, <i>may</i> not\n100% work all the time.")
+infotext(SmoothnessSlider.NameTextLabel," The smoothness of the <font color=\"rgb(108,108,255)\">aimbot</font>.")
+infotext(FovSlider.NameTextLabel," Size of the FOV.")
+
 local function addesp(player)
 	local character = player.Instance
 	local debugid = character:GetDebugId()
