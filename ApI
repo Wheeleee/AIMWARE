@@ -1536,7 +1536,7 @@ return {
 		end,
 		GetEnemies = function(self)
 			local enemies = {}
-			for _,character in next, workspace:GetPlayers() do
+			for _,character in next, workspace:GetChildren() do
 				if indexfunc(character,"Name")=="Dummy" then
 				    enemies[#enemies+1] = {
 						Instance = character,
