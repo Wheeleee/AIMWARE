@@ -1289,7 +1289,7 @@ local maxvectoroffset = Vector3.new(4,5,2)
 local currentoffset = Vector3.new(0,0,0)
 local mousefovoffset = Vector2.new(0,36) -- took me so long to figure out that the gui inset needs to be accounted for asw. fuck me man.
 local unvischeckcolor,viscolor,notviscolor = color3(255, 118, 21),color3(108,255,108),color3(255,55,55)
-local currentversion = "v0.1.605A"
+local currentversion = "v0.1.607A"
 
 local shortcutopen = false
 
@@ -1404,6 +1404,8 @@ if not cangetignorables then
 		return nil
 	end
 end
+local getignorables = api.GetIgnorables
+local getlocalcharacter = api.GetLocalCharacter
 VersionText.Text = currentversion
 if api.Info.__TYPE  == "UNIVERSAL" then
 	notify("This game is not supported. AIMWARE will do it's best but some things may break. DM me, YouBuggin#6330, with the game link and I'll add support for this game.","WARNING",2)
@@ -1604,7 +1606,6 @@ local function addesp(player)
 		box.Filled = false
 		box.Thickness = 1
 		box.Color = color3(255, 118, 21)
-		local count,countmax = 0,1
 		local torso = character:FindFirstChild(translate(api,"torso"))
 		local width,height = 7,11
 		local constantwidth,constantheight = width*500,height*515
@@ -1618,14 +1619,13 @@ local function addesp(player)
 					local cameraposition = indexfunc(camera,"CFrame").Position
 					local distance = (cameraposition-torsoposition).magnitude
 					local field = indexfunc(camera,"FieldOfView")/70
-					countmax = distance > 200 and 3 or distance > 350 and 5 or distance < 200 and 1 or 7
 					local aimpartvisible
 					if visualcheck then
-						params.FilterDescendantsInstances={camera,api:GetLocalCharacter(),api:GetIgnorables()}
+						params.FilterDescendantsInstances={camera,getlocalcharacter(),getignorables()}
 						local raycastresult = workspace:Raycast(cameraposition,cframe(cameraposition,torsoposition).LookVector*100000,params)
 						aimpartvisible = (raycastresult) and raycastresult.Instance:IsDescendantOf(character) or false
 					end
-					local color = (visualcheck) and aimpartvisible and viscolor or (visualcheck) and notviscolor or unvischeckcolor
+					local color = visualcheck and aimpartvisible and viscolor or visualcheck and notviscolor or unvischeckcolor
 
 					local aimpartposition2d,aimpartonscreen
 					if lineson or chamson then
@@ -1785,7 +1785,7 @@ runservice.RenderStepped:Connect(function()
 								if visualcheck then -- in aimbots it's critical to put shit inside IF statments so performance goes up when disabling an option.
 									local cameraposition = indexfunc(camera,"CFrame").Position
 									local params = raycastparams()
-									params.FilterDescendantsInstances={camera,api:GetLocalCharacter(),api:GetIgnorables()}
+									params.FilterDescendantsInstances={camera,getlocalcharacter(),getignorables()}
 									raycastresult = workspace:Raycast(cameraposition,cframe(cameraposition,aimatpartposition).LookVector*100000,params)
 								end
 								if not visualcheck or (raycastresult) and raycastresult.Instance:IsDescendantOf(instance) then
