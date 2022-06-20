@@ -1268,6 +1268,7 @@ local ceil = math.ceil
 local cframe= CFrame.new
 local raycastparams = RaycastParams.new
 local taskwait = task.wait
+local tableclear = table.clear
 
 local shortcutslist = aimwareconfig.shortcuts
 local esp = {}
@@ -1611,6 +1612,7 @@ local function addesp(player)
 		local constantwidth,constantheight = width*500,height*515
 		local basevector = vector2(constantwidth,constantheight)
 		local params = raycastparams()
+		local ignore = {true,true,true}
 		local renderconnection;renderconnection = runservice.RenderStepped:Connect(function()
 			if character and torso then
 				local firstparent = indexfunc(character,"Parent")
@@ -1621,7 +1623,11 @@ local function addesp(player)
 					local field = indexfunc(camera,"FieldOfView")/70
 					local aimpartvisible
 					if visualcheck then
-						params.FilterDescendantsInstances={camera,getlocalcharacter(),getignorables()}
+						--params.FilterDescendantsInstances={camera,getlocalcharacter(),getignorables()}
+						ignore[1]=camera
+						ignore[2]=getlocalcharacter()
+						ignore[3]=getignorables()
+						params.FilterDescendantsInstances=ignore
 						local raycastresult = workspace:Raycast(cameraposition,cframe(cameraposition,torsoposition).LookVector*100000,params)
 						aimpartvisible = (raycastresult) and raycastresult.Instance:IsDescendantOf(character) or false
 					end
