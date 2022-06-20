@@ -97,70 +97,83 @@ local CurrentValue_2 = Instance.new("TextLabel")
 local NameTextLabel_6 = Instance.new("TextLabel")
 local VersionText = Instance.new("TextLabel")
 local UIGradient = Instance.new("UIGradient")
-local Outline = Instance.new("ImageLabel")
-local ImageLabel_7 = Instance.new("ImageLabel")
-local UICorner_17 = Instance.new("UICorner")
 local MousefovCheck = Instance.new("TextButton")
-local UICorner_18 = Instance.new("UICorner")
-local ImageLabel_8 = Instance.new("ImageLabel")
+local UICorner_17 = Instance.new("UICorner")
+local ImageLabel_7 = Instance.new("ImageLabel")
 local NameTextLabel_7 = Instance.new("TextLabel")
 local Slider_5 = Instance.new("Frame")
-local UICorner_19 = Instance.new("UICorner")
-local InfoFrame = Instance.new("Frame")
-local UICorner_20 = Instance.new("UICorner")
+local UICorner_18 = Instance.new("UICorner")
 local UIPadding_3 = Instance.new("UIPadding")
-local Outline_2 = Instance.new("ImageLabel")
-local ImageLabel_9 = Instance.new("ImageLabel")
-local UICorner_21 = Instance.new("UICorner")
-local TextLabel = Instance.new("TextLabel")
-local UIPadding_4 = Instance.new("UIPadding")
 local Notif = Instance.new("Frame")
-local UICorner_22 = Instance.new("UICorner")
+local UICorner_19 = Instance.new("UICorner")
 local Dismiss = Instance.new("TextButton")
-local UICorner_23 = Instance.new("UICorner")
-local ImageLabel_10 = Instance.new("ImageLabel")
+local UICorner_20 = Instance.new("UICorner")
+local ImageLabel_8 = Instance.new("ImageLabel")
 local NotificationType = Instance.new("TextLabel")
-local UIPadding_5 = Instance.new("UIPadding")
+local UIPadding_4 = Instance.new("UIPadding")
 local NotificationText = Instance.new("TextBox")
 local LoadingFrame = Instance.new("Frame")
-local UICorner_24 = Instance.new("UICorner")
-local UIPadding_6 = Instance.new("UIPadding")
-local ImageLabel_11 = Instance.new("ImageLabel")
-local UICorner_25 = Instance.new("UICorner")
-local Outline_3 = Instance.new("ImageLabel")
+local UICorner_21 = Instance.new("UICorner")
+local UIPadding_5 = Instance.new("UIPadding")
+local ImageLabel_9 = Instance.new("ImageLabel")
+local UICorner_22 = Instance.new("UICorner")
+local Outline = Instance.new("ImageLabel")
 local LoadingBar = Instance.new("Frame")
-local UICorner_26 = Instance.new("UICorner")
+local UICorner_23 = Instance.new("UICorner")
 local LoadingText = Instance.new("TextLabel")
 local FrommiddleCheck = Instance.new("TextButton")
-local UICorner_27 = Instance.new("UICorner")
-local ImageLabel_12 = Instance.new("ImageLabel")
-NameTextLabel_8 = Instance.new("TextLabel")
-Slider_6 = Instance.new("Frame")
-UICorner_28 = Instance.new("UICorner")
-ShortcutsButton = Instance.new("TextButton")
-UICorner_29 = Instance.new("UICorner")
-ImageLabel_13 = Instance.new("ImageLabel")
-ShortcutsClip = Instance.new("Frame")
-ShortcutsFrame = Instance.new("Frame")
-ImageLabel_14 = Instance.new("ImageLabel")
-UICorner_30 = Instance.new("UICorner")
-Outline_4 = Instance.new("ImageLabel")
-UICorner_31 = Instance.new("UICorner")
-ShortcutsScrollingFrame = Instance.new("ScrollingFrame")
-UIListLayout = Instance.new("UIListLayout")
-ShortcutSetting = Instance.new("TextButton")
-ShortcutText = Instance.new("TextLabel")
-UIPadding_7 = Instance.new("UIPadding")
-PeriodicCheck = Instance.new("TextButton")
-UICorner_32 = Instance.new("UICorner")
-ImageLabel_15 = Instance.new("ImageLabel")
-NameTextLabel_9 = Instance.new("TextLabel")
-Slider_7 = Instance.new("Frame")
-UICorner_33 = Instance.new("UICorner")
+local UICorner_24 = Instance.new("UICorner")
+local ImageLabel_10 = Instance.new("ImageLabel")
+local NameTextLabel_8 = Instance.new("TextLabel")
+local Slider_6 = Instance.new("Frame")
+local UICorner_25 = Instance.new("UICorner")
+local ShortcutsButton = Instance.new("TextButton")
+ UICorner_26 = Instance.new("UICorner")
+ ImageLabel_11 = Instance.new("ImageLabel")
+ ShortcutsClip = Instance.new("Frame")
+ ShortcutsFrame = Instance.new("Frame")
+ ImageLabel_12 = Instance.new("ImageLabel")
+ UICorner_27 = Instance.new("UICorner")
+ Outline_2 = Instance.new("ImageLabel")
+ UICorner_28 = Instance.new("UICorner")
+ ShortcutsScrollingFrame = Instance.new("ScrollingFrame")
+ UIListLayout = Instance.new("UIListLayout")
+ ShortcutSetting = Instance.new("TextButton")
+ ShortcutText = Instance.new("TextLabel")
+ UIPadding_6 = Instance.new("UIPadding")
+ PeriodicCheck = Instance.new("TextButton")
+ UICorner_29 = Instance.new("UICorner")
+ ImageLabel_13 = Instance.new("ImageLabel")
+ NameTextLabel_9 = Instance.new("TextLabel")
+ Slider_7 = Instance.new("Frame")
+ UICorner_30 = Instance.new("UICorner")
+ ImageLabel_14 = Instance.new("ImageLabel")
+ UICorner_31 = Instance.new("UICorner")
+ Outline_3 = Instance.new("ImageLabel")
+ PredictionCheck = Instance.new("TextButton")
+ UICorner_32 = Instance.new("UICorner")
+ ImageLabel_15 = Instance.new("ImageLabel")
+ NameTextLabel_10 = Instance.new("TextLabel")
+ Slider_8 = Instance.new("Frame")
+ UICorner_33 = Instance.new("UICorner")
+ PredictionSlider = Instance.new("Frame")
+ UICorner_34 = Instance.new("UICorner")
+ SliderButton_3 = Instance.new("TextButton")
+ UICorner_35 = Instance.new("UICorner")
+ CurrentValue_3 = Instance.new("TextLabel")
+ NameTextLabel_11 = Instance.new("TextLabel")
+ InfoFrame = Instance.new("Frame")
+ UICorner_36 = Instance.new("UICorner")
+ UIPadding_7 = Instance.new("UIPadding")
+ Outline_4 = Instance.new("ImageLabel")
+ ImageLabel_16 = Instance.new("ImageLabel")
+ UICorner_37 = Instance.new("UICorner")
+ TextLabel = Instance.new("TextLabel")
 
 --Properties:
 
 gui.Name = "gui"
+gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 TextButton.Parent = gui
@@ -171,7 +184,7 @@ TextButton.AutoButtonColor = false
 TextButton.Font = Enum.Font.SourceSansBold
 TextButton.Text = "AIMWARE"
 TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextButton.TextSize = 42.000
+TextButton.TextSize = 40.000
 TextButton.TextWrapped = true
 TextButton.TextXAlignment = Enum.TextXAlignment.Left
 TextButton.TextYAlignment = Enum.TextYAlignment.Bottom
@@ -623,7 +636,7 @@ SmoothnessSlider.Name = "SmoothnessSlider"
 SmoothnessSlider.Parent = TextButton
 SmoothnessSlider.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
 SmoothnessSlider.BorderSizePixel = 0
-SmoothnessSlider.Position = UDim2.new(1, -301, 0, 134)
+SmoothnessSlider.Position = UDim2.new(1, -301, 0, 181)
 SmoothnessSlider.Size = UDim2.new(0, 111, 0, 7)
 
 UICorner_13.CornerRadius = UDim.new(1, 0)
@@ -677,7 +690,7 @@ FovSlider.Name = "FovSlider"
 FovSlider.Parent = TextButton
 FovSlider.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
 FovSlider.BorderSizePixel = 0
-FovSlider.Position = UDim2.new(1, -301, 0, 163)
+FovSlider.Position = UDim2.new(1, -301, 0, 210)
 FovSlider.Size = UDim2.new(0, 111, 0, 7)
 
 UICorner_15.CornerRadius = UDim.new(1, 0)
@@ -736,7 +749,7 @@ VersionText.BorderSizePixel = 0
 VersionText.Position = UDim2.new(0, 0, 1, 2)
 VersionText.Size = UDim2.new(0, 10, 0, 10)
 VersionText.Font = Enum.Font.SourceSansItalic
-VersionText.Text = "v0.1.415A"
+VersionText.Text = "DEV"
 VersionText.TextColor3 = Color3.fromRGB(59, 59, 59)
 VersionText.TextSize = 14.000
 VersionText.TextXAlignment = Enum.TextXAlignment.Left
@@ -744,33 +757,6 @@ VersionText.TextYAlignment = Enum.TextYAlignment.Bottom
 
 UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.42, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.46, Color3.fromRGB(188, 188, 188)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(188, 188, 188))}
 UIGradient.Parent = TextButton
-
-Outline.Name = "Outline"
-Outline.Parent = TextButton
-Outline.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Outline.BackgroundTransparency = 1.000
-Outline.BorderSizePixel = 0
-Outline.Position = UDim2.new(0, -8, 0, -8)
-Outline.Size = UDim2.new(1, 16, 1, 16)
-Outline.ZIndex = -1
-Outline.Image = "http://www.roblox.com/asset/?id=9731691467"
-Outline.ImageColor3 = Color3.fromRGB(26, 26, 26)
-Outline.ImageTransparency = 0
-Outline.ScaleType = Enum.ScaleType.Slice
-Outline.SliceCenter = Rect.new(6, 6, 94, 94)
-
-ImageLabel_7.Parent = TextButton
-ImageLabel_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ImageLabel_7.BackgroundTransparency = 1.000
-ImageLabel_7.Position = UDim2.new(0, -8, 0, -8)
-ImageLabel_7.Size = UDim2.new(1, 16, 1, 16)
-ImageLabel_7.ZIndex = -3
-ImageLabel_7.Image = "http://www.roblox.com/asset/?id=6756524275"
-ImageLabel_7.ImageColor3 = Color3.fromRGB(50, 50, 50)
-ImageLabel_7.ScaleType = Enum.ScaleType.Tile
-ImageLabel_7.TileSize = UDim2.new(0, 256, 0, 256)
-
-UICorner_17.Parent = ImageLabel_7
 
 MousefovCheck.Name = "MousefovCheck"
 MousefovCheck.Parent = TextButton
@@ -784,17 +770,17 @@ MousefovCheck.Text = ""
 MousefovCheck.TextColor3 = Color3.fromRGB(0, 0, 0)
 MousefovCheck.TextSize = 14.000
 
-UICorner_18.Parent = MousefovCheck
+UICorner_17.Parent = MousefovCheck
 
-ImageLabel_8.Parent = MousefovCheck
-ImageLabel_8.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ImageLabel_8.BackgroundTransparency = 1.000
-ImageLabel_8.BorderSizePixel = 0
-ImageLabel_8.Size = UDim2.new(1, 0, 1, 0)
-ImageLabel_8.Image = "http://www.roblox.com/asset/?id=9731691467"
-ImageLabel_8.ImageColor3 = Color3.fromRGB(12, 12, 12)
-ImageLabel_8.ScaleType = Enum.ScaleType.Slice
-ImageLabel_8.SliceCenter = Rect.new(6, 6, 94, 94)
+ImageLabel_7.Parent = MousefovCheck
+ImageLabel_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_7.BackgroundTransparency = 1.000
+ImageLabel_7.BorderSizePixel = 0
+ImageLabel_7.Size = UDim2.new(1, 0, 1, 0)
+ImageLabel_7.Image = "http://www.roblox.com/asset/?id=9731691467"
+ImageLabel_7.ImageColor3 = Color3.fromRGB(12, 12, 12)
+ImageLabel_7.ScaleType = Enum.ScaleType.Slice
+ImageLabel_7.SliceCenter = Rect.new(6, 6, 94, 94)
 
 NameTextLabel_7.Name = "NameTextLabel"
 NameTextLabel_7.Parent = MousefovCheck
@@ -819,69 +805,14 @@ Slider_5.Size = UDim2.new(1, -2, 1, 2)
 Slider_5.SizeConstraint = Enum.SizeConstraint.RelativeYY
 Slider_5.ZIndex = 2
 
-UICorner_19.CornerRadius = UDim.new(0, 4)
-UICorner_19.Parent = Slider_5
+UICorner_18.CornerRadius = UDim.new(0, 4)
+UICorner_18.Parent = Slider_5
 
-InfoFrame.Name = "InfoFrame"
-InfoFrame.Parent = gui
-InfoFrame.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
-InfoFrame.Position = UDim2.new(0, 0, 0, 0)
-InfoFrame.Size = UDim2.new(0, 194, 0, 108)
-InfoFrame.Visible = false
-InfoFrame.ZIndex = 10
-
-UICorner_20.Parent = InfoFrame
-
-UIPadding_3.Parent = InfoFrame
+UIPadding_3.Parent = TextButton
 UIPadding_3.PaddingBottom = UDim.new(0, 8)
 UIPadding_3.PaddingLeft = UDim.new(0, 8)
 UIPadding_3.PaddingRight = UDim.new(0, 8)
 UIPadding_3.PaddingTop = UDim.new(0, 8)
-
-Outline_2.Name = "Outline"
-Outline_2.Parent = InfoFrame
-Outline_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Outline_2.BackgroundTransparency = 1.000
-Outline_2.BorderSizePixel = 0
-Outline_2.Position = UDim2.new(0, -8, 0, -8)
-Outline_2.Size = UDim2.new(1, 16, 1, 16)
-Outline_2.ZIndex = -1
-Outline_2.Image = "http://www.roblox.com/asset/?id=9731691467"
-Outline_2.ImageColor3 = Color3.fromRGB(59, 98, 125)
-Outline_2.ScaleType = Enum.ScaleType.Slice
-Outline_2.SliceCenter = Rect.new(6, 6, 94, 94)
-
-ImageLabel_9.Parent = InfoFrame
-ImageLabel_9.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ImageLabel_9.BackgroundTransparency = 1.000
-ImageLabel_9.Position = UDim2.new(0, -8, 0, -8)
-ImageLabel_9.Size = UDim2.new(1, 16, 1, 16)
-ImageLabel_9.ZIndex = -3
-ImageLabel_9.Image = "http://www.roblox.com/asset/?id=6756524275"
-ImageLabel_9.ImageColor3 = Color3.fromRGB(50, 50, 50)
-ImageLabel_9.ScaleType = Enum.ScaleType.Tile
-ImageLabel_9.TileSize = UDim2.new(0, 256, 0, 256)
-
-UICorner_21.Parent = ImageLabel_9
-
-TextLabel.Parent = InfoFrame
-TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.BackgroundTransparency = 1.000
-TextLabel.BorderSizePixel = 0
-TextLabel.Size = UDim2.new(0, 1000, 0, 1000)
-TextLabel.Font = Enum.Font.SourceSans
-TextLabel.Text = " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Gravida quis blandit turpis cursus in hac habitasse."
-TextLabel.TextColor3 = Color3.fromRGB(173, 173, 173)
-TextLabel.TextSize = 15.000
-TextLabel.TextWrapped = true
-TextLabel.TextXAlignment = Enum.TextXAlignment.Left
-TextLabel.TextYAlignment = Enum.TextYAlignment.Top
-
-UIPadding_4.Parent = TextButton
-UIPadding_4.PaddingBottom = UDim.new(0, 8)
-UIPadding_4.PaddingLeft = UDim.new(0, 8)
-UIPadding_4.PaddingRight = UDim.new(0, 8)
-UIPadding_4.PaddingTop = UDim.new(0, 8)
 
 Notif.Name = "Notif"
 Notif.Parent = TextButton
@@ -893,8 +824,8 @@ Notif.Size = UDim2.new(1, 16, 1, 16)
 Notif.Visible = false
 Notif.ZIndex = 10
 
-UICorner_22.CornerRadius = UDim.new(0, 6)
-UICorner_22.Parent = Notif
+UICorner_19.CornerRadius = UDim.new(0, 6)
+UICorner_19.Parent = Notif
 
 Dismiss.Name = "Dismiss"
 Dismiss.Parent = Notif
@@ -910,17 +841,17 @@ Dismiss.Text = "DISMISS"
 Dismiss.TextColor3 = Color3.fromRGB(190, 190, 190)
 Dismiss.TextSize = 15.000
 
-UICorner_23.Parent = Dismiss
+UICorner_20.Parent = Dismiss
 
-ImageLabel_10.Parent = Dismiss
-ImageLabel_10.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ImageLabel_10.BackgroundTransparency = 1.000
-ImageLabel_10.BorderSizePixel = 0
-ImageLabel_10.Size = UDim2.new(1, 0, 1, 0)
-ImageLabel_10.Image = "http://www.roblox.com/asset/?id=9731691467"
-ImageLabel_10.ImageColor3 = Color3.fromRGB(255, 52, 52)
-ImageLabel_10.ScaleType = Enum.ScaleType.Slice
-ImageLabel_10.SliceCenter = Rect.new(6, 6, 94, 94)
+ImageLabel_8.Parent = Dismiss
+ImageLabel_8.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_8.BackgroundTransparency = 1.000
+ImageLabel_8.BorderSizePixel = 0
+ImageLabel_8.Size = UDim2.new(1, 0, 1, 0)
+ImageLabel_8.Image = "http://www.roblox.com/asset/?id=9731691467"
+ImageLabel_8.ImageColor3 = Color3.fromRGB(255, 52, 52)
+ImageLabel_8.ScaleType = Enum.ScaleType.Slice
+ImageLabel_8.SliceCenter = Rect.new(6, 6, 94, 94)
 
 NotificationType.Name = "NotificationType"
 NotificationType.Parent = Notif
@@ -937,11 +868,11 @@ NotificationType.TextSize = 34.000
 NotificationType.TextWrapped = true
 NotificationType.TextYAlignment = Enum.TextYAlignment.Top
 
-UIPadding_5.Parent = Notif
-UIPadding_5.PaddingBottom = UDim.new(0, 8)
-UIPadding_5.PaddingLeft = UDim.new(0, 8)
-UIPadding_5.PaddingRight = UDim.new(0, 8)
-UIPadding_5.PaddingTop = UDim.new(0, 8)
+UIPadding_4.Parent = Notif
+UIPadding_4.PaddingBottom = UDim.new(0, 8)
+UIPadding_4.PaddingLeft = UDim.new(0, 8)
+UIPadding_4.PaddingRight = UDim.new(0, 8)
+UIPadding_4.PaddingTop = UDim.new(0, 8)
 
 NotificationText.Name = "NotificationText"
 NotificationText.Parent = Notif
@@ -965,39 +896,39 @@ LoadingFrame.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
 LoadingFrame.Position = UDim2.new(0, 0, 0, -10)
 LoadingFrame.Size = UDim2.new(0, 195, 0, 16)
 
-UICorner_24.Parent = LoadingFrame
+UICorner_21.Parent = LoadingFrame
 
-UIPadding_6.Parent = LoadingFrame
-UIPadding_6.PaddingBottom = UDim.new(0, 8)
-UIPadding_6.PaddingLeft = UDim.new(0, 8)
-UIPadding_6.PaddingRight = UDim.new(0, 8)
-UIPadding_6.PaddingTop = UDim.new(0, 8)
+UIPadding_5.Parent = LoadingFrame
+UIPadding_5.PaddingBottom = UDim.new(0, 8)
+UIPadding_5.PaddingLeft = UDim.new(0, 8)
+UIPadding_5.PaddingRight = UDim.new(0, 8)
+UIPadding_5.PaddingTop = UDim.new(0, 8)
 
-ImageLabel_11.Parent = LoadingFrame
-ImageLabel_11.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ImageLabel_11.BackgroundTransparency = 1.000
-ImageLabel_11.Position = UDim2.new(0, -8, 0, -8)
-ImageLabel_11.Size = UDim2.new(1, 16, 1, 16)
-ImageLabel_11.ZIndex = -3
-ImageLabel_11.Image = "http://www.roblox.com/asset/?id=6756524275"
-ImageLabel_11.ImageColor3 = Color3.fromRGB(50, 50, 50)
-ImageLabel_11.ScaleType = Enum.ScaleType.Tile
-ImageLabel_11.TileSize = UDim2.new(0, 256, 0, 256)
+ImageLabel_9.Parent = LoadingFrame
+ImageLabel_9.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_9.BackgroundTransparency = 1.000
+ImageLabel_9.Position = UDim2.new(0, -8, 0, -8)
+ImageLabel_9.Size = UDim2.new(1, 16, 1, 16)
+ImageLabel_9.ZIndex = -3
+ImageLabel_9.Image = "http://www.roblox.com/asset/?id=6756524275"
+ImageLabel_9.ImageColor3 = Color3.fromRGB(50, 50, 50)
+ImageLabel_9.ScaleType = Enum.ScaleType.Tile
+ImageLabel_9.TileSize = UDim2.new(0, 256, 0, 256)
 
-UICorner_25.Parent = ImageLabel_11
+UICorner_22.Parent = ImageLabel_9
 
-Outline_3.Name = "Outline"
-Outline_3.Parent = LoadingFrame
-Outline_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Outline_3.BackgroundTransparency = 1.000
-Outline_3.BorderSizePixel = 0
-Outline_3.Position = UDim2.new(0, -8, 0, -8)
-Outline_3.Size = UDim2.new(1, 16, 1, 16)
-Outline_3.ZIndex = -1
-Outline_3.Image = "http://www.roblox.com/asset/?id=9731691467"
-Outline_3.ImageColor3 = Color3.fromRGB(26, 26, 26)
-Outline_3.ScaleType = Enum.ScaleType.Slice
-Outline_3.SliceCenter = Rect.new(6, 6, 94, 94)
+Outline.Name = "Outline"
+Outline.Parent = LoadingFrame
+Outline.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Outline.BackgroundTransparency = 1.000
+Outline.BorderSizePixel = 0
+Outline.Position = UDim2.new(0, -8, 0, -8)
+Outline.Size = UDim2.new(1, 16, 1, 16)
+Outline.ZIndex = -1
+Outline.Image = "http://www.roblox.com/asset/?id=9731691467"
+Outline.ImageColor3 = Color3.fromRGB(26, 26, 26)
+Outline.ScaleType = Enum.ScaleType.Slice
+Outline.SliceCenter = Rect.new(6, 6, 94, 94)
 
 LoadingBar.Name = "LoadingBar"
 LoadingBar.Parent = LoadingFrame
@@ -1005,8 +936,8 @@ LoadingBar.AnchorPoint = Vector2.new(0, 0.5)
 LoadingBar.BackgroundColor3 = Color3.fromRGB(180, 180, 180)
 LoadingBar.Size = UDim2.new(0, 0, 0, 5)
 
-UICorner_26.CornerRadius = UDim.new(1, 0)
-UICorner_26.Parent = LoadingBar
+UICorner_23.CornerRadius = UDim.new(1, 0)
+UICorner_23.Parent = LoadingBar
 
 LoadingText.Name = "LoadingText"
 LoadingText.Parent = LoadingFrame
@@ -1035,17 +966,17 @@ FrommiddleCheck.Text = ""
 FrommiddleCheck.TextColor3 = Color3.fromRGB(0, 0, 0)
 FrommiddleCheck.TextSize = 14.000
 
-UICorner_27.Parent = FrommiddleCheck
+UICorner_24.Parent = FrommiddleCheck
 
-ImageLabel_12.Parent = FrommiddleCheck
-ImageLabel_12.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ImageLabel_12.BackgroundTransparency = 1.000
-ImageLabel_12.BorderSizePixel = 0
-ImageLabel_12.Size = UDim2.new(1, 0, 1, 0)
-ImageLabel_12.Image = "http://www.roblox.com/asset/?id=9731691467"
-ImageLabel_12.ImageColor3 = Color3.fromRGB(12, 12, 12)
-ImageLabel_12.ScaleType = Enum.ScaleType.Slice
-ImageLabel_12.SliceCenter = Rect.new(6, 6, 94, 94)
+ImageLabel_10.Parent = FrommiddleCheck
+ImageLabel_10.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_10.BackgroundTransparency = 1.000
+ImageLabel_10.BorderSizePixel = 0
+ImageLabel_10.Size = UDim2.new(1, 0, 1, 0)
+ImageLabel_10.Image = "http://www.roblox.com/asset/?id=9731691467"
+ImageLabel_10.ImageColor3 = Color3.fromRGB(12, 12, 12)
+ImageLabel_10.ScaleType = Enum.ScaleType.Slice
+ImageLabel_10.SliceCenter = Rect.new(6, 6, 94, 94)
 
 NameTextLabel_8.Name = "NameTextLabel"
 NameTextLabel_8.Parent = FrommiddleCheck
@@ -1070,8 +1001,8 @@ Slider_6.Size = UDim2.new(1, -2, 1, 2)
 Slider_6.SizeConstraint = Enum.SizeConstraint.RelativeYY
 Slider_6.ZIndex = 2
 
-UICorner_28.CornerRadius = UDim.new(0, 4)
-UICorner_28.Parent = Slider_6
+UICorner_25.CornerRadius = UDim.new(0, 4)
+UICorner_25.Parent = Slider_6
 
 ShortcutsButton.Name = "ShortcutsButton"
 ShortcutsButton.Parent = TextButton
@@ -1087,17 +1018,17 @@ ShortcutsButton.Text = "SHORTCUTS"
 ShortcutsButton.TextColor3 = Color3.fromRGB(190, 190, 190)
 ShortcutsButton.TextSize = 15.000
 
-UICorner_29.Parent = ShortcutsButton
+UICorner_26.Parent = ShortcutsButton
 
-ImageLabel_13.Parent = ShortcutsButton
-ImageLabel_13.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ImageLabel_13.BackgroundTransparency = 1.000
-ImageLabel_13.BorderSizePixel = 0
-ImageLabel_13.Size = UDim2.new(1, 0, 1, 0)
-ImageLabel_13.Image = "http://www.roblox.com/asset/?id=9731691467"
-ImageLabel_13.ImageColor3 = Color3.fromRGB(24, 24, 24)
-ImageLabel_13.ScaleType = Enum.ScaleType.Slice
-ImageLabel_13.SliceCenter = Rect.new(6, 6, 94, 94)
+ImageLabel_11.Parent = ShortcutsButton
+ImageLabel_11.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_11.BackgroundTransparency = 1.000
+ImageLabel_11.BorderSizePixel = 0
+ImageLabel_11.Size = UDim2.new(1, 0, 1, 0)
+ImageLabel_11.Image = "http://www.roblox.com/asset/?id=9731691467"
+ImageLabel_11.ImageColor3 = Color3.fromRGB(24, 24, 24)
+ImageLabel_11.ScaleType = Enum.ScaleType.Slice
+ImageLabel_11.SliceCenter = Rect.new(6, 6, 94, 94)
 
 ShortcutsClip.Name = "ShortcutsClip"
 ShortcutsClip.Parent = ShortcutsButton
@@ -1116,31 +1047,31 @@ ShortcutsFrame.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
 ShortcutsFrame.Position = UDim2.new(0, 1, 1, 1)
 ShortcutsFrame.Size = UDim2.new(1, -1, 1, -1)
 
-ImageLabel_14.Parent = ShortcutsFrame
-ImageLabel_14.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ImageLabel_14.BackgroundTransparency = 1.000
-ImageLabel_14.Size = UDim2.new(1, 0, 1, 0)
-ImageLabel_14.ZIndex = -3
-ImageLabel_14.Image = "http://www.roblox.com/asset/?id=6756524275"
-ImageLabel_14.ImageColor3 = Color3.fromRGB(50, 50, 50)
-ImageLabel_14.ScaleType = Enum.ScaleType.Tile
-ImageLabel_14.TileSize = UDim2.new(0, 256, 0, 256)
+ImageLabel_12.Parent = ShortcutsFrame
+ImageLabel_12.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_12.BackgroundTransparency = 1.000
+ImageLabel_12.Size = UDim2.new(1, 0, 1, 0)
+ImageLabel_12.ZIndex = -3
+ImageLabel_12.Image = "http://www.roblox.com/asset/?id=6756524275"
+ImageLabel_12.ImageColor3 = Color3.fromRGB(50, 50, 50)
+ImageLabel_12.ScaleType = Enum.ScaleType.Tile
+ImageLabel_12.TileSize = UDim2.new(0, 256, 0, 256)
 
-UICorner_30.Parent = ImageLabel_14
+UICorner_27.Parent = ImageLabel_12
 
-Outline_4.Name = "Outline"
-Outline_4.Parent = ShortcutsFrame
-Outline_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Outline_4.BackgroundTransparency = 1.000
-Outline_4.BorderSizePixel = 0
-Outline_4.Size = UDim2.new(1, 0, 1, 0)
-Outline_4.ZIndex = -1
-Outline_4.Image = "http://www.roblox.com/asset/?id=9731691467"
-Outline_4.ImageColor3 = Color3.fromRGB(26, 26, 26)
-Outline_4.ScaleType = Enum.ScaleType.Slice
-Outline_4.SliceCenter = Rect.new(6, 6, 94, 94)
+Outline_2.Name = "Outline"
+Outline_2.Parent = ShortcutsFrame
+Outline_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Outline_2.BackgroundTransparency = 1.000
+Outline_2.BorderSizePixel = 0
+Outline_2.Size = UDim2.new(1, 0, 1, 0)
+Outline_2.ZIndex = -1
+Outline_2.Image = "http://www.roblox.com/asset/?id=9731691467"
+Outline_2.ImageColor3 = Color3.fromRGB(26, 26, 26)
+Outline_2.ScaleType = Enum.ScaleType.Slice
+Outline_2.SliceCenter = Rect.new(6, 6, 94, 94)
 
-UICorner_31.Parent = ShortcutsFrame
+UICorner_28.Parent = ShortcutsFrame
 
 ShortcutsScrollingFrame.Name = "ShortcutsScrollingFrame"
 ShortcutsScrollingFrame.Parent = ShortcutsFrame
@@ -1181,11 +1112,11 @@ ShortcutText.TextColor3 = Color3.fromRGB(207, 207, 207)
 ShortcutText.TextSize = 13.000
 ShortcutText.TextXAlignment = Enum.TextXAlignment.Left
 
-UIPadding_7.Parent = ShortcutsScrollingFrame
-UIPadding_7.PaddingBottom = UDim.new(0, 1)
-UIPadding_7.PaddingLeft = UDim.new(0, 1)
-UIPadding_7.PaddingRight = UDim.new(0, 1)
-UIPadding_7.PaddingTop = UDim.new(0, 1)
+UIPadding_6.Parent = ShortcutsScrollingFrame
+UIPadding_6.PaddingBottom = UDim.new(0, 1)
+UIPadding_6.PaddingLeft = UDim.new(0, 1)
+UIPadding_6.PaddingRight = UDim.new(0, 1)
+UIPadding_6.PaddingTop = UDim.new(0, 1)
 
 PeriodicCheck.Name = "PeriodicCheck"
 PeriodicCheck.Parent = TextButton
@@ -1199,17 +1130,17 @@ PeriodicCheck.Text = ""
 PeriodicCheck.TextColor3 = Color3.fromRGB(0, 0, 0)
 PeriodicCheck.TextSize = 14.000
 
-UICorner_32.Parent = PeriodicCheck
+UICorner_29.Parent = PeriodicCheck
 
-ImageLabel_15.Parent = PeriodicCheck
-ImageLabel_15.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ImageLabel_15.BackgroundTransparency = 1.000
-ImageLabel_15.BorderSizePixel = 0
-ImageLabel_15.Size = UDim2.new(1, 0, 1, 0)
-ImageLabel_15.Image = "http://www.roblox.com/asset/?id=9731691467"
-ImageLabel_15.ImageColor3 = Color3.fromRGB(12, 12, 12)
-ImageLabel_15.ScaleType = Enum.ScaleType.Slice
-ImageLabel_15.SliceCenter = Rect.new(6, 6, 94, 94)
+ImageLabel_13.Parent = PeriodicCheck
+ImageLabel_13.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_13.BackgroundTransparency = 1.000
+ImageLabel_13.BorderSizePixel = 0
+ImageLabel_13.Size = UDim2.new(1, 0, 1, 0)
+ImageLabel_13.Image = "http://www.roblox.com/asset/?id=9731691467"
+ImageLabel_13.ImageColor3 = Color3.fromRGB(12, 12, 12)
+ImageLabel_13.ScaleType = Enum.ScaleType.Slice
+ImageLabel_13.SliceCenter = Rect.new(6, 6, 94, 94)
 
 NameTextLabel_9.Name = "NameTextLabel"
 NameTextLabel_9.Parent = PeriodicCheck
@@ -1234,8 +1165,193 @@ Slider_7.Size = UDim2.new(1, -2, 1, 2)
 Slider_7.SizeConstraint = Enum.SizeConstraint.RelativeYY
 Slider_7.ZIndex = 2
 
+UICorner_30.CornerRadius = UDim.new(0, 4)
+UICorner_30.Parent = Slider_7
+
+ImageLabel_14.Parent = TextButton
+ImageLabel_14.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_14.BackgroundTransparency = 1.000
+ImageLabel_14.Position = UDim2.new(0, -8, 0, -8)
+ImageLabel_14.Size = UDim2.new(1, 16, 1, 16)
+ImageLabel_14.ZIndex = -3
+ImageLabel_14.Image = "http://www.roblox.com/asset/?id=6756524275"
+ImageLabel_14.ImageColor3 = Color3.fromRGB(50, 50, 50)
+ImageLabel_14.ScaleType = Enum.ScaleType.Tile
+ImageLabel_14.TileSize = UDim2.new(0, 256, 0, 256)
+
+UICorner_31.Parent = ImageLabel_14
+
+Outline_3.Name = "Outline"
+Outline_3.Parent = TextButton
+Outline_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Outline_3.BackgroundTransparency = 1.000
+Outline_3.BorderSizePixel = 0
+Outline_3.Position = UDim2.new(0, -8, 0, -8)
+Outline_3.Size = UDim2.new(1, 16, 1, 16)
+Outline_3.ZIndex = -1
+Outline_3.Image = "http://www.roblox.com/asset/?id=9731691467"
+Outline_3.ImageColor3 = Color3.fromRGB(26, 26, 26)
+Outline_3.ScaleType = Enum.ScaleType.Slice
+Outline_3.SliceCenter = Rect.new(6, 6, 94, 94)
+
+PredictionCheck.Name = "PredictionCheck"
+PredictionCheck.Parent = TextButton
+PredictionCheck.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+PredictionCheck.Position = UDim2.new(1, -227, 0, 126)
+PredictionCheck.Size = UDim2.new(0, 36, 0, 14)
+PredictionCheck.ZIndex = 3
+PredictionCheck.AutoButtonColor = false
+PredictionCheck.Font = Enum.Font.SourceSans
+PredictionCheck.Text = ""
+PredictionCheck.TextColor3 = Color3.fromRGB(0, 0, 0)
+PredictionCheck.TextSize = 14.000
+
+UICorner_32.Parent = PredictionCheck
+
+ImageLabel_15.Parent = PredictionCheck
+ImageLabel_15.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_15.BackgroundTransparency = 1.000
+ImageLabel_15.BorderSizePixel = 0
+ImageLabel_15.Size = UDim2.new(1, 0, 1, 0)
+ImageLabel_15.Image = "http://www.roblox.com/asset/?id=9731691467"
+ImageLabel_15.ImageColor3 = Color3.fromRGB(12, 12, 12)
+ImageLabel_15.ScaleType = Enum.ScaleType.Slice
+ImageLabel_15.SliceCenter = Rect.new(6, 6, 94, 94)
+
+NameTextLabel_10.Name = "NameTextLabel"
+NameTextLabel_10.Parent = PredictionCheck
+NameTextLabel_10.AnchorPoint = Vector2.new(1, 0)
+NameTextLabel_10.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NameTextLabel_10.BackgroundTransparency = 1.000
+NameTextLabel_10.BorderSizePixel = 0
+NameTextLabel_10.Position = UDim2.new(0, -5, 0, 0)
+NameTextLabel_10.Size = UDim2.new(0, 50, 1, 0)
+NameTextLabel_10.Font = Enum.Font.SourceSansBold
+NameTextLabel_10.Text = "PREDICTION"
+NameTextLabel_10.TextColor3 = Color3.fromRGB(156, 156, 156)
+NameTextLabel_10.TextSize = 12.000
+NameTextLabel_10.TextXAlignment = Enum.TextXAlignment.Right
+
+Slider_8.Name = "Slider"
+Slider_8.Parent = PredictionCheck
+Slider_8.AnchorPoint = Vector2.new(0, 0.5)
+Slider_8.BackgroundColor3 = Color3.fromRGB(190, 190, 190)
+Slider_8.Position = UDim2.new(0, 0, 0.5, 0)
+Slider_8.Size = UDim2.new(1, -2, 1, 2)
+Slider_8.SizeConstraint = Enum.SizeConstraint.RelativeYY
+Slider_8.ZIndex = 2
+
 UICorner_33.CornerRadius = UDim.new(0, 4)
-UICorner_33.Parent = Slider_7
+UICorner_33.Parent = Slider_8
+
+PredictionSlider.Name = "PredictionSlider"
+PredictionSlider.Parent = TextButton
+PredictionSlider.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+PredictionSlider.BorderSizePixel = 0
+PredictionSlider.Position = UDim2.new(1, -301, 0, 152)
+PredictionSlider.Size = UDim2.new(0, 111, 0, 7)
+
+UICorner_34.CornerRadius = UDim.new(1, 0)
+UICorner_34.Parent = PredictionSlider
+
+SliderButton_3.Name = "SliderButton"
+SliderButton_3.Parent = PredictionSlider
+SliderButton_3.AnchorPoint = Vector2.new(0, 0.5)
+SliderButton_3.BackgroundColor3 = Color3.fromRGB(190, 190, 190)
+SliderButton_3.Position = UDim2.new(0.100000001, 0, 0.5, 0)
+SliderButton_3.Size = UDim2.new(1, 0, 1, 6)
+SliderButton_3.SizeConstraint = Enum.SizeConstraint.RelativeYY
+SliderButton_3.Font = Enum.Font.SourceSans
+SliderButton_3.Text = ""
+SliderButton_3.TextColor3 = Color3.fromRGB(0, 0, 0)
+SliderButton_3.TextSize = 14.000
+
+UICorner_35.CornerRadius = UDim.new(0, 4)
+UICorner_35.Parent = SliderButton_3
+
+CurrentValue_3.Name = "CurrentValue"
+CurrentValue_3.Parent = PredictionSlider
+CurrentValue_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CurrentValue_3.BackgroundTransparency = 1.000
+CurrentValue_3.BorderSizePixel = 0
+CurrentValue_3.Position = UDim2.new(0.100000001, 0, 0, 10)
+CurrentValue_3.Size = UDim2.new(0, 100, 0, 20)
+CurrentValue_3.Font = Enum.Font.SourceSansItalic
+CurrentValue_3.Text = "1"
+CurrentValue_3.TextColor3 = Color3.fromRGB(63, 63, 63)
+CurrentValue_3.TextSize = 13.000
+CurrentValue_3.TextXAlignment = Enum.TextXAlignment.Left
+CurrentValue_3.TextYAlignment = Enum.TextYAlignment.Top
+
+NameTextLabel_11.Name = "NameTextLabel"
+NameTextLabel_11.Parent = PredictionSlider
+NameTextLabel_11.AnchorPoint = Vector2.new(1, 0)
+NameTextLabel_11.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NameTextLabel_11.BackgroundTransparency = 1.000
+NameTextLabel_11.BorderSizePixel = 0
+NameTextLabel_11.Position = UDim2.new(1, 0, 0, 10)
+NameTextLabel_11.Size = UDim2.new(1, 0, 0, 20)
+NameTextLabel_11.Font = Enum.Font.SourceSansBold
+NameTextLabel_11.Text = "PREDICTION"
+NameTextLabel_11.TextColor3 = Color3.fromRGB(172, 172, 172)
+NameTextLabel_11.TextSize = 14.000
+NameTextLabel_11.TextXAlignment = Enum.TextXAlignment.Right
+NameTextLabel_11.TextYAlignment = Enum.TextYAlignment.Top
+
+InfoFrame.Name = "InfoFrame"
+InfoFrame.Parent = gui
+InfoFrame.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+InfoFrame.Position = UDim2.new(0, 450, 0, 300)
+InfoFrame.Size = UDim2.new(0, 194, 0, 108)
+InfoFrame.Visible = false
+InfoFrame.ZIndex = 10
+
+UICorner_36.Parent = InfoFrame
+
+UIPadding_7.Parent = InfoFrame
+UIPadding_7.PaddingBottom = UDim.new(0, 8)
+UIPadding_7.PaddingLeft = UDim.new(0, 8)
+UIPadding_7.PaddingRight = UDim.new(0, 8)
+UIPadding_7.PaddingTop = UDim.new(0, 8)
+
+Outline_4.Name = "Outline"
+Outline_4.Parent = InfoFrame
+Outline_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Outline_4.BackgroundTransparency = 1.000
+Outline_4.BorderSizePixel = 0
+Outline_4.Position = UDim2.new(0, -8, 0, -8)
+Outline_4.Size = UDim2.new(1, 16, 1, 16)
+Outline_4.ZIndex = -1
+Outline_4.Image = "http://www.roblox.com/asset/?id=9731691467"
+Outline_4.ImageColor3 = Color3.fromRGB(59, 98, 125)
+Outline_4.ScaleType = Enum.ScaleType.Slice
+Outline_4.SliceCenter = Rect.new(6, 6, 94, 94)
+
+ImageLabel_16.Parent = InfoFrame
+ImageLabel_16.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_16.BackgroundTransparency = 1.000
+ImageLabel_16.Position = UDim2.new(0, -8, 0, -8)
+ImageLabel_16.Size = UDim2.new(1, 16, 1, 16)
+ImageLabel_16.ZIndex = -3
+ImageLabel_16.Image = "http://www.roblox.com/asset/?id=6756524275"
+ImageLabel_16.ImageColor3 = Color3.fromRGB(50, 50, 50)
+ImageLabel_16.ScaleType = Enum.ScaleType.Tile
+ImageLabel_16.TileSize = UDim2.new(0, 256, 0, 256)
+
+UICorner_37.Parent = ImageLabel_16
+
+TextLabel.Parent = InfoFrame
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.BorderSizePixel = 0
+TextLabel.Size = UDim2.new(0, 1000, 0, 1000)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Gravida quis blandit turpis cursus in hac habitasse."
+TextLabel.TextColor3 = Color3.fromRGB(173, 173, 173)
+TextLabel.TextSize = 15.000
+TextLabel.TextWrapped = true
+TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+TextLabel.TextYAlignment = Enum.TextYAlignment.Top
 
 LoadingText.Text = "Creating UI"
 
@@ -1275,12 +1391,14 @@ local esp = {}
 local aimtype = "mousedist"
 local aimpart = "head"
 local aim = false
+local predictionon = false
 local closed = false
 local changingkeybind = false
 
 local firstnewkeybind,secondnewkeybind
 local newkeybindforui = ""
 
+local prediction,maxprediction = 1,20
 local fov,maxfov = 100,1000
 local bottomscreen = vector2(1,1)
 local middlescreen = gui.AbsoluteSize/2
@@ -1501,6 +1619,10 @@ MousefovCheck.MouseButton1Down:Connect(function()
 	tweenservice:Create(MousefovCheck.Slider,TweenInfo.new(.12),{BackgroundColor3 = mousefov and color3(190, 190, 190) or color3(42, 180, 51),Position = mousefov and udim2(0,0,0.5,0) or udim2(1,-12,0.5,0)}):Play()
 	mousefov = not mousefov	
 end)
+PredictionCheck.MouseButton1Down:Connect(function()
+	tweenservice:Create(PredictionCheck.Slider,TweenInfo.new(.12),{BackgroundColor3 = predictionon and color3(190, 190, 190) or color3(42, 180, 51),Position = predictionon and udim2(0,0,0.5,0) or udim2(1,-12,0.5,0)}):Play()
+	predictionon = not predictionon	
+end)
 if not periodic then
 	PeriodicCheck.MouseButton1Down:Connect(function()
 		tweenservice:Create(PeriodicCheck.Slider,TweenInfo.new(.12),{BackgroundColor3 = periodic and color3(190, 190, 190) or color3(42, 180, 51),Position = periodic and udim2(0,0,0.5,0) or udim2(1,-12,0.5,0)}):Play()
@@ -1518,12 +1640,28 @@ FovSlider.SliderButton.MouseButton1Down:Connect(function()
 		procent = procent > 1 and 1 or procent < 0 and 0 or procent
 		FovSlider.SliderButton.Position = udim2(procent,0,.5,0)
 		local calculated = maxfov*procent
-		FovSlider.CurrentValue.Text = math.ceil(calculated)
+		FovSlider.CurrentValue.Text = ceil(calculated)
 		fov = calculated 
 	until not onfovslider
 end)
 FovSlider.SliderButton.MouseButton1Up:Connect(function()
 	onfovslider = false
+end)
+
+local onpredictionslider = false
+PredictionSlider.SliderButton.MouseButton1Down:Connect(function()
+	onpredictionslider = true
+	repeat renderstep:wait()
+		local procent = ((mouse.X-PredictionSlider.AbsolutePosition.X)/PredictionSlider.AbsoluteSize.X)
+		procent = procent > 1 and 1 or procent < 0 and 0 or procent
+		PredictionSlider.SliderButton.Position = udim2(procent,0,.5,0)
+		local calculated = maxprediction*procent
+		PredictionSlider.CurrentValue.Text = ceil(calculated)
+		prediction = calculated 
+	until not onpredictionslider
+end)
+PredictionSlider.SliderButton.MouseButton1Up:Connect(function()
+	onpredictionslider = false
 end)
 
 local onsmoothnessslider = false
@@ -1533,7 +1671,7 @@ SmoothnessSlider.SliderButton.MouseButton1Down:Connect(function()
 		local procent = ((mouse.X-SmoothnessSlider.AbsolutePosition.X)/SmoothnessSlider.AbsoluteSize.X)
 		procent = procent > 1 and 1 or procent < 0 and 0 or procent
 		SmoothnessSlider.SliderButton.Position = udim2(procent,0,.5,0)
-		local calculated = math.ceil(maxsmoothing*procent)
+		local calculated = ceil(maxsmoothing*procent)
 		calculated = calculated == 0 and 1 or calculated
 		SmoothnessSlider.CurrentValue.Text = calculated
 		smoothingprocent = calculated
@@ -1589,6 +1727,8 @@ infotext(PeriodicCheck.NameTextLabel,periodic and " Permanently on for this game
 infotext(VisualCheck.NameTextLabel," Checks if the character is visible on screen, <i>may</i> not\n100% work all the time.")
 infotext(SmoothnessSlider.NameTextLabel," The smoothness of the <font color=\"rgb(108,108,255)\">aimbot</font>.")
 infotext(FovSlider.NameTextLabel," Size of the FOV.")
+infotext(PredictionCheck.NameTextLabel," Prediction of the aimed at target.")
+infotext(PredictionSlider.NameTextLabel," The smoothness of the prediction.")
 
 local function addesp(player)
 	local character = player.Instance
@@ -1761,6 +1901,7 @@ spawn(function()
 	end
 end)
 
+local empty = Vector3.new(0,0,0)
 runservice.RenderStepped:Connect(function()
 	local absolute = indexfunc(gui,"AbsoluteSize")
 	local mouseposition = vector2(indexfunc(mouse,"X"),indexfunc(mouse,"Y"))
@@ -1813,7 +1954,8 @@ runservice.RenderStepped:Connect(function()
 		if vaimatpart then 
 			if aimtype == "mousedist" then
 				field = field/indexfunc(userinputservice,"MouseDeltaSensitivity") -- make sure the aimbot doesn't go haywire when games reduce/increases the mouseSens.
-				local screenposition,visible = camera:WorldToScreenPoint(indexfunc(vaimatpart,"Position"))
+				local velocity = indexfunc(vaimatpart,"Velocity")/(13+prediction)
+				local screenposition,visible = camera:WorldToScreenPoint(indexfunc(vaimatpart,"Position")+(predictionon and velocity or empty))
 				local move = vector2(-((indexfunc(mouse,"X")-screenposition.x)),-((indexfunc(mouse,"Y")-screenposition.y)))*field/smoothingprocent
 				mousemoverel(move.x,move.y) -- "WHY WON'T YOU USE camera.CFrame" ---- shut up.
 			end
