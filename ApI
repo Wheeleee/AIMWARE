@@ -74,7 +74,7 @@ return {
 		    v1=workspace:WaitForChild("Ignore")
 		    for i,v in pairs(getgc(true)) do
                 if (typeof(v)=="table") and rawget(v,"Teams") then
-                    v2=v
+                    v2=v.Teams
                     break
                 end
             end
@@ -94,18 +94,14 @@ return {
 		GetEnemies = function(self)
 			local enemies = {}
 			local localteam = v2[localplayer]
-			for _,player in next, players:GetPlayers() do
-			    if localteam ~= v2[player] then
-    				if player ~= localplayer then
-    					local character = indexfunc(player,"Character")
-    					if character then
-    						enemies[#enemies+1] = {
-    							Instance = character,
-    							Parent = indexfunc(character,"Parent"),
-    							Ignore = character,
-    						}
-    					end
-    				end
+			for player,team in next,v2 do
+			    if team ~= localteam then
+			        local character = indexfunc(player,"Character")
+			        enemies[#enemies+1] = {
+						Instance = character,
+						Parent = indexfunc(character,"Parent"),
+						Ignore = character,
+					}
 			    end
 			end
 			return enemies
