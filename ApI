@@ -1803,11 +1803,11 @@ return {
 	},
 	[111958650] = {
 		BodyParts = {
-			["TORSO"] = "UpperTorso",
+			["TORSO"] = "HumanoidRootPart",
 			["HEAD"] = "Head",
 		},
 		Init = function(self)
-
+		    v1 = workspace:FindFirstChild("Animatronics")
 		end,
 		SetCFrame = function(self,CFrame)
 			newindexfunc(camera,"CFrame",CFrame)
@@ -1823,20 +1823,32 @@ return {
 		end,
 		GetEnemies = function(self)
 			local enemies = {}
-			for _,player in next, players:GetPlayers() do
-				if player ~= localplayer then
-					local character = indexfunc(player,"Character")
-					if character then
-						if indexfunc(player,"Team") or indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") then
-							enemies[#enemies+1] = {
-								Instance = character,
-								Parent = indexfunc(character,"Parent"),
-								Ignore = character,
-							}
-						end
-					end
-				end
-			end
+			if v1 then
+			    for _,character in next, v1:GetChildren() do
+    				if character.Name == "Roamer" then
+    					enemies[#enemies+1] = {
+    						Instance = character,
+    						Parent = indexfunc(character,"Parent"),
+    						Ignore = character,
+    					}
+    				end
+    			end
+		    else
+		        for _,player in next, players:GetPlayers() do
+    				if player ~= localplayer then
+    					local character = indexfunc(player,"Character")
+    					if character then
+    						if indexfunc(player,"Team") or indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") then
+    							enemies[#enemies+1] = {
+    								Instance = character,
+    								Parent = indexfunc(character,"Parent"),
+    								Ignore = character,
+    							}
+    						end
+    					end
+    				end
+    			end
+		    end
 			return enemies
 		end,
 		GetLocalCharacter = function(self)
