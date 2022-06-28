@@ -64,6 +64,62 @@ return {
 			GetAntiCheatHash = function() return "N/A" end,
 			__TYPE = "UNIVERSAL",
 		},
+	}
+	[1858442722] = {
+		BodyParts = {
+			["TORSO"] = "HumanoidRootPart",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,player in next, players:GetPlayers() do
+				if player ~= localplayer then
+					local character = indexfunc(player,"Character")
+					if character then
+						enemies[#enemies+1] = {
+							Instance = character,
+							Parent = indexfunc(character,"Parent"),
+							Ignore = character,
+						}
+					end
+				end
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1656433762,
+			GameName = "Randomizer",
+			GameId = 1858442722,
+			PlaceId = 5307215810,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
 	},
 	[1865489894] = {
 		BodyParts = {
