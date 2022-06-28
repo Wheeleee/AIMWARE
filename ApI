@@ -1827,7 +1827,7 @@ return {
 				if player ~= localplayer then
 					local character = indexfunc(player,"Character")
 					if character then
-						if indexfunc(player,"Neutral") or indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") then
+						if indexfunc(player,"Team") or indexfunc(player,"Team") ~= indexfunc(localplayer,"Team") then
 							enemies[#enemies+1] = {
 								Instance = character,
 								Parent = indexfunc(character,"Parent"),
