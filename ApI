@@ -64,7 +64,7 @@ return {
 			GetAntiCheatHash = function() return "N/A" end,
 			__TYPE = "UNIVERSAL",
 		},
-	}
+	},
 	[1858442722] = {
 		BodyParts = {
 			["TORSO"] = "HumanoidRootPart",
