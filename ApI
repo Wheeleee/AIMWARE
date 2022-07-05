@@ -1651,7 +1651,7 @@ return {
 					enemies[#enemies+1] = {
 						Instance = indexfunc(character,"Body"),
 						Parent = character,
-						Ignore = indexfunc(character,"HitBox"),
+						Ignore = character,
 					}
 				end
 			end
