@@ -2,6 +2,7 @@ local players = game:GetService("Players")
 local localplayer = players.LocalPlayer
 local camera = workspace.CurrentCamera
 
+local debugupvalget = debug.getupvalue
 local indexfunc = getrawmetatable(game).__index
 local newindexfunc = getrawmetatable(game).__newindex
 local v1,v2,v3,v4,v5
@@ -1685,6 +1686,14 @@ return {
 					break
 				end
 			end
+			for i,f in pairs(getgc()) do
+			    if typeof(f)=="function" and debug.getinfo(f).name=="Equipped" then
+				local up = debug.getupvalues(f)
+				if #up==16 then
+				    v3=f
+				end
+			    end
+			end
 		end,
 		SetCFrame = function(self,CFrame)
 			newindexfunc(camera,"CFrame",CFrame)
@@ -1696,7 +1705,7 @@ return {
 			return self.BodyParts[text:upper()] or ""
 		end,
 		GetIgnorables = function(self)
-			return unpack(indexfunc(indexfunc(workspace,"Menu"),"Loadouts"):GetChildren())
+			return unpack(indexfunc(indexfunc(workspace,"Menu"),"Loadouts"):GetChildren()),debugupvalget(v3,6)
 		end,
 		GetEnemies = function(self)
 			local enemies = {}
