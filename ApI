@@ -66,6 +66,57 @@ return {
 			__TYPE = "UNIVERSAL",
 		},
 	},
+	[1681034929] = {
+		BodyParts = {
+			["TORSO"] = "UpperTorso",
+			["HEAD"] = "Head",
+		},
+		Init = function(self)
+		end,
+		SetCFrame = function(self,CFrame)
+			newindexfunc(camera,"CFrame",CFrame)
+		end,
+		Valid = function(self)
+			return true
+		end,
+		Translate = function(self,text)
+			return self.BodyParts[text:upper()] or ""
+		end,
+		GetIgnorables = function(self)
+			return nil
+		end,
+		GetEnemies = function(self)
+			local enemies = {}
+			for _,character in next, workspace.ClientZambies:GetChildren() do
+				enemies[#enemies+1] = {
+					Instance = character,
+					Parent = indexfunc(character,"Parent"),
+					Ignore = character,
+				}
+			end
+			return enemies
+		end,
+		GetLocalCharacter = function(self)
+			return indexfunc(localplayer,"Character")
+		end,
+		GetLocalPosition = function(self)
+			local character = self:GetLocalCharacter()
+			if character then
+				return character[self:Translate("HEAD")].Position
+			end
+		end,
+		Info = {
+			Created = 1658695650,
+			GameName = "RECOIL ZOMBIES",
+			GameId = 1681034929,
+			PlaceId = 4913331862,
+			AntiCheatHash = "N/A",
+			ClientHash = "N/A",
+			GetClientHash = function() return "N/A" end,
+			GetAntiCheatHash = function() return "N/A" end,
+			__TYPE = "API",
+		},
+	},
 	[3634139746] = {
 		BodyParts = {
 			["TORSO"] = "HumanoidRootPart",
